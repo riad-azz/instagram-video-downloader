@@ -95,7 +95,7 @@ span.highlight {
 }
 
 .error-message {
-  /* display: none; */
+  display: none;
   font-size: 16px;
   font-weight: 300;
   width: 100%;
