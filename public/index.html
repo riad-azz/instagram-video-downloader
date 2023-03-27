@@ -9,18 +9,24 @@
     <main>
       <h1 class="heading">Instagram Video Downloader</h1>
       <p class="description">
-        Simply copy and paste the reel/video url and get the download link
+        Copy and paste the post ID from the url then press Download
+        <span class="example">
+          https://www.instagram.com/p/<span class="highlight">CGh4a0iASGS</span
+          >/
+        </span>
       </p>
-      <p class="error-message">
-        Something went wrong. make sure the video url is correct.
-      </p>
-      <input
-        type="url"
-        class="url-input"
-        placeholder="ex. https://www.instagram.com/p/zaKisUCKs/"
-        required
-      />
-      <button role="button" class="convert-button">Download</button>
+      <div class="user-interactions">
+        <p class="error-message">Please provide a instagram post ID</p>
+        <div class="user-input">
+          <input
+            type="text"
+            class="url-input"
+            placeholder="ex. CGh4a0iASGS"
+            required
+          />
+          <button role="button" class="convert-button">Download</button>
+        </div>
+      </div>
     </main>
     <footer>
       <span>riad-azz © 2023</span>

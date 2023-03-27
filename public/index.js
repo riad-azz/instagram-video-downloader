@@ -39,9 +39,9 @@ const fetchVideo = async () => {
   convertBtn.disabled = true;
   const videoUrl = urlInput.value;
   if (videoUrl === "") {
-    showError("Please provide a instagram video url");
+    showError("Please provide a instagram post ID");
   } else {
-    await fetch(`/api?url=${urlInput.value}`).then(handleResponse, handleError);
+    await fetch(`/api?id=${urlInput.value}`).then(handleResponse, handleError);
   }
   convertBtn.disabled = false;
 };

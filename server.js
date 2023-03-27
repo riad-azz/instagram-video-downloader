@@ -12,16 +12,14 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", async (req, res) => {
-  const url = req.query.url;
-  if (url === "" || !url) {
-    res.send({ error: "Please provide a instagram video url" });
-    return;
-  } else if (!url.includes("instagram.com")) {
-    res.send({ error: "Invalid url. This works only for instagram videos" });
+  const postID = req.query.id;
+  if (!postID) {
+    res.send({ error: "Please provide a instagram post ID" });
     return;
   }
+  const instaPostURL = "https://www.instagram.com/p/" + postID;
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(instaPostURL);
     const $ = cheerio.load(response.data);
     const dataText = $("script[type='application/ld+json']").text();
     const dataJson = JSON.parse(dataText);
@@ -35,7 +33,7 @@ app.use("/api", async (req, res) => {
     res.status(200).send(result);
   } catch (error) {
     res.send({
-      error: "Something went wrong. Make sure the video url is correct.",
+      error: "Something went wrong. Make sure the post ID is correct.",
     });
   }
 });
