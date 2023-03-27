@@ -16,17 +16,17 @@ app.get("/api", async (req, res) => {
     res.send({ error: "Please provide a instagram post ID" });
     return;
   }
-  const instaPostURL = "https://www.instagram.com/p/" + postID;
+
   try {
+    const instaPostURL = "https://www.instagram.com/p/" + postID;
     const response = await axios.get(instaPostURL);
     const myDocument = cheerio.load(response.data);
     const dataText = myDocument("script[type='application/ld+json']").text();
     const dataJson = JSON.parse(dataText);
 
-    const name = dataJson.identifier.value;
     const videoUrl = dataJson.video[0].contentUrl;
     const result = {
-      name: name,
+      id: postID,
       url: videoUrl,
     };
     res.status(200).send(result);
