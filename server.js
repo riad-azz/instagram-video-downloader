@@ -4,14 +4,13 @@ const axios = require("axios");
 const path = require("path");
 
 const app = express();
-
 app.use("/public", express.static("public"));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-app.use("/api", async (req, res) => {
+app.get("/api", async (req, res) => {
   const postID = req.query.id;
   if (!postID) {
     res.send({ error: "Please provide a instagram post ID" });
@@ -20,8 +19,8 @@ app.use("/api", async (req, res) => {
   const instaPostURL = "https://www.instagram.com/p/" + postID;
   try {
     const response = await axios.get(instaPostURL);
-    const $ = cheerio.load(response.data);
-    const dataText = $("script[type='application/ld+json']").text();
+    const myDocument = cheerio.load(response.data);
+    const dataText = myDocument("script[type='application/ld+json']").text();
     const dataJson = JSON.parse(dataText);
 
     const name = dataJson.identifier.value;
