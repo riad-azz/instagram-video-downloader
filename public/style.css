@@ -43,7 +43,7 @@ footer {
   max-width: 800px;
   color: #333;
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
   text-align: center;
   text-transform: none;
@@ -162,7 +162,7 @@ span.highlight {
   }
 
   .description {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .url-input {
