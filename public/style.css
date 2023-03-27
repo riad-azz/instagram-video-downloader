@@ -40,7 +40,7 @@ footer {
 }
 
 .description {
-  max-width: 800px;
+  width: 450px;
   color: #333;
   font-family: Arial, sans-serif;
   font-size: 14px;
@@ -60,11 +60,16 @@ span.keep-together {
   white-space: nowrap;
 }
 
+span.info {
+  display: block;
+  width: 100%;
+}
+
 span.example {
   display: block;
-  width: fit-content;
+  width: 100%;
   margin: 10px auto;
-  padding: 6px 20px;
+  padding: 6px 0;
   font-size: 16px;
   background-color: #eee;
   border-radius: 10px;
@@ -157,7 +162,7 @@ span.highlight {
 
 @media only screen and (max-width: 600px) {
   .heading {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .url-input {
