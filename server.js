@@ -4,10 +4,10 @@ const axios = require("axios");
 
 const app = express();
 
-app.use("/proxy", async (req, res) => {
+app.use("/api", async (req, res) => {
   const url = req.query.url;
   if (url === "" || !url) {
-    res.send("Url was not provided");
+    res.send({ error: "url was not provided" });
     return;
   }
   try {
@@ -16,10 +16,17 @@ app.use("/proxy", async (req, res) => {
     const dataText = $("script[type='application/ld+json']").text();
     const dataJson = JSON.parse(dataText);
     const videoUrl = dataJson.video[0].contentUrl;
-    res.send(videoUrl);
+    const result = {
+      videoUrl: videoUrl,
+    }
+    res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error.message);
   }
+});
+
+app.use("/", async (req, res) => {
+  res.send("Hello there friend !!");
 });
 
 app.listen(3000);
