@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.heading {
+  margin-top: 20vh;
+  margin-bottom: 0.425rem;
+}
+
+.description {
+  max-width: 800px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+  text-transform: none;
+  text-decoration: none;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.error-message {
+  display: none;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgb(241, 67, 67);
+  margin: 5px 0;
+  text-align: left;
+}
+
+.url-input,
+.convert-button {
+  font-size: 1.3em;
+  padding: 5px 10px;
+}
+
+.url-input {
+  border-radius: 4px 0px 0px 4px;
+  width: 30em;
+  text-align: left;
+  border: 2px solid #eeeeee;
+  background: #eeeeee;
+  outline: none;
+  border: 2px solid #0486ff8f;
+}
+
+.url-input:focus {
+  border: 2px solid #0485ff;
+}
+
+.convert-button {
+  border-radius: 0px 4px 4px 0px;
+  border: 2px solid #0485ff;
+  background: #0485ff;
+  color: white;
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  margin: 0 auto;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.325rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 900px) {
+  .error-message {
+    width: 90%;
+    margin: 5px auto;
+  }
+
+  .url-input {
+    display: block;
+    width: 90%;
+    background-color: #eeeeee;
+    outline: none;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .url-input:focus {
+    outline: none; /* changed from solid border */
+  }
+
+  .convert-button {
+    border-radius: 4px; /* changed from mixed radius */
+    border: none; /* changed from solid border */
+    background-color: #0485ff; /* changed from solid color */
+    color: white; /* changed from black */
+    cursor: pointer;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex-grow: 1;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
