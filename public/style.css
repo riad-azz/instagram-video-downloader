@@ -51,6 +51,7 @@ footer {
   line-height: 1.5;
   letter-spacing: 0.5px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 0 10px;
   margin: 0 auto;
   margin-bottom: 2rem;
 }
@@ -64,15 +65,13 @@ span.example {
   width: fit-content;
   margin: 10px auto;
   padding: 6px 20px;
-  font-size: 18px;
-  color: white;
-  background-color: #333;
+  font-size: 16px;
+  background-color: #dfdfdf;
   border-radius: 10px;
   user-select: none;
 }
 
 span.highlight {
-  font-weight: bold;
   color: red;
   border-bottom: red solid 1px;
 }
@@ -159,10 +158,6 @@ span.highlight {
 @media only screen and (max-width: 600px) {
   .heading {
     font-size: 26px;
-  }
-
-  .description {
-    font-size: 13px;
   }
 
   .url-input {
