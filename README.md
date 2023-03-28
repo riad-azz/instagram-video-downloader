@@ -32,8 +32,6 @@ if you want to get the first video from the post just pass the "id" param, if yo
 curl -i "http://localhost:3000/api?id=CGh4a0iASGS"
 ```
 
-### Single video response
-
 ```bash
 {
     "id": CGh4a0iASGS,
@@ -53,8 +51,6 @@ curl -i "http://localhost:3000/api?id=CGh4a0iASGS"
 ```bash
 curl -i "http://localhost:3000/api?id=CGh4a0iASGS&all=true"
 ```
-
-### All videos response
 
 ```bash
 {
