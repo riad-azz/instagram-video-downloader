@@ -95,16 +95,21 @@
       </div>
       <!-- General info end -->
       <!-- User Input start -->
-      <div>
-        <p class="error-message"></p>
+      <div class="max-w-md mx-auto">
+        <div
+          id="error-message"
+          class="w-full text-left text-sm text-red-500 mb-2"
+        ></div>
         <div class="flex justify-between gap-4 max-w-md mx-auto">
           <input
+            id="url-input"
             type="text"
             class="block w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="e.g. CGh4a0iASGS"
             required
           />
           <button
+            id="download-button"
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
           >
             <svg

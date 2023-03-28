@@ -1,6 +1,6 @@
-const convertBtn = document.querySelector(".convert-button");
-const urlInput = document.querySelector(".url-input");
-const errorElement = document.querySelector(".error-message");
+const convertBtn = document.getElementById("download-button");
+const urlInput = document.getElementById("url-input");
+const errorElement = document.getElementById("error-message");
 
 const showError = (error) => {
   errorElement.style.display = "block";
