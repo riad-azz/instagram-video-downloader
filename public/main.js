@@ -1,6 +1,7 @@
 const navMenu = document.getElementById("nav-menu");
 const navMenuBtn = document.getElementById("nav-menu-btn");
 const downloadBtn = document.getElementById("download-button");
+const downloadBtnText = downloadBtn.querySelector("span");
 const urlInput = document.getElementById("url-input");
 const errorElement = document.getElementById("error-message");
 
@@ -31,7 +32,7 @@ const handleResponse = async (response) => {
     showError(dataJson.error);
   } else {
     errorElement.style.display = "none";
-    const filename = "instagram_" + dataJson.name + ".mp4";
+    const filename = "instagram_" + dataJson.id + ".mp4";
     const url = dataJson.url;
     downloadFile(url, filename);
   }
@@ -43,6 +44,7 @@ const handleError = (error) => {
 
 const fetchVideo = async () => {
   downloadBtn.disabled = true;
+  downloadBtnText.textContent = "Fetching...";
   const videoUrl = urlInput.value;
   if (videoUrl === "") {
     showError("Please provide an instagram post ID");
@@ -50,6 +52,7 @@ const fetchVideo = async () => {
     await fetch(`/api?id=${urlInput.value}`).then(handleResponse, handleError);
   }
   downloadBtn.disabled = false;
+  downloadBtnText.textContent = "Download";
 };
 
 navMenuBtn.onclick = toggleMenu;
