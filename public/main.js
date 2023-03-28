@@ -1,9 +1,16 @@
 const navMenu = document.getElementById("nav-menu");
-const navMenuBtn = document.getElementById("nav-menu-btn");
+const navMenuBtn = document.getElementById("nav-menu-button");
+
+const themeButton = document.getElementById("theme-button");
+
 const downloadBtn = document.getElementById("download-button");
 const downloadBtnText = downloadBtn.querySelector("span");
 const urlInput = document.getElementById("url-input");
 const errorElement = document.getElementById("error-message");
+
+const toggleTheme = () => {
+  document.documentElement.classList.toggle("dark");
+};
 
 const toggleMenu = () => {
   navMenu.classList.toggle("hidden");
@@ -56,4 +63,21 @@ const fetchVideo = async () => {
 };
 
 navMenuBtn.onclick = toggleMenu;
+themeButton.onclick = toggleTheme;
 downloadBtn.onclick = fetchVideo;
+
+// Dynamic theme change based on user preference (dark/light)
+(() => {
+  const colorSchemeQueryList = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  );
+  const setColorScheme = (e) => {
+    if (e.matches) {
+      document.documentElement.className = "dark";
+    } else {
+      document.documentElement.className = "";
+    }
+  };
+  setColorScheme(colorSchemeQueryList);
+  colorSchemeQueryList.addEventListener("change", setColorScheme);
+})();

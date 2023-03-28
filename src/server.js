@@ -70,4 +70,6 @@ app.get("/api", async (req, res) => {
   }
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log("Express started listening http://localhost:3000");
+});
