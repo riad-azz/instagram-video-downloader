@@ -1120,8 +1120,25 @@ video {
 }
 
 @media not all and (min-width: 768px) {
+  .max-md\:my-2 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .max-md\:mt-4 {
+    margin-top: 1rem;
+  }
+
+  .max-md\:flex-col {
+    flex-direction: column;
+  }
+
   .max-md\:justify-between {
     justify-content: space-between;
+  }
+
+  .max-md\:gap-1 {
+    gap: 0.25rem;
   }
 
   .max-md\:space-x-4 > :not([hidden]) ~ :not([hidden]) {

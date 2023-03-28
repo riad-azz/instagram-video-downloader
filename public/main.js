@@ -1,6 +1,12 @@
-const convertBtn = document.getElementById("download-button");
+const navMenu = document.getElementById("nav-menu");
+const navMenuBtn = document.getElementById("nav-menu-btn");
+const downloadBtn = document.getElementById("download-button");
 const urlInput = document.getElementById("url-input");
 const errorElement = document.getElementById("error-message");
+
+const toggleMenu = () => {
+  navMenu.classList.toggle("hidden");
+};
 
 const showError = (error) => {
   errorElement.style.display = "block";
@@ -36,14 +42,15 @@ const handleError = (error) => {
 };
 
 const fetchVideo = async () => {
-  convertBtn.disabled = true;
+  downloadBtn.disabled = true;
   const videoUrl = urlInput.value;
   if (videoUrl === "") {
     showError("Please provide an instagram post ID");
   } else {
     await fetch(`/api?id=${urlInput.value}`).then(handleResponse, handleError);
   }
-  convertBtn.disabled = false;
+  downloadBtn.disabled = false;
 };
 
-convertBtn.onclick = fetchVideo;
+navMenuBtn.onclick = toggleMenu;
+downloadBtn.onclick = fetchVideo;
