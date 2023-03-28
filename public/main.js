@@ -39,7 +39,7 @@ const fetchVideo = async () => {
   convertBtn.disabled = true;
   const videoUrl = urlInput.value;
   if (videoUrl === "") {
-    showError("Please provide a instagram post ID");
+    showError("Please provide an instagram post ID");
   } else {
     await fetch(`/api?id=${urlInput.value}`).then(handleResponse, handleError);
   }

@@ -31,7 +31,7 @@ footer {
   width: 100%;
   margin: 0 auto;
   padding: 0.5rem 0;
-  font-size: 16px;
+  font-size: 0.95em;
 }
 
 .heading {
@@ -43,7 +43,7 @@ footer {
   width: 450px;
   color: #333;
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 0.85em;
   font-weight: normal;
   text-align: center;
   text-transform: none;
@@ -69,8 +69,8 @@ span.example {
   display: block;
   width: 100%;
   margin: 10px auto;
-  padding: 6px 0;
-  font-size: 16px;
+  padding: 6px 5px;
+  font-size: 1.2em;
   background-color: #eee;
   border-radius: 10px;
   user-select: none;
@@ -100,7 +100,7 @@ span.highlight {
 
 .error-message {
   display: none;
-  font-size: 16px;
+  font-size: 0.95em;
   font-weight: 300;
   width: 100%;
   color: rgb(241, 67, 67);
@@ -110,8 +110,8 @@ span.highlight {
 
 .url-input,
 .convert-button {
-  height: 2em;
-  font-size: 1.3em;
+  height: 40px;
+  font-size: 16px;
   padding: 5px 10px;
 }
 
@@ -166,7 +166,6 @@ span.highlight {
   }
 
   .url-input {
-    width: 15em;
     background-color: #eeeeee;
     outline: none;
   }

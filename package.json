@@ -2,7 +2,7 @@
   "name": "insta-vids",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node ."
   },
