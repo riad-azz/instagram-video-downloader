@@ -20,11 +20,9 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ## API Documentation
 
-The api is pretty simple and straightforward.
+The API is pretty simple and straightforward.
 
-there is one endpoint "/api" that takes two params "id" _(required)_ and "all" _(optional, defaults to false)_
-
-if you want to get the first video from the post just pass the "id" param, if you want to get all the videos in the post set the "all" param to true.
+there is one endpoint `/api` that takes two params `id` _(required)_ and `all` _(optional, defaults to false)_ set it to true if you wish to fetch all the post videos in a list _(examples below)_.
 
 ### Single video request
 
