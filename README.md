@@ -6,11 +6,11 @@ Simple website/api for downloading instagram videos
 
 A website that lets you download Instagram videos easily and quickly. You can paste the ID of any public Instagram post and get the video file in MP4 format. there is also an API that you can use to integrate this functionality into your own applications. The API is simple, and it returns JSON responses with the video URL and other metadata.
 
+**You can preview and try the website live in my replit here : [Instagram Videos Downloader](https://insta-vids-downloder.riadazzoun.repl.co)**
+
 ## Getting Started
 
 ### Website Preview
-
-**You can preview and try the website live in my replit here : [Instagram Videos Downloader](https://insta-vids-downloder.riadazzoun.repl.co)**
 
 ![webpage preview image](screenshots/sc-01.png)
 
