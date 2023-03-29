@@ -1,6 +1,6 @@
 # Instagram Videos Downloader
 
-Simple website/api for downloading instagram videos
+Simple Website/API for downloading instagram videos
 
 ## Description
 
@@ -58,7 +58,7 @@ curl -i "http://localhost:3000/api?id=CGh4a0iASGS"
 
 ```bash
 {
-    "id": CGh4a0iASGS,
+    "id": "CGh4a0iASGS",
     "username": "riad-azz",
     "createdDate":"2023-01-24T08:01:47-07:00",
     "caption": "post caption",
@@ -78,7 +78,7 @@ curl -i "http://localhost:3000/api?id=CGh4a0iASGS&all=true"
 
 ```bash
 {
-    "id": CGh4a0iASGS,
+    "id": "CGh4a0iASGS",
     "username": "riad-azz",
     "createdDate":"2023-01-24T08:01:47-07:00",
     "videos":[
