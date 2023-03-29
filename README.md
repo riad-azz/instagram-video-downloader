@@ -18,6 +18,30 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ![webpage preview image](screenshots/sc-03.png)
 
+## Installation & Running
+
+- Cloning the repository
+
+```bash
+git clone https://github.com/riad-azz/insta-videos-downloder.git
+```
+
+- Installing dependencies
+
+```bash
+cd insta-videos-downloder
+```
+
+```bash
+npm install
+```
+
+- Running the server
+
+```bash
+npm start
+```
+
 ## API Documentation
 
 The API is pretty simple and straightforward.
