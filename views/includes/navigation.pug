@@ -1,0 +1,11 @@
+include components
+
+nav(class="px-2 py-1 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700")
+    div(class="container flex flex-wrap items-center justify-between mx-auto")
+        +logo-button("Instagram Downloder", "https://github.com/riad-azz/insta-vids-downloder")
+        +burger-button()
+        div(id="nav-menu" class="hidden w-full md:block md:w-auto")
+            div(class="flex gap-4 font-semibold md:items-center max-md:flex-col max-md:my-2 max-md:gap-1")
+                +nav-button("Github Repository", "https://github.com/riad-azz/insta-vids-downloder")
+                +nav-button("Author", "https://github.com/riad-azz")
+                +theme-button()
