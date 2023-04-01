@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", routes.pages);
+app.use("/api", routes.api);
 
 app.get("/not-found", (req, res) => {
   return res.status(404).render("404");

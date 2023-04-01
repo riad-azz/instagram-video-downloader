@@ -5,8 +5,8 @@ mixin logo-button(name, link)
         img(src="images/logo.png", class="mr-3 h-8")
         span(class="self-center text-xl font-semibold whitespace-nowrap dark:text-white")= name
 
-mixin burger-button()
-    button(id="nav-menu-button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600")
+mixin menu-button()
+    button(id="menu-button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600")
         +svg-burger-menu(fill="currentColor", width="24", height="24")
 
 mixin nav-button(name, link)

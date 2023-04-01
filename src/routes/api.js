@@ -1,6 +1,6 @@
+import axios from "axios";
+import { load } from "cheerio";
 import { Router } from "express";
-const cheerio = require("cheerio");
-const axios = require("axios");
 
 const router = Router();
 
@@ -13,11 +13,12 @@ const formatVideo = (videoObj) => {
   };
 };
 
-const formatResponse = (json) => {
+const formatResponse = (postID, json) => {
   const username = json.author.identifier.value;
   const createdDate = json.dateCreated;
+  const videoList = json.video;
   const formattedVideoList = [];
-  for (video of videoList) {
+  for (let video of videoList) {
     let videoObj = formatVideo(video);
     formattedVideoList.push(videoObj);
   }
@@ -35,15 +36,14 @@ const formatResponse = (json) => {
 const fetchPostJson = async (postID) => {
   const instaPostUrl = "https://www.instagram.com/p/" + postID;
   const response = await axios.get(instaPostUrl);
-  const $ = cheerio.load(response.data);
+  const $ = load(response.data);
   const dataText = $("script[type='application/ld+json']").text();
   const json = JSON.parse(dataText);
   return json;
 };
 
-router.get("/api", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const postID = req.query.id;
-
   if (!postID) {
     const error = new Error("Please provide an instagram post ID");
     error.statusCode = 400;
@@ -51,10 +51,12 @@ router.get("/api", async (req, res, next) => {
   }
 
   try {
-    const json = fetchPostJson(postID);
-    const response = formatResponse(json);
-    return res.status.json(response);
+    const json = await fetchPostJson(postID);
+    const response = formatResponse(postID, json);
+    return res.json(response);
   } catch (error) {
     return next(error);
   }
 });
+
+export default router;
