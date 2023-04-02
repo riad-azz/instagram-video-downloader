@@ -70,7 +70,7 @@ npm run css
 
 The API is pretty simple and straightforward.
 
-There is one endpoint `/api` that takes the post link or ID as a param `id` _(required)_.
+Endpoint `/api` takes post link or ID as a param `id` _(required)_.
 
 ### Video request
 

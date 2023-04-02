@@ -12,6 +12,11 @@ try {
       errorElement.textContent = error;
     };
 
+    const hideError = () => {
+      errorElement.style.display = "none";
+      errorElement.textContent = "";
+    };
+
     const downloadFile = (url, filename = "insta-video.mp4") => {
       fetch(url)
         .then((response) => response.blob())
@@ -28,11 +33,11 @@ try {
 
     const handleResponse = async (response) => {
       const json = await response.json();
-      if (response.status !== 200) {
+      if (response.status < 200 || response.status > 299) {
         showError(json.error);
         return;
       }
-      errorElement.style.display = "none";
+
       const filename = "instagram_" + json.id + ".mp4";
       const video = json.videos.at(0);
       if (!video) {
@@ -40,11 +45,12 @@ try {
       } else {
         const url = video.url;
         downloadFile(url, filename);
+        hideError();
       }
     };
 
     const handleError = (error) => {
-      showError("Something went wrong. Make sure the video url is correct.");
+      showError(error);
     };
 
     const fetchVideo = async () => {
@@ -65,7 +71,11 @@ try {
       downloadButton.disabled = true;
       downloadButtonText.textContent = "Fetching...";
 
-      await fetchVideo();
+      try {
+        await fetchVideo();
+      } catch (error) {
+        showError(error);
+      }
 
       downloadButton.disabled = false;
       downloadButtonText.textContent = "Download";
