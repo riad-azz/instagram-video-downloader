@@ -4,7 +4,7 @@ Simple Website/API for downloading instagram videos
 
 ## Description
 
-A website that lets you download Instagram videos easily and quickly. You can paste the ID of any public Instagram post and get the video file in MP4 format. there is also an API that you can use to integrate this functionality into your own applications. The API is simple, and it returns JSON responses with the video URL and other metadata.
+A website that lets you download Instagram videos easily and quickly. You can paste the link or ID of any public Instagram post and get the video file in MP4 format. there is also an API that you can use to integrate this functionality into your own applications. The API is simple, and it returns JSON responses with the video URL and other metadata.
 
 **You can preview and try the website live in my replit here : [Instagram Videos Downloader](https://insta-vids-downloder.riadazzoun.repl.co)**
 
@@ -49,13 +49,13 @@ npm run build
 - Starting the server
 
 ```bash
-# Developement
+# Developement (requires build)
 npm start
 
-# Watch mode
+# Watch mode (Doesn't require to run the build command)
 npm run dev
 
-# Production
+# Production (requires build and 'pm2' to be installed)
 npm run prod
 ```
 
@@ -70,17 +70,22 @@ npm run css
 
 The API is pretty simple and straightforward.
 
-There is one endpoint `/api` that takes the post id as a param `id` _(required)_.
+There is one endpoint `/api` that takes the post link or ID as a param `id` _(required)_.
 
 ### Video request
 
 `GET /api?id={POST_ID}`
 
 ```bash
+# Post ID
 curl -i "http://localhost:3000/api?id=CGh4a0iASGS"
+
+# Post link
+curl -i "http://localhost:3000/api?id=www.instagram.com/p/CGh4a0iASGS"
 ```
 
 ```bash
+# JSON Response
 {
     "id": "CGh4a0iASGS",
     "username": "riad-azz",
