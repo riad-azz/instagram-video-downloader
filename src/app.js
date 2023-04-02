@@ -36,16 +36,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  if (!req.session.counter) req.session.counter = 0;
-  res.cookie("counter", req.session.counter, {
-    maxAge: 360000,
-    httpOnly: false,
-    secure: true,
-    sameSite: "strict",
-  });
-  req.session.counter += 1;
   const userIp = req.ip.split(":").at(-1);
-  console.log(`${userIp} has refreshed ${req.session.counter} times`);
+  console.log(`Get Request from ${userIp} to ${req.url}`);
   next();
 });
 
