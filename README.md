@@ -46,9 +46,9 @@ npm start
 
 The API is pretty simple and straightforward.
 
-there is one endpoint `/api` that takes two params `id` _(required)_ and `all` _(optional, defaults to false)_ set it to true if you wish to fetch all the post videos in a list _(examples below)_.
+There is one endpoint `/api` that takes the post id as a param `id` _(required)_.
 
-### Single video request
+### Video request
 
 `GET /api?id={POST_ID}`
 
@@ -60,31 +60,12 @@ curl -i "http://localhost:3000/api?id=CGh4a0iASGS"
 {
     "id": "CGh4a0iASGS",
     "username": "riad-azz",
-    "createdDate":"2023-01-24T08:01:47-07:00",
-    "caption": "post caption",
-    "description": "24 Likes, 10 Comments - extra description info",
-    "thumbnail": "THUMBNAIL_URL",
-    "url": "MP4_FILE_URL"
-}
-```
-
-### All videos request
-
-`GET /api?id={POST_ID}&all=true`
-
-```bash
-curl -i "http://localhost:3000/api?id=CGh4a0iASGS&all=true"
-```
-
-```bash
-{
-    "id": "CGh4a0iASGS",
-    "username": "riad-azz",
-    "createdDate":"2023-01-24T08:01:47-07:00",
     "videos":[
         {
         "caption": "post caption",
         "description": "24 Likes, 10 Comments - extra description info",
+        "resolution": "1920x1080",
+        "uploadDate": "2023-01-24T08:01:47-07:00"
         "thumbnail": "THUMBNAIL_URL",
         "url": "MP4_FILE_URL"
         }
