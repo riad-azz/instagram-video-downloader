@@ -33,7 +33,11 @@ cd insta-videos-downloder
 ```
 
 ```bash
-npm install && npm install -g pm2
+# Install packages
+npm install
+
+# pm2 installation is optional but recommanded for production
+npm install -g pm2
 ```
 
 - Running the build command
@@ -45,7 +49,21 @@ npm run build
 - Starting the server
 
 ```bash
+# Developement
 npm start
+
+# Watch mode
+npm run dev
+
+# Production
+npm run prod
+```
+
+- Utils
+
+```bash
+# Tailwind css watch ./views
+npm run css
 ```
 
 ## API Documentation

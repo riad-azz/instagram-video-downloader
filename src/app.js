@@ -1,5 +1,6 @@
 import "dotenv/config";
 import cors from "cors";
+import path from "path";
 import express from "express";
 import serveStatic from "serve-static";
 import routes from "./routes/routers";
@@ -9,7 +10,7 @@ import sessionStore from "better-sqlite3-session-store";
 
 const app = express();
 const SqliteStore = sessionStore(session);
-const db = new sqlite("src/db/sessions.db"); // { verbose: console.log } for debug
+const db = new sqlite(path.join(__dirname, "db/sessions.db")); // { verbose: console.log } for debug
 const staticOptions = { maxAge: 860000, cacheControl: true };
 // --------- ENV VARS ---------
 const PORT = process.env.PORT;
