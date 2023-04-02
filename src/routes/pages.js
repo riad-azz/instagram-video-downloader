@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.post("/theme/:name", (req, res) => {
   const themes = ["dark", "light"];
   const newTheme = req.params.name;
-  console.log(newTheme);
+
   if (!themes.includes(newTheme.toLowerCase())) {
     const error = new Error(`Invalid theme ${newTheme}`);
     error.statusCode = 400;
