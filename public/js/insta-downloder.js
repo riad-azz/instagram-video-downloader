@@ -13,16 +13,17 @@ try {
     };
 
     const downloadFile = (url, filename = "insta-video.mp4") => {
-      const anchor = document.createElement("a");
-      anchor.style.display = "none";
-
-      anchor.href = url;
-      anchor.target = "_blank";
-      anchor.download = filename;
-
-      document.body.appendChild(anchor);
-      anchor.click();
-      document.body.removeChild(anchor);
+      fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const blobUrl = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = blobUrl;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
     };
 
     const handleResponse = async (response) => {
