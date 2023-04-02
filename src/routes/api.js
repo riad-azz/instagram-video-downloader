@@ -59,7 +59,7 @@ router.get("/", async (req, res, next) => {
   try {
     const json = await fetchPostJson(postID);
     const response = formatResponse(postID, json);
-    return res.json(response);
+    return res.send(response);
   } catch (error) {
     return next(error);
   }

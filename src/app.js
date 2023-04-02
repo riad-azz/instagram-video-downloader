@@ -1,27 +1,54 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
-import cookieParser from "cookie-parser";
 import routes from "./routes/routers";
+import session from "express-session";
+import sqlite from "better-sqlite3";
+import sessionStore from "better-sqlite3-session-store";
 
 const app = express();
-const PORT = process.env.PORT;
+const SqliteStore = sessionStore(session);
+const db = new sqlite("database/sessions.db"); // { verbose: console.log } for debug
 
+// --------- ENV VARS ---------
+const PORT = process.env.PORT;
+const SECRET = process.env.PORT;
+
+// --------- Middleware ---------
 app.set("view engine", "pug");
-app.set("views", "./views");
+app.set("views", "views");
 
 app.use(cors());
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("./public"));
+app.use(express.static("public"));
+app.use(
+  session({
+    store: new SqliteStore({
+      client: db,
+      expired: {
+        clear: true,
+        intervalMs: 900000, //ms = 15min
+      },
+    }),
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: true,
+    maxAge: 2147483647,
+  })
+);
 
 app.use((req, res, next) => {
+  if (!req.session.counter) {
+    req.session.counter = 0;
+  }
+  req.session.counter += 1;
   const userIp = req.ip.split(":").at(-1);
-  console.log(`/${req.method} from "${userIp}"`);
+  console.log(`${userIp} has refreshed ${req.session.counter} times`);
   next();
 });
 
+// --------- Routes ---------
 app.use("/", routes.pages);
 app.use("/api", routes.api);
 
@@ -42,7 +69,8 @@ app.use((error, req, res, next) => {
     return res.status(301).redirect("/not-found");
   }
 
-  return res.status(error.statusCode).json({ error: error.message });
+  return res.status(error.statusCode).json({ response: error.message });
 });
 
+// --------- START APP ---------
 app.listen(PORT, () => console.log(`App Started on http://localhost:${PORT}`));
