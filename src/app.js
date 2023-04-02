@@ -26,22 +26,23 @@ app.use(
   session({
     store: new SqliteStore({
       client: db,
-      expired: {
-        clear: true,
-        intervalMs: 900000, //ms = 15min
-      },
+      maxAge: null,
     }),
     secret: SECRET,
     resave: false,
     saveUninitialized: true,
-    maxAge: 2147483647,
+    maxAge: null,
   })
 );
 
 app.use((req, res, next) => {
-  if (!req.session.counter) {
-    req.session.counter = 0;
-  }
+  if (!req.session.counter) req.session.counter = 0;
+  res.cookie("counter", req.session.counter, {
+    maxAge: 360000,
+    httpOnly: false,
+    secure: true,
+    sameSite: "strict",
+  });
   req.session.counter += 1;
   const userIp = req.ip.split(":").at(-1);
   console.log(`${userIp} has refreshed ${req.session.counter} times`);
