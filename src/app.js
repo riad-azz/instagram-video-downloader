@@ -8,7 +8,7 @@ import sessionStore from "better-sqlite3-session-store";
 
 const app = express();
 const SqliteStore = sessionStore(session);
-const db = new sqlite("database/sessions.db"); // { verbose: console.log } for debug
+const db = new sqlite("src/db/sessions.db"); // { verbose: console.log } for debug
 
 // --------- ENV VARS ---------
 const PORT = process.env.PORT;
