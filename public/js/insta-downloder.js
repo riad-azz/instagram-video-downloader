@@ -17,6 +17,7 @@ try {
       anchor.style.display = "none";
 
       anchor.href = url;
+      anchor.target = "_blank";
       anchor.download = filename;
 
       document.body.appendChild(anchor);

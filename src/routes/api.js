@@ -57,17 +57,28 @@ const fetchPostJson = async (postID) => {
 };
 
 router.get("/", async (req, res, next) => {
-  const postID = req.query.id;
+  let postID = req.query.id;
   if (!postID) {
     const error = new Error("Please provide an instagram post ID");
     error.statusCode = 400;
     return next(error);
   }
 
-  if (postID.length > 20) {
+  if (postID.length > 255) {
     const error = new Error("Invalid instagram post ID");
     error.statusCode = 400;
     return next(error);
+  }
+
+  if (postID.includes("instagram.com")) {
+    const tempID = postID.split("/").at(4);
+    if (!tempID) {
+      const error = new Error("Could not find post ID in the url");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    postID = tempID;
   }
 
   try {
