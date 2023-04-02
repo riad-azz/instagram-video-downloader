@@ -38,7 +38,7 @@ app.use(
 
 app.use((req, res, next) => {
   const userIp = req.ip.split(":").at(-1);
-  console.log(`Get Request from ${userIp} to ${req.url}`);
+  console.log(`${req.method} Request from ${userIp} to ${req.url}`);
   next();
 });
 
