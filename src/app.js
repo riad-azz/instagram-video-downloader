@@ -1,6 +1,7 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
+import serveStatic from "serve-static";
 import routes from "./routes/routers";
 import session from "express-session";
 import sqlite from "better-sqlite3";
@@ -9,7 +10,7 @@ import sessionStore from "better-sqlite3-session-store";
 const app = express();
 const SqliteStore = sessionStore(session);
 const db = new sqlite("src/db/sessions.db"); // { verbose: console.log } for debug
-
+const staticOptions = { maxAge: 860000, cacheControl: true };
 // --------- ENV VARS ---------
 const PORT = process.env.PORT;
 const SECRET = process.env.PORT;
@@ -21,7 +22,7 @@ app.set("views", "views");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(serveStatic("public", staticOptions));
 app.use(
   session({
     store: new SqliteStore({
