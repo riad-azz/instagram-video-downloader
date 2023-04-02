@@ -87,18 +87,18 @@ curl -i "http://localhost:3000/api?id=www.instagram.com/p/CGh4a0iASGS"
 ```bash
 # JSON Response
 {
-    "id": "CGh4a0iASGS",
-    "username": "riad-azz",
-    "videos":[
-        {
-        "caption": "post caption",
-        "description": "24 Likes, 10 Comments - extra description info",
-        "resolution": "1920x1080",
-        "uploadDate": "2023-01-24T08:01:47-07:00"
-        "thumbnail": "THUMBNAIL_URL",
-        "url": "MP4_FILE_URL"
-        }
-    ]
+  "id": "CGh4a0iASGS",
+  "username": "riad-azz",
+  "videos":[
+    {
+      "caption": "post caption",
+      "description": "24 Likes, 10 Comments - Extra description info",
+      "resolution": "1024x768",
+      "uploadDate": "2023-01-24T08:01:47-07:00",
+      "thumbnail": "THUMBNAIL_URL",
+      "url": "MP4_FILE_URL"
+    }
+  ]
 }
 ```
 
