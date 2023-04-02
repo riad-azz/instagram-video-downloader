@@ -33,10 +33,16 @@ cd insta-videos-downloder
 ```
 
 ```bash
-npm install
+npm install && npm install -g pm2
 ```
 
-- Running the server
+- Running the build command
+
+```bash
+npm run build
+```
+
+- Starting the server
 
 ```bash
 npm start
