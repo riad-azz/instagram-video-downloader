@@ -25,6 +25,10 @@ const formatResponse = (postID, json) => {
   const videoList = json.video;
   const formattedVideoList = [];
 
+  if (videoList.length === 0) {
+    throw Error("This post does not have any videos");
+  }
+
   for (let video of videoList) {
     let videoObj = formatVideoInfo(video);
     formattedVideoList.push(videoObj);
@@ -43,8 +47,12 @@ const fetchPostJson = async (postID) => {
   const instaPostUrl = "https://www.instagram.com/p/" + postID;
   const response = await axios.get(instaPostUrl);
   const $ = load(response.data);
-  const dataText = $("script[type='application/ld+json']").text();
-  const json = JSON.parse(dataText);
+  const jsonElement = $("script[type='application/ld+json']");
+  if (jsonElement.length === 0) {
+    throw Error(`This post does not exist or is private`);
+  }
+  const jsonText = jsonElement.text();
+  const json = JSON.parse(jsonText);
   return json;
 };
 
@@ -56,9 +64,16 @@ router.get("/", async (req, res, next) => {
     return next(error);
   }
 
+  if (postID.length > 20) {
+    const error = new Error("Invalid instagram post ID");
+    error.statusCode = 400;
+    return next(error);
+  }
+
   try {
     const json = await fetchPostJson(postID);
     const response = formatResponse(postID, json);
+
     return res.send(response);
   } catch (error) {
     return next(error);

@@ -1,6 +1,7 @@
 // DOWNLOAD INSTAGRAM VIDEO
 try {
   (() => {
+    const downloadForm = document.getElementById("download-form");
     const downloadButton = document.getElementById("download-button");
     const downloadButtonText = downloadButton.querySelector("span");
     const urlInput = document.getElementById("url-input");
@@ -24,13 +25,18 @@ try {
     };
 
     const handleResponse = async (response) => {
-      const dataJson = await response.json();
-      if (dataJson.error) {
-        showError(dataJson.error);
+      const json = await response.json();
+      if (response.status !== 200) {
+        showError(json.error);
+        return;
+      }
+      errorElement.style.display = "none";
+      const filename = "instagram_" + json.id + ".mp4";
+      const video = json.videos.at(0);
+      if (!video) {
+        showError("This post does not have any videos");
       } else {
-        errorElement.style.display = "none";
-        const filename = "instagram_" + dataJson.id + ".mp4";
-        const url = dataJson.url;
+        const url = video.url;
         downloadFile(url, filename);
       }
     };
@@ -40,10 +46,8 @@ try {
     };
 
     const fetchVideo = async () => {
-      downloadButton.disabled = true;
-      downloadButtonText.textContent = "Fetching...";
-      const videoUrl = urlInput.value;
-      if (videoUrl === "") {
+      const postID = urlInput.value;
+      if (postID === "") {
         showError("Please provide an instagram post ID");
       } else {
         await fetch(`/api?id=${urlInput.value}`).then(
@@ -51,11 +55,21 @@ try {
           handleError
         );
       }
+    };
+
+    downloadForm.onsubmit = async (event) => {
+      event.preventDefault();
+
+      downloadButton.disabled = true;
+      downloadButtonText.textContent = "Fetching...";
+
+      await fetchVideo();
+
       downloadButton.disabled = false;
       downloadButtonText.textContent = "Download";
     };
 
-    downloadButton.onclick = fetchVideo;
+    errorElement.style.display = "none";
   })();
 } catch (error) {
   console.error(error);

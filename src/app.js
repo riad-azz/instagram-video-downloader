@@ -70,7 +70,7 @@ app.use((error, req, res, next) => {
     return res.status(301).redirect("/not-found");
   }
 
-  return res.status(error.statusCode).json({ response: error.message });
+  return res.status(error.statusCode).json({ error: error.message });
 });
 
 // --------- START APP ---------

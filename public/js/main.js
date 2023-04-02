@@ -14,21 +14,6 @@ try {
   console.error(error);
 }
 
-// API
-try {
-  (() => {
-    const apiButton = document.getElementById("api-button");
-
-    const toggleTheme = () => {
-      document.documentElement.classList.toggle("dark");
-    };
-
-    apiButton.onclick = toggleTheme;
-  })();
-} catch (error) {
-  console.error(error);
-}
-
 // CHANGE THEM (DARK/LIGHT)
 try {
   (() => {
