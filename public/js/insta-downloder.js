@@ -45,6 +45,7 @@ try {
       } else {
         const url = video.url;
         downloadFile(url, filename);
+        downloadForm.reset();
         hideError();
       }
     };
