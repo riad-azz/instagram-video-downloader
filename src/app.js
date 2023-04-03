@@ -17,9 +17,6 @@ if (!fs.existsSync(dbDirectory)) {
 const SqliteStore = sessionStore(session);
 const db = new sqlite(path.join(dbDirectory, "sessions.db")); // { verbose: console.log } for debug
 const staticOptions = { maxAge: 860000, cacheControl: true };
-// --------- ENV VARS ---------
-const PORT = process.env.PORT;
-const SECRET = process.env.PORT;
 
 // --------- Middleware ---------
 app.set("view engine", "pug");
@@ -35,7 +32,7 @@ app.use(
       client: db,
       maxAge: null,
     }),
-    secret: SECRET,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     maxAge: null,
@@ -73,4 +70,6 @@ app.use((error, req, res, next) => {
 });
 
 // --------- START APP ---------
-app.listen(PORT, () => console.log(`App Started on http://localhost:${PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`App Started on http://localhost:${process.env.PORT}`)
+);
