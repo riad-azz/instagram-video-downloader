@@ -10,6 +10,8 @@ import sqlite from "better-sqlite3";
 import sessionStore from "better-sqlite3-session-store";
 
 const app = express();
+
+// --------- SET UP DATABASE ---------
 const dbDirectory = path.join(__dirname, "db");
 if (!fs.existsSync(dbDirectory)) {
   fs.mkdirSync(dbDirectory);
@@ -18,7 +20,7 @@ const SqliteStore = sessionStore(session);
 const db = new sqlite(path.join(dbDirectory, "sessions.db")); // { verbose: console.log } for debug
 const staticOptions = { maxAge: 860000, cacheControl: true };
 
-// --------- Middleware ---------
+// --------- MIDDLEWARE ---------
 app.set("view engine", "pug");
 app.set("views", "views");
 
@@ -45,7 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// --------- Routes ---------
+// --------- ROUTES ---------
 app.use("/", routes.pages);
 app.use("/api", routes.api);
 
