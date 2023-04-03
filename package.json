@@ -4,7 +4,7 @@
   "description": "Download instagram videos with a simple click",
   "main": "src/app.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "babel-node src/app.js",
     "dev": "nodemon --exec babel-node src/app.js",
     "build": "babel src --out-dir dist --copy-files",
     "prod": "pm2 start dist/app.js --name insta-express",

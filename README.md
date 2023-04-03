@@ -49,13 +49,14 @@ npm run build
 - Starting the server
 
 ```bash
-# Developement (requires build)
+# Development
 npm start
 
-# Watch mode (Doesn't require to run the build command)
+# Development Watch mode
 npm run dev
 
-# Production (requires build and 'pm2' to be installed)
+# Production
+# (requires running build command and 'pm2' package to be installed)
 npm run prod
 ```
 
