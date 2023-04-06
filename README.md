@@ -23,7 +23,7 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 - Cloning the repository
 
 ```bash
-git clone https://github.com/riad-azz/insta-videos-downloder.git
+git clone https://github.com/riad-azz/insta-videos-downloader.git
 ```
 
 - Installing dependencies
