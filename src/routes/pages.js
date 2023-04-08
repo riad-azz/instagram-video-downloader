@@ -3,8 +3,7 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", (req, res) => {
-  const theme = req.session.theme;
-  return res.render("index", { userTheme: theme });
+  return res.render("index");
 });
 
 router.post("/theme/:name", (req, res) => {
@@ -17,7 +16,7 @@ router.post("/theme/:name", (req, res) => {
     return next(error);
   }
 
-  req.session.theme = newTheme;
+  res.cookie("theme", newTheme, { maxAge: 900000, httpOnly: false });
   return res.json({ success: `Theme was saved to ${newTheme}` });
 });
 

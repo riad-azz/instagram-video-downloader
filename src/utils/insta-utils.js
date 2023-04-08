@@ -52,3 +52,31 @@ export const fetchPostJson = async (postID) => {
   const json = JSON.parse(jsonText);
   return json;
 };
+
+export const validatePostID = (postID) => {
+  if (!postID) {
+    const error = new Error("Please provide an instagram post ID");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (postID.length > 255) {
+    const error = new Error("Invalid instagram post ID");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (postID.includes("instagram.com")) {
+    const idIndex = postID.includes("https://") ? 4 : 2;
+    const tempID = postID.split("/").at(idIndex);
+    if (!tempID) {
+      const error = new Error("Could not find post ID in the url");
+      error.statusCode = 400;
+      throw error;
+    }
+
+    postID = tempID;
+  }
+
+  return postID;
+};
