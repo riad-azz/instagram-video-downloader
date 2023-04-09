@@ -3,7 +3,7 @@ import {
   fetchPostJson,
   formatResponse,
   validatePostID,
-} from "../utils/insta-utils";
+} from "../utils/instagram";
 
 const router = Router();
 
