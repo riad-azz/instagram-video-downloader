@@ -20,13 +20,13 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ## Installation & Running
 
-- Cloning the repository
+1. Cloning the repository
 
 ```bash
 git clone https://github.com/riad-azz/insta-videos-downloader.git
 ```
 
-- Installing dependencies
+2. Installing dependencies
 
 ```bash
 cd insta-videos-downloder
@@ -40,13 +40,13 @@ npm install
 npm install -g pm2
 ```
 
-- Running the build command
+3. Running the build command
 
 ```bash
 npm run build
 ```
 
-- Starting the server
+4. Starting the server
 
 ```bash
 # Development
@@ -60,7 +60,7 @@ npm run dev
 npm run prod
 ```
 
-- Utils
+5. Styling Utils
 
 ```bash
 # Tailwind css watch ./views
