@@ -17,9 +17,7 @@ const InstagramForm = () => {
       onSubmit={handleSubmit}
     >
       <input
-        id="post-url"
         type="url"
-        name="post-url"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         placeholder="e.g. www.instagram.com/p/CGh4a0iASGS"
