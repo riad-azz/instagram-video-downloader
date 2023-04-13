@@ -1,23 +1,21 @@
 import axios from "axios";
 import { load } from "cheerio";
 
-export const formatVideoInfo = (videoObj) => {
-  const height = videoObj.height;
-  const width = videoObj.width;
-  const resolution = `${width}x${height}`;
+export const formatVideoInfo = (videoObj: any) => {
   const formattedInfo = {
+    width: videoObj.width,
+    height: videoObj.height,
     caption: videoObj.caption,
     description: videoObj.description,
-    resolution: resolution,
     uploadDate: videoObj.uploadDate,
-    thumbnail: videoObj.thumbnailUrl,
     url: videoObj.contentUrl,
+    thumbnail: videoObj.thumbnailUrl,
   };
 
   return formattedInfo;
 };
 
-export const formatResponse = (postID, json) => {
+export const formatResponse = (postID: string, json: any) => {
   const username = json.author.identifier.value;
   const videoList = json.video;
   const formattedVideoList = [];
@@ -40,9 +38,9 @@ export const formatResponse = (postID, json) => {
   return result;
 };
 
-export const fetchPostJson = async (postID) => {
-  const instaPostUrl = "https://www.instagram.com/p/" + postID;
-  const response = await axios.get(instaPostUrl);
+export const fetchPostJson = async (postID: string) => {
+  const postUrl = "https://www.instagram.com/p/" + postID;
+  const response = await axios.get(postUrl);
   const $ = load(response.data);
   const jsonElement = $("script[type='application/ld+json']");
   if (jsonElement.length === 0) {
@@ -53,30 +51,27 @@ export const fetchPostJson = async (postID) => {
   return json;
 };
 
-export const validatePostID = (postID) => {
+export const getPostID = (postUrl: string) => {
+  const postRegex =
+    /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?$/;
+
+  const reelRegex =
+    /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?$/;
+
+  console.log(postRegex.test(postUrl));
+  console.log(reelRegex.test(postUrl));
+  if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
+    const error = new Error("URL does not match Instagram post or reel");
+    throw error;
+  }
+
+  const postID = postUrl.split("/").at(4);
   if (!postID) {
-    const error = new Error("Please provide an instagram post ID");
-    error.statusCode = 400;
+    const error = new Error("Instagram post ID was not found");
     throw error;
   }
 
-  if (postID.length > 255) {
-    const error = new Error("Invalid instagram post ID");
-    error.statusCode = 400;
-    throw error;
-  }
-
-  if (postID.includes("instagram.com")) {
-    const idIndex = postID.includes("https://") ? 4 : 2;
-    const tempID = postID.split("/").at(idIndex);
-    if (!tempID) {
-      const error = new Error("Could not find post ID in the url");
-      error.statusCode = 400;
-      throw error;
-    }
-
-    postID = tempID;
-  }
+  console.log(postID);
 
   return postID;
 };
