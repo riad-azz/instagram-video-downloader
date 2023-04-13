@@ -28,11 +28,15 @@ export default function Home() {
       </header>
       <main className="w-full md:max-w-2xl mx-auto p-4 md:border rounded">
         <header className="mb-8">
-          <h1 className="text-2xl text-center font-bold select-none">
-            Instagram Videos Downloader
+          <h1 className="text-2xl font-bold text-center mb-1">
+            Instagram Video Downloader
           </h1>
-          <p className="tracking-wide text-center">
-            Copy and paste the post or reel URL and press Download
+          <h2 className="text-xl text-center mb-2">
+            Download Videos and Reels for Free
+          </h2>
+          <p className="text-center">
+            Easily download Instagram videos and reels by copying and pasting
+            the post or reel URL into our fast and reliable downloader.
           </p>
         </header>
         <InstagramForm />

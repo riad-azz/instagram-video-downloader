@@ -91,13 +91,19 @@ const InstagramForm = () => {
         <input
           type="url"
           value={postUrl}
+          autoFocus={true}
           onChange={(e) => setPostUrl(e.target.value)}
           placeholder="e.g. https://www.instagram.com/p/CGh4a0iASGS"
-          className="w-full px-2 py-1 border border-slate-300 outline-none rounded"
+          aria-label="Instagram video download URL input"
+          title="Instagram video download URL input"
+          className="w-full px-2 py-1 border border-slate-300 rounded"
         />
+
         {loading ? (
           <button
             disabled
+            aria-label="Loading Instagram video download"
+            title="Loading Instagram video download"
             type="button"
             className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
           >
@@ -122,10 +128,13 @@ const InstagramForm = () => {
           </button>
         ) : (
           <button
+            aria-label="Download Instagram video"
+            title="Download Instagram video"
             type="submit"
             className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
           >
             <svg
+              aria-label="download icon"
               className="fill-current w-4 h-4 mr-2"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
