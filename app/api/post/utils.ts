@@ -21,7 +21,7 @@ export const formatResponse = (postID: string, json: any) => {
   const formattedVideoList = [];
 
   if (videoList.length === 0) {
-    throw Error("This post does not have any videos");
+    throw Error("This post does not contain any videos");
   }
 
   for (let video of videoList) {
@@ -33,6 +33,27 @@ export const formatResponse = (postID: string, json: any) => {
     id: postID,
     username: username,
     videos: formattedVideoList,
+  };
+
+  return result;
+};
+
+export const formatFirstVideo = (postID: string, json: any) => {
+  const videoList = json.video;
+
+  if (videoList.length === 0) {
+    throw Error("This post does not contain any videos");
+  }
+
+  const username = json.author.identifier.value;
+  const filename = `${username}_${postID}_instagram.mp4`;
+
+  const video = videoList.at(0);
+  const downloadUrl = video.contentUrl;
+
+  const result = {
+    filename: filename,
+    downloadUrl: downloadUrl,
   };
 
   return result;
@@ -58,8 +79,6 @@ export const getPostID = (postUrl: string) => {
   const reelRegex =
     /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?$/;
 
-  console.log(postRegex.test(postUrl));
-  console.log(reelRegex.test(postUrl));
   if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
     const error = new Error("URL does not match Instagram post or reel");
     throw error;
@@ -70,8 +89,6 @@ export const getPostID = (postUrl: string) => {
     const error = new Error("Instagram post ID was not found");
     throw error;
   }
-
-  console.log(postID);
 
   return postID;
 };

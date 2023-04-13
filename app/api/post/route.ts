@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { getPostID, fetchPostJson, formatResponse } from "./utils";
+import {
+  getPostID,
+  fetchPostJson,
+  formatResponse,
+  formatFirstVideo,
+} from "./utils";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -49,9 +54,9 @@ export async function POST(request: Request) {
 
   try {
     const json = await fetchPostJson(postID);
-    const response = formatResponse(postID, json);
+    const response = formatFirstVideo(postID, json);
 
-    return NextResponse.redirect(response.videos[0].url);
+    return NextResponse.json(response);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }

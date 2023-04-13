@@ -8,8 +8,7 @@ export default function Home() {
           Instagram Videos Downloader
         </h1>
         <p className="tracking-wide text-center">
-          Copy and paste the post link or ID as shown in the example above then
-          press Download.
+          Copy and paste the post or reel URL and press Download.
         </p>
       </header>
       <InstagramForm />
