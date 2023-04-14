@@ -86,7 +86,10 @@ const InstagramForm = () => {
   return (
     <>
       {errorMsg && <div className="text-red-500 mb-1">{errorMsg}</div>}
-      <form className="flex gap-2" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-center gap-4 md:flex-row md:gap-2 "
+        onSubmit={handleSubmit}
+      >
         <input
           type="url"
           value={postUrl}
@@ -95,16 +98,15 @@ const InstagramForm = () => {
           placeholder="e.g. https://www.instagram.com/p/CGh4a0iASGS"
           aria-label="Instagram video download URL input"
           title="Instagram video download URL input"
-          className="w-full px-2 py-1 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-slate-300 rounded"
+          className="w-full px-2 py-2 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-slate-300 focus:ring-2 focus:ring-slate-300 focus:border-transparent focus:outline-none rounded"
         />
-
         {loading ? (
           <button
             disabled
             aria-label="Loading Instagram video download"
             title="Loading Instagram video download"
             type="button"
-            className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
+            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white rounded border border-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-blue-700 dark:hover:text-blue-300 focus:z-10 focus:ring-2 focus:ring-gray-200 focus:outline-none focus:text-blue-700 inline-flex items-center"
           >
             <svg
               aria-hidden="true"
@@ -130,7 +132,7 @@ const InstagramForm = () => {
             aria-label="Download Instagram video"
             title="Download Instagram video"
             type="submit"
-            className="py-2.5 px-5 mr-2 text-sm font-medium text-gray-900 bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 inline-flex items-center"
+            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white rounded border border-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-blue-700 dark:hover:text-blue-300 focus:z-10 focus:ring-2 focus:ring-gray-200 focus:outline-none focus:text-blue-700 inline-flex items-center"
           >
             <svg
               aria-label="download icon"

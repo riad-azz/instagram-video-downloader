@@ -94,7 +94,5 @@ export const getPostId = (postUrl: string) => {
     throw error;
   }
 
-  console.log(postId);
-
   return postId;
 };

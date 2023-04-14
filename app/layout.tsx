@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import "./globals.css";
 
 export const metadata = {
@@ -17,8 +18,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const sessionCookies = cookies();
+  const themeCookie = sessionCookies.get("theme");
+  const currentTheme = themeCookie?.value ?? "light";
+
   return (
-    <html lang="en">
+    <html lang="en" className={currentTheme}>
       <body className="bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 font-mono">
         {children}
       </body>

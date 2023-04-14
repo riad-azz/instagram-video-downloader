@@ -2,6 +2,7 @@ import Link from "next/link";
 import InstagramForm from "./components/InstagramForm";
 import Image from "next/image";
 import NavLink from "./components/NavLink";
+import ThemeButton from "./components/ThemeButton";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
             content="Author"
             href="https://github.com/riad-azz/"
           />
+          <ThemeButton></ThemeButton>
         </ul>
       </header>
       <main className="w-full md:max-w-2xl mx-auto p-4 md:border rounded">
