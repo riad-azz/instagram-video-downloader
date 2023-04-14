@@ -41,7 +41,7 @@ const InstagramForm = () => {
       /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?/;
 
     const reelRegex =
-      /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?/;
+      /^https:\/\/(?:www\.)?instagram\.com\/reels?\/([a-zA-Z0-9_-]+)\/?/;
 
     if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
       return setErrorMsg("URL does not match Instagram post or reel");
