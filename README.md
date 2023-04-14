@@ -16,6 +16,8 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ![webpage preview image](screenshots/sc-02.png)
 
+![webpage preview image](screenshots/sc-03.png)
+
 ## Installation & Running
 
 1. Cloning the repository

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import {
-  getPostID,
+  getPostId,
   fetchPostJson,
   formatResponse,
   formatFirstVideo,
@@ -9,7 +9,7 @@ import {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   let url: string | null = searchParams.get("url");
-  let postID;
+  let postId;
 
   if (!url) {
     return NextResponse.json(
@@ -19,14 +19,14 @@ export async function GET(request: Request) {
   }
 
   try {
-    postID = getPostID(url);
+    postId = getPostId(url);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
   try {
-    const json = await fetchPostJson(postID);
-    const response = formatResponse(postID, json);
+    const json = await fetchPostJson(postId);
+    const response = formatResponse(postId, json);
 
     return NextResponse.json(response);
   } catch (error: any) {
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   let url: string | null = searchParams.get("url");
-  let postID;
+  let postId;
 
   if (!url) {
     return NextResponse.json(
@@ -47,14 +47,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    postID = getPostID(url);
+    postId = getPostId(url);
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
   try {
-    const json = await fetchPostJson(postID);
-    const response = formatFirstVideo(postID, json);
+    const json = await fetchPostJson(postId);
+    const response = formatFirstVideo(postId, json);
 
     return NextResponse.json(response);
   } catch (error: any) {

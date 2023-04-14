@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, FormEvent } from "react";
-import { createPortal } from "react-dom";
 
 const InstagramForm = () => {
   const [postUrl, setPostUrl] = useState("");
@@ -28,7 +27,7 @@ const InstagramForm = () => {
       return setErrorMsg("Instagram URL was not provided");
     }
 
-    if (!postUrl.includes("instagram.com")) {
+    if (!postUrl.includes("instagram.com/")) {
       return setErrorMsg("Invalid URL does not contain Instagram domain");
     }
 
@@ -39,10 +38,10 @@ const InstagramForm = () => {
     }
 
     const postRegex =
-      /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?$/;
+      /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?/;
 
     const reelRegex =
-      /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?$/;
+      /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?/;
 
     if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
       return setErrorMsg("URL does not match Instagram post or reel");
@@ -96,7 +95,7 @@ const InstagramForm = () => {
           placeholder="e.g. https://www.instagram.com/p/CGh4a0iASGS"
           aria-label="Instagram video download URL input"
           title="Instagram video download URL input"
-          className="w-full px-2 py-1 border border-slate-300 rounded"
+          className="w-full px-2 py-1 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-slate-300 rounded"
         />
 
         {loading ? (

@@ -72,23 +72,29 @@ export const fetchPostJson = async (postID: string) => {
   return json;
 };
 
-export const getPostID = (postUrl: string) => {
+export const getPostId = (postUrl: string) => {
   const postRegex =
-    /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?$/;
-
+    /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?/;
   const reelRegex =
-    /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?$/;
+    /^https:\/\/(?:www\.)?instagram\.com\/reel\/([a-zA-Z0-9_-]+)\/?/;
+  let postId;
 
-  if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
-    const error = new Error("URL does not match Instagram post or reel");
+  const postCheck = postUrl.match(postRegex);
+  if (postCheck) {
+    postId = postCheck.at(-1);
+  }
+
+  const reelCheck = postUrl.match(reelRegex);
+  if (reelCheck) {
+    postId = reelCheck.at(-1);
+  }
+
+  if (!postId) {
+    const error = new Error("Instagram post/reel ID was not found");
     throw error;
   }
 
-  const postID = postUrl.split("/").at(4);
-  if (!postID) {
-    const error = new Error("Instagram post ID was not found");
-    throw error;
-  }
+  console.log(postId);
 
-  return postID;
+  return postId;
 };
