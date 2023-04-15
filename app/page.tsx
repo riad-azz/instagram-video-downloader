@@ -17,17 +17,19 @@ export default function Home() {
             target="_blank"
             content="Github Repository"
             href="https://github.com/riad-azz/instagram-videos-downloader"
+            animation="motion-safe:animate-[animate-slide-right_1s_ease-in-out_1]"
           />
           <NavLink
             target="_blank"
             content="Author"
             href="https://github.com/riad-azz/"
+            animation="motion-safe:animate-[animate-slide-right_1s_ease-in-out_1]"
           />
           <ThemeButton></ThemeButton>
         </ul>
       </header>
-      <main className="w-full md:max-w-2xl mx-auto p-4 md:border rounded">
-        <header className="mb-8">
+      <main className="container w-full md:max-w-2xl mx-auto p-4 border rounded">
+        <header className="mb-8 motion-safe:animate-[animate-drop_1.5s_ease-in-out_1]">
           <h1 className="text-2xl font-bold text-center mb-1">
             Instagram Video Downloader
           </h1>

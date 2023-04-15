@@ -4,13 +4,15 @@ const NavLink = ({
   content,
   href,
   target = "",
+  animation = "",
 }: {
   content: string;
   href: string;
   target?: string;
+  animation?: string;
 }) => {
   return (
-    <li>
+    <li className={animation}>
       <Link
         href={href}
         target={target}

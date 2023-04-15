@@ -87,7 +87,7 @@ const InstagramForm = () => {
     <>
       {errorMsg && <div className="text-red-500 mb-1">{errorMsg}</div>}
       <form
-        className="flex flex-col items-center gap-4 md:flex-row md:gap-2 "
+        className="flex flex-col items-center gap-4 md:flex-row md:gap-2 motion-safe:animate-[animate-up_1.5s_ease-in-out_1]"
         onSubmit={handleSubmit}
       >
         <input
