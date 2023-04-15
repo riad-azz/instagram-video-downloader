@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply transition-colors duration-200 ease-in;
-}
-
 @keyframes animate-up {
   0% {
     opacity: 0;
@@ -62,7 +58,7 @@
     transform: translate(-50px, 0) scale(0.5, 0.5);
   }
   80% {
-    opacity: 0.5;
+    opacity: 0.9;
   }
   100% {
     opacity: 1;
