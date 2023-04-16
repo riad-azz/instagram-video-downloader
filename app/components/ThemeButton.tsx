@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-const ThemeButton = () => {
+const ThemeButton = ({ animation = "" }: { animation?: string }) => {
   const [theme, setTheme] = useState("");
 
   useEffect(() => {
@@ -28,8 +28,9 @@ const ThemeButton = () => {
   return (
     <button
       onClick={() => toggleTheme()}
-      className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 font-medium rounded-full text-sm px-3 py-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 motion-safe:animate-[animate-slide-left_1.3s_ease-in-out_1]"
+      className={`${animation} flex items-center justify-between text-gray-900 bg-white border border-gray-400 focus:outline-none hover:bg-gray-100 font-medium md:rounded-full text-sm p-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600`}
     >
+      <span className="md:hidden">Change theme</span>
       <span className={theme ? "hidden" : "block"}>
         <LoadingSpinner size={20} />
       </span>

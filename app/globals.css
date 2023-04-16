@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-x: hidden;
+}
+
 @keyframes animate-up {
   0% {
     opacity: 0;
@@ -27,41 +31,13 @@
   }
 }
 
-@keyframes animate-roll {
+@keyframes animate-roll-in {
   0% {
     opacity: 0;
-    transform: scale(0, 0) rotate(360deg);
+    transform: translate(150px, 0) scale(0.5, 0.5) rotate(360deg);
   }
   100% {
     opacity: 1;
-    transform: scale(1, 1) rotate(0deg);
-  }
-}
-
-@keyframes animate-slide-left {
-  0% {
-    opacity: 0;
-    transform: translate(50px, 0) scale(0.5, 0.5);
-  }
-  80% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1, 1);
-  }
-}
-
-@keyframes animate-slide-right {
-  0% {
-    opacity: 0;
-    transform: translate(-50px, 0) scale(0.5, 0.5);
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1, 1);
+    transform: translate(0, 0) scale(1, 1) rotate(0deg);
   }
 }
