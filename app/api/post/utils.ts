@@ -65,7 +65,7 @@ export const fetchPostJson = async (postID: string) => {
   const $ = load(response.data);
   const jsonElement = $("script[type='application/ld+json']");
   if (jsonElement.length === 0) {
-    throw Error(`This post does not exist or is private`);
+    throw Error(`Could not reach post, please try again.`);
   }
   const jsonText = jsonElement.text();
   const json = JSON.parse(jsonText);
