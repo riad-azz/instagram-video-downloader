@@ -1,5 +1,3 @@
-import React from "react";
-
 const LoadingSpinner = ({ size = 26 }: { size?: number }) => {
   return (
     <div role="status">

@@ -3,8 +3,8 @@ import Link from "next/link";
 const NavLink = ({
   content,
   href,
-  target = "",
-  animation = "",
+  target,
+  animation,
 }: {
   content: string;
   href: string;

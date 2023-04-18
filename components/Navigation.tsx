@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import NavLink from "./NavLink";
-import DropdownLink from "./DropdownLink";
-import ThemeButton from "./ThemeButton";
-import BurgerButton from "./BurgerButton";
+import NavLink from "@/components/NavLink";
+import DropdownLink from "@/components/DropdownLink";
+import ThemeButton from "@/components/ThemeButton";
+import BurgerButton from "@/components/BurgerButton";
 
 import { useState } from "react";
 
@@ -18,6 +18,7 @@ const Navigation = () => {
       className="mb-12 flex w-full flex-col items-center justify-between gap-2 border-b border-gray-400 px-2 py-1 dark:border-[#e5e7eb] md:flex-row md:px-8"
     >
       <div className="max-md:flex max-md:w-full max-md:items-center max-md:justify-between">
+        {/* Logo */}
         <Link className="flex items-center gap-1 py-2" href="/">
           <Image
             className="h-8 w-8"
@@ -30,9 +31,14 @@ const Navigation = () => {
             Riad-Azz
           </span>
         </Link>
+        {/* Dropdown menu button */}
         <BurgerButton onClick={() => setMenu(!menu)} />
       </div>
-      <ul className="flex gap-2 max-md:hidden">
+      {/* Navigation */}
+      <ul
+        onAnimationStart={() => setMenu(false)}
+        className="flex gap-2 max-md:hidden"
+      >
         <NavLink
           target="_blank"
           content="Github Repository"
@@ -47,8 +53,9 @@ const Navigation = () => {
         />
         <ThemeButton animation="motion-safe:animate-[animate-roll-in_1s_ease-in_1]" />
       </ul>
+      {/* Drop down menu */}
       <ul
-        className={`flex flex-col gap-2 max-md:w-full ${
+        className={`mb-2 flex flex-col gap-2 max-md:w-full ${
           !menu && "hidden"
         } md:hidden`}
       >

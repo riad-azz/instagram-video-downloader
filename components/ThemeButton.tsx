@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const ThemeButton = ({ animation = "" }: { animation?: string }) => {
   const [theme, setTheme] = useState("");
@@ -28,7 +28,7 @@ const ThemeButton = ({ animation = "" }: { animation?: string }) => {
   return (
     <button
       onClick={() => toggleTheme()}
-      className={`${animation} flex items-center justify-between border border-gray-400 bg-white p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 md:rounded-full`}
+      className={`${animation} flex items-center justify-between rounded-lg border border-gray-400 bg-white p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 md:rounded-full`}
     >
       <span className="md:hidden">Change theme</span>
       <span className={theme ? "hidden" : "block"}>

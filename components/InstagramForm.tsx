@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, FormEvent } from "react";
+
+import { useState, FormEvent } from "react";
 
 const InstagramForm = () => {
   const [postUrl, setPostUrl] = useState("");
