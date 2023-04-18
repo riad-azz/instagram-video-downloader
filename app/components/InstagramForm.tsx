@@ -85,9 +85,9 @@ const InstagramForm = () => {
 
   return (
     <>
-      {errorMsg && <div className="text-red-500 mb-1">{errorMsg}</div>}
+      {errorMsg && <div className="mb-1 text-red-500">{errorMsg}</div>}
       <form
-        className="flex flex-col items-center gap-4 md:flex-row md:gap-2 motion-safe:animate-[animate-up_1.5s_ease-in-out_1]"
+        className="flex flex-col items-center gap-4 motion-safe:animate-[animate-up_1.5s_ease-in-out_1] md:flex-row md:gap-2"
         onSubmit={handleSubmit}
       >
         <input
@@ -98,7 +98,7 @@ const InstagramForm = () => {
           placeholder="e.g. https://www.instagram.com/p/CGh4a0iASGS"
           aria-label="Instagram video download URL input"
           title="Instagram video download URL input"
-          className="w-full px-2 py-2 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 border border-gray-400 focus:ring-2 focus:ring-slate-300 focus:border-transparent focus:outline-none rounded"
+          className="w-full rounded border border-gray-400 px-2 py-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-slate-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
         />
         {loading ? (
           <button
@@ -106,12 +106,12 @@ const InstagramForm = () => {
             aria-label="Loading Instagram video download"
             title="Loading Instagram video download"
             type="button"
-            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white rounded border border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-blue-700 dark:hover:text-blue-300 focus:z-10 focus:ring-2 focus:ring-gray-200 focus:outline-none focus:text-blue-700 inline-flex items-center"
+            className="inline-flex items-center rounded border border-gray-400 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-blue-300"
           >
             <svg
               aria-hidden="true"
               role="status"
-              className="inline w-4 h-4 mr-3 text-gray-200 animate-spin"
+              className="mr-3 inline h-4 w-4 animate-spin text-gray-200"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -132,11 +132,11 @@ const InstagramForm = () => {
             aria-label="Download Instagram video"
             title="Download Instagram video"
             type="submit"
-            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white dark:bg-gray-700 dark:text-white rounded border border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-blue-700 dark:hover:text-blue-300 focus:z-10 focus:ring-2 focus:ring-gray-200 focus:outline-none focus:text-blue-700 inline-flex items-center"
+            className="inline-flex items-center rounded border border-gray-400 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:hover:text-blue-300"
           >
             <svg
               aria-label="download icon"
-              className="fill-current w-4 h-4 mr-2"
+              className="mr-2 h-4 w-4 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
             >

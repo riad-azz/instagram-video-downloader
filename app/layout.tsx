@@ -24,7 +24,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={currentTheme}>
-      <body className="bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 font-mono">
+      <body className="overflow-x-hidden bg-white font-mono text-gray-900 dark:bg-gray-800 dark:text-slate-100">
         {children}
       </body>
     </html>

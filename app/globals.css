@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  overflow-x: hidden;
-}
-
 @keyframes animate-up {
   0% {
     opacity: 0;
@@ -34,7 +30,7 @@ body {
 @keyframes animate-roll-in {
   0% {
     opacity: 0;
-    transform: translate(150px, 0) scale(0.5, 0.5) rotate(360deg);
+    transform: translate(100px, 0) scale(0.5, 0.5) rotate(360deg);
   }
   100% {
     opacity: 1;

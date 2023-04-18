@@ -15,18 +15,18 @@ const Navigation = () => {
   return (
     <header
       role="navigation"
-      className="flex flex-col md:flex-row md:px-8 gap-2 w-full justify-between items-center px-2 py-1 mb-12 border-b border-gray-400 dark:border-[#e5e7eb]"
+      className="mb-12 flex w-full flex-col items-center justify-between gap-2 border-b border-gray-400 px-2 py-1 dark:border-[#e5e7eb] md:flex-row md:px-8"
     >
-      <div className="max-md:w-full max-md:flex max-md:justify-between max-md:items-center">
-        <Link className="flex gap-1 items-center py-2" href="/">
+      <div className="max-md:flex max-md:w-full max-md:items-center max-md:justify-between">
+        <Link className="flex items-center gap-1 py-2" href="/">
           <Image
-            className="w-8 h-8"
+            className="h-8 w-8"
             src="/logo.png"
             alt="Logo"
             width={128}
             height={128}
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
             Riad-Azz
           </span>
         </Link>

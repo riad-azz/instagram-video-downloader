@@ -28,7 +28,7 @@ const ThemeButton = ({ animation = "" }: { animation?: string }) => {
   return (
     <button
       onClick={() => toggleTheme()}
-      className={`${animation} flex items-center justify-between text-gray-900 bg-white border border-gray-400 focus:outline-none hover:bg-gray-100 font-medium md:rounded-full text-sm p-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600`}
+      className={`${animation} flex items-center justify-between border border-gray-400 bg-white p-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 md:rounded-full`}
     >
       <span className="md:hidden">Change theme</span>
       <span className={theme ? "hidden" : "block"}>
@@ -36,7 +36,7 @@ const ThemeButton = ({ animation = "" }: { animation?: string }) => {
       </span>
       <span className={theme === "light" ? "block" : "hidden"}>
         <svg
-          className="w-5 h-5"
+          className="h-5 w-5"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const ThemeButton = ({ animation = "" }: { animation?: string }) => {
       </span>
       <span className={theme === "dark" ? "block" : "hidden"}>
         <svg
-          className="w-5 h-5"
+          className="h-5 w-5"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
