@@ -35,13 +35,13 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 1. Cloning the repository
 
 ```bash
-git clone https://github.com/riad-azz/instagram-videos-downloader.git
+git clone https://github.com/riad-azz/instagram-video-downloader.git
 ```
 
 2. Installing dependencies
 
 ```bash
-cd instagram-videos-downloader
+cd instagram-video-downloader
 ```
 
 ```bash
