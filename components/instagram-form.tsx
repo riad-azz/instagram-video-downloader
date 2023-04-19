@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import DownloadButton from "./DownloadButton";
+import DownloadButton from "@/components/ui/download-button";
 
 const InstagramForm = () => {
   const [postUrl, setPostUrl] = useState("");
