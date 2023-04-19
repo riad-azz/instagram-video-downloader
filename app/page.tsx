@@ -10,12 +10,9 @@ export default function Home() {
           <h1 className="mb-1 text-center text-2xl font-bold">
             Instagram Video Downloader
           </h1>
-          <h2 className="mb-2 text-center text-xl">
-            Download Videos and Reels for Free
-          </h2>
           <p className="text-center">
             Easily download Instagram videos and reels by copying and pasting
-            the post or reel URL into our fast and reliable downloader.
+            URL into our fast and reliable downloader.
           </p>
         </header>
         <InstagramForm />

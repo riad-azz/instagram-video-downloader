@@ -1,6 +1,6 @@
 {
   "name": "Instagram Video Downloader",
-  "short_name": "Instagram Downloader",
+  "short_name": "Instagram Video Downloader",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -18,7 +18,6 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "display": "standalone",
-  "description": "Easily download Instagram videos and reels with our fast and reliable downloader.",
-  "orientation": "portrait",
+  "description": "Download Instagram videos and reels for free with our easy-to-use Instagram downloader tool. Save Instagram videos and reels in high quality with our fast, reliable downloader.",
   "categories": ["Entertainment", "Social"]
 }

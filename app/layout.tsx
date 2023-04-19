@@ -1,6 +1,12 @@
+import { ABeeZee as MainFont } from "next/font/google";
 import { cookies } from "next/headers";
 import { siteConfig } from "@/config/site";
 import "@/styles/globals.css";
+
+const mainFont = MainFont({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: {
@@ -46,8 +52,8 @@ export const metadata = {
     images: [
       {
         url: siteConfig.ogImageUrl,
-        width: 1200,
-        height: 400,
+        width: 700,
+        height: 350,
         alt: siteConfig.name,
       },
     ],
@@ -56,7 +62,7 @@ export const metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: siteConfig.ogImageUrl,
+    images: [siteConfig.ogImageUrl],
     creator: "@riadazz",
   },
   icons: {
@@ -64,7 +70,7 @@ export const metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/manifest.json",
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -77,7 +83,9 @@ export default function RootLayout({
   const currentTheme = themeCookie?.value ?? "light";
   return (
     <html lang="en" className={currentTheme}>
-      <body className="overflow-x-hidden bg-white font-mono text-gray-900 dark:bg-gray-800 dark:text-slate-100">
+      <body
+        className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
+      >
         {children}
       </body>
     </html>
