@@ -8,6 +8,6 @@ export const siteConfig: SiteConfig = {
   ogImageUrl: "https://riad-insta.vercel.app/og.png",
   links: {
     twitter: "https://twitter.com/riadazz",
-    github: "https://github.com/riad-azz/instagram-videos-downloader",
+    github: "https://github.com/riad-azz/instagram-video-downloader",
   },
 };
