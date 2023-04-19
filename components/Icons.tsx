@@ -1,4 +1,6 @@
-const Menu = ({ size = 24 }: { size?: number }) => {
+import { IconSize } from "@/types";
+
+const Menu = ({ size = 24 }: IconSize) => {
   return (
     <svg
       width={size}
@@ -18,7 +20,7 @@ const Menu = ({ size = 24 }: { size?: number }) => {
 };
 
 export default Menu;
-const Download = ({ size = 16 }: { size?: number }) => {
+const Download = ({ size = 16 }: IconSize) => {
   return (
     <svg
       width={size}
@@ -33,7 +35,7 @@ const Download = ({ size = 16 }: { size?: number }) => {
   );
 };
 
-const Spinner = ({ size = 16 }: { size?: number }) => {
+const Spinner = ({ size = 16 }: IconSize) => {
   return (
     <svg
       width={size}
@@ -57,7 +59,7 @@ const Spinner = ({ size = 16 }: { size?: number }) => {
   );
 };
 
-const Moon = ({ size = 24 }: { size?: number }) => {
+const Moon = ({ size = 20 }: IconSize) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +79,7 @@ const Moon = ({ size = 24 }: { size?: number }) => {
   );
 };
 
-const Sun = ({ size = 24 }: { size?: number }) => {
+const Sun = ({ size = 20 }: IconSize) => {
   return (
     <svg
       width={size}
@@ -96,7 +98,7 @@ const Sun = ({ size = 24 }: { size?: number }) => {
   );
 };
 
-const Github = ({ size = 24 }: { size?: number }) => {
+const Github = ({ size = 24 }: IconSize) => {
   return (
     <svg
       aria-hidden="true"

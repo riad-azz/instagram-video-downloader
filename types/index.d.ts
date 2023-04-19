@@ -8,3 +8,7 @@ export type SiteConfig = {
     github: string;
   };
 };
+
+export type IconSize = {
+  size?: number;
+};

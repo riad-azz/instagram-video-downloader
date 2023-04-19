@@ -18,11 +18,17 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
 
-* Responsive on mobile
+* Working/Error handling
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-03.png?raw=true)
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
+* Responsive on mobile
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true)
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
 
 ## Installation & Running
 
@@ -39,7 +45,6 @@ cd instagram-videos-downloader
 ```
 
 ```bash
-# Install packages
 npm install
 ```
 
@@ -65,12 +70,10 @@ Endpoint `/api/post` takes a Instagram post or reel URL as a param `url` _(requi
 `GET /api/post?url={POST_URL}`
 
 ```bash
-# GET REQUEST
 curl -i "https://riad-insta.vercel.app/api/post?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 ```bash
-# JSON RESPONSE
 {
   "id": "CGh4a0iASGS",
   "username": "rick_roll_memes",
