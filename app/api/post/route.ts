@@ -3,7 +3,7 @@ import {
   getPostId,
   fetchPostJson,
   formatResponse,
-  formatFirstVideo,
+  formatDownloadVideo,
 } from "./utils";
 
 export async function GET(request: Request) {
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 
   try {
     const json = await fetchPostJson(postId);
-    const response = formatFirstVideo(postId, json);
+    const response = formatDownloadVideo(postId, json);
 
     return NextResponse.json(response);
   } catch (error: any) {

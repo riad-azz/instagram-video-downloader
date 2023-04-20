@@ -18,11 +18,11 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
 
-* Working/Error handling
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
+* Fetching/Error handling
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-03.png?raw=true)
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
 
 * Responsive on mobile
 

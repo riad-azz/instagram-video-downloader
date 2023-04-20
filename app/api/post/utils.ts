@@ -1,24 +1,34 @@
 import axios from "axios";
 import { load } from "cheerio";
+import { InstagramVideo, VideoObject, InstagramPostJson } from "@/types";
 
-export const formatVideoInfo = (videoObj: any) => {
-  const formattedInfo = {
-    width: videoObj.width,
-    height: videoObj.height,
-    caption: videoObj.caption,
-    description: videoObj.description,
-    uploadDate: videoObj.uploadDate,
-    url: videoObj.contentUrl,
-    thumbnail: videoObj.thumbnailUrl,
+export const formatVideoInfo = ({
+  width,
+  height,
+  caption,
+  description,
+  uploadDate,
+  contentUrl,
+  thumbnailUrl,
+}: InstagramVideo) => {
+  const formattedVideoInfo: VideoObject = {
+    width: width,
+    height: height,
+    caption: caption,
+    description: description,
+    uploadDate: uploadDate,
+    url: contentUrl,
+    thumbnail: thumbnailUrl,
   };
 
-  return formattedInfo;
+  return formattedVideoInfo;
 };
 
-export const formatResponse = (postID: string, json: any) => {
+export const formatResponse = (postID: string, json: InstagramPostJson) => {
   const username = json.author.identifier.value;
   const videoList = json.video;
-  const formattedVideoList = [];
+
+  const formattedVideoList: VideoObject[] = [];
 
   if (videoList.length === 0) {
     throw Error("This post does not contain any videos");
@@ -38,7 +48,10 @@ export const formatResponse = (postID: string, json: any) => {
   return result;
 };
 
-export const formatFirstVideo = (postID: string, json: any) => {
+export const formatDownloadVideo = (
+  postID: string,
+  json: InstagramPostJson
+) => {
   const videoList = json.video;
 
   if (videoList.length === 0) {
@@ -46,9 +59,9 @@ export const formatFirstVideo = (postID: string, json: any) => {
   }
 
   const username = json.author.identifier.value;
-  const filename = `${username}_${postID}_instagram.mp4`;
+  const filename = `${username}_instagram_${postID}.mp4`;
 
-  const video = videoList.at(0);
+  const video = videoList[0];
   const downloadUrl = video.contentUrl;
 
   const result = {
@@ -67,8 +80,8 @@ export const fetchPostJson = async (postID: string) => {
   if (jsonElement.length === 0) {
     throw Error(`Could not reach post, please try again.`);
   }
-  const jsonText = jsonElement.text();
-  const json = JSON.parse(jsonText);
+  const jsonText: string = jsonElement.text();
+  const json: InstagramPostJson = JSON.parse(jsonText);
   return json;
 };
 

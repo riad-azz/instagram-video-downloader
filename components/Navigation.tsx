@@ -2,24 +2,28 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import ThemeButton from "@/components/ui/ThemeButton";
-import { Icons } from "@/components/Icons";
 
 import { MouseEventHandler, useState } from "react";
 
-const MenuButton = ({ onClick }: { onClick: MouseEventHandler }) => {
+import { useStore } from "@/providers/theme";
+import ThemeButton from "@/components/ui/ThemeButton";
+import { Icons } from "@/components/Icons";
+
+const LogoLink = ({ title }: { title: string }) => {
+  const { theme } = useStore();
   return (
-    <button
-      onClick={onClick}
-      data-collapse-toggle="navbar-dropdown"
-      type="button"
-      className="order-last ml-3 inline-flex items-center rounded-lg border border-gray-300 p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
-      aria-controls="navbar-dropdown"
-      aria-expanded="false"
-    >
-      <span className="sr-only">Open navbar menu</span>
-      <Icons.menu />
-    </button>
+    <Link className="flex items-center gap-2 py-2" href="/">
+      <Image
+        className="h-8 w-8 self-center"
+        src={`/images/logo-${theme}.png`}
+        alt="Logo"
+        width={128}
+        height={128}
+      />
+      <span className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800 dark:text-white">
+        {title}
+      </span>
+    </Link>
   );
 };
 
@@ -45,6 +49,22 @@ const NavLink = ({
         <span>{title}</span>
       </Link>
     </li>
+  );
+};
+
+const MenuButton = ({ onClick }: { onClick: MouseEventHandler }) => {
+  return (
+    <button
+      onClick={onClick}
+      data-collapse-toggle="navbar-dropdown"
+      type="button"
+      className="order-last ml-3 inline-flex items-center rounded-lg border border-gray-300 p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+      aria-controls="navbar-dropdown"
+      aria-expanded="false"
+    >
+      <span className="sr-only">Open navbar menu</span>
+      <Icons.menu />
+    </button>
   );
 };
 
@@ -84,18 +104,7 @@ const Navbar = () => {
       <div className="flex w-full items-center md:gap-2">
         {/* Logo */}
         <div className="mr-auto w-fit">
-          <Link className="flex items-center gap-1 py-2" href="/">
-            <Image
-              className="h-8 w-8 self-center"
-              src="/images/logo.png"
-              alt="Logo"
-              width={128}
-              height={128}
-            />
-            <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-              Riad-Azz
-            </span>
-          </Link>
+          <LogoLink title="Riad-Azz" />
         </div>
         {/* Dropdown menu button */}
         <MenuButton onClick={() => setShowMenu(!showMenu)} />
@@ -111,7 +120,7 @@ const Navbar = () => {
             </NavLink>
           </div>
         </ul>
-        {/* Theme */}
+        {/* Theme Toggle */}
         <ThemeButton />
       </div>
       {/* Mobile Menu Navigation */}
