@@ -25,12 +25,12 @@ const NavLink = ({
   title,
   href,
   target,
-  children,
+  icon,
 }: {
   title: string;
   href: string;
   target?: string;
-  children?: JSX.Element;
+  icon?: JSX.Element;
 }) => {
   return (
     <li>
@@ -39,7 +39,7 @@ const NavLink = ({
         target={target}
         className="flex items-center gap-2 rounded bg-white px-3 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
       >
-        {children}
+        {icon}
         <span>{title}</span>
       </Link>
     </li>
@@ -66,12 +66,12 @@ const MobileMenuLink = ({
   title,
   href,
   target,
-  children,
+  icon,
 }: {
   title: string;
   href: string;
   target?: string;
-  children?: JSX.Element;
+  icon?: JSX.Element;
 }) => {
   return (
     <li>
@@ -80,7 +80,7 @@ const MobileMenuLink = ({
         target={target}
         className="flex w-full items-center gap-4 rounded-lg border border-gray-300 bg-white px-5 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700"
       >
-        {children}
+        {icon}
         <span>{title}</span>
       </Link>
     </li>
@@ -103,16 +103,13 @@ const Navbar = () => {
         {/* Dropdown menu button */}
         <MenuButton onClick={() => setShowMenu(!showMenu)} />
         {/* Main Navigation */}
-        <ul className="mr-2 flex shrink-0 gap-2">
-          <div className="hidden gap-2 md:flex">
-            <NavLink
-              target="_blank"
-              title="Github Repository"
-              href="https://github.com/riad-azz/instagram-videos-downloader"
-            >
-              {<Icons.github />}
-            </NavLink>
-          </div>
+        <ul className="mr-2 hidden shrink-0 gap-2 md:flex">
+          <NavLink
+            target="_blank"
+            title="Github Repository"
+            href="https://github.com/riad-azz/instagram-videos-downloader"
+            icon={<Icons.github />}
+          />
         </ul>
         {/* Theme Toggle */}
         <ThemeButton />
@@ -127,9 +124,8 @@ const Navbar = () => {
           title="Github Repository"
           target="_blank"
           href="https://github.com/riad-azz/instagram-videos-downloader"
-        >
-          {<Icons.github />}
-        </MobileMenuLink>
+          icon={<Icons.github />}
+        />
       </ul>
     </header>
   );
