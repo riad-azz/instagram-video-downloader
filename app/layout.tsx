@@ -1,7 +1,9 @@
 import { ABeeZee as MainFont } from "next/font/google";
-import { cookies } from "next/headers";
 import { siteConfig } from "@/config/site";
+import { cookies } from "next/headers";
 import "@/styles/globals.css";
+
+import Provider from "@/components/provider";
 
 const mainFont = MainFont({
   weight: "400",
@@ -83,11 +85,11 @@ export default function RootLayout({
   const currentTheme = themeCookie?.value ?? "light";
 
   return (
-    <html lang="en" className={currentTheme}>
+    <html lang="en">
       <body
         className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
       >
-        {children}
+        <Provider theme={currentTheme}>{children}</Provider>
       </body>
     </html>
   );
