@@ -1,6 +1,5 @@
 import { ABeeZee as MainFont } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { cookies } from "next/headers";
 import "@/styles/globals.css";
 
 import Provider from "@/components/provider";
@@ -80,16 +79,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const sessionCookies = cookies();
-  const themeCookie = sessionCookies.get("theme");
-  const currentTheme = themeCookie?.value ?? "light";
-
   return (
     <html lang="en">
       <body
         className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
       >
-        <Provider theme={currentTheme}>{children}</Provider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
