@@ -13,13 +13,7 @@ const LogoLink = ({ title }: { title: string }) => {
   const { theme } = useStore();
   return (
     <Link className="flex items-center gap-2 py-2" href="/">
-      <Image
-        className="h-8 w-8 self-center"
-        src={`/images/logo-${theme}.png`}
-        alt="Logo"
-        width={128}
-        height={128}
-      />
+      <Icons.logo size={40} />
       <span className="self-center whitespace-nowrap text-2xl font-semibold text-gray-800 dark:text-white">
         {title}
       </span>
@@ -43,7 +37,7 @@ const NavLink = ({
       <Link
         href={href}
         target={target}
-        className="flex items-center gap-2 rounded bg-white px-5 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
+        className="flex items-center gap-2 rounded bg-white px-3 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
       >
         {children}
         <span>{title}</span>
@@ -109,7 +103,7 @@ const Navbar = () => {
         {/* Dropdown menu button */}
         <MenuButton onClick={() => setShowMenu(!showMenu)} />
         {/* Main Navigation */}
-        <ul className="flex shrink-0 gap-2">
+        <ul className="mr-2 flex shrink-0 gap-2">
           <div className="hidden gap-2 md:flex">
             <NavLink
               target="_blank"
