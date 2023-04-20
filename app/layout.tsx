@@ -67,8 +67,8 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/images/favicon-16x16.png",
+    apple: "/images/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
 };
@@ -81,6 +81,7 @@ export default function RootLayout({
   const sessionCookies = cookies();
   const themeCookie = sessionCookies.get("theme");
   const currentTheme = themeCookie?.value ?? "light";
+
   return (
     <html lang="en" className={currentTheme}>
       <body

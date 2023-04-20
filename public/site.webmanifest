@@ -3,27 +3,54 @@
   "short_name": "Instagram Video Downloader",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/images/icon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icon-168x168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/maskable_icon.png",
-      "sizes": "192x192",
+      "src": "/images/maskable-196x196.png",
+      "sizes": "196x196",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
+  "lang": "en-us",
   "dir": "ltr",
   "start_url": "/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "display": "standalone",
+  "orientation": "landscape-primary",
   "description": "Download Instagram videos and reels for free with our easy-to-use Instagram downloader tool. Save Instagram videos and reels in high quality with our fast, reliable downloader.",
   "categories": ["Entertainment", "Social"]
 }

@@ -83,11 +83,11 @@ const Navbar = () => {
     >
       <div className="flex w-full items-center md:gap-2">
         {/* Logo */}
-        <div className="w-full">
+        <div className="mr-auto w-fit">
           <Link className="flex items-center gap-1 py-2" href="/">
             <Image
-              className="h-8 w-8"
-              src="/logo.png"
+              className="h-8 w-8 self-center"
+              src="/images/logo.png"
               alt="Logo"
               width={128}
               height={128}
