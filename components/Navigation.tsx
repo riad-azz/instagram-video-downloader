@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import ThemeButton from "@/components/theme-button";
+import ThemeButton from "@/components/ui/ThemeButton";
 import { Icons } from "@/components/Icons";
 
 import { MouseEventHandler, useState } from "react";
@@ -27,12 +27,12 @@ const NavLink = ({
   title,
   href,
   target,
-  icon,
+  children,
 }: {
   title: string;
   href: string;
   target?: string;
-  icon?: JSX.Element;
+  children?: JSX.Element;
 }) => {
   return (
     <li>
@@ -41,7 +41,7 @@ const NavLink = ({
         target={target}
         className="flex items-center gap-2 rounded bg-white px-5 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
       >
-        {icon}
+        {children}
         <span>{title}</span>
       </Link>
     </li>
@@ -52,12 +52,12 @@ const MobileMenuLink = ({
   title,
   href,
   target,
-  icon,
+  children,
 }: {
   title: string;
   href: string;
   target?: string;
-  icon?: JSX.Element;
+  children?: JSX.Element;
 }) => {
   return (
     <li>
@@ -66,7 +66,7 @@ const MobileMenuLink = ({
         target={target}
         className="flex w-full items-center gap-4 rounded-lg border border-gray-300 bg-white px-5 py-2 font-medium text-gray-900 hover:bg-gray-100 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700"
       >
-        {icon}
+        {children}
         <span>{title}</span>
       </Link>
     </li>
@@ -106,8 +106,9 @@ const Navbar = () => {
               target="_blank"
               title="Github Repository"
               href="https://github.com/riad-azz/instagram-videos-downloader"
-              icon={<Icons.github />}
-            />
+            >
+              {<Icons.github />}
+            </NavLink>
           </div>
         </ul>
         {/* Theme */}
@@ -123,8 +124,9 @@ const Navbar = () => {
           title="Github Repository"
           target="_blank"
           href="https://github.com/riad-azz/instagram-videos-downloader"
-          icon={<Icons.github />}
-        />
+        >
+          {<Icons.github />}
+        </MobileMenuLink>
       </ul>
     </header>
   );

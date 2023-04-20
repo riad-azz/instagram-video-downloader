@@ -1,5 +1,5 @@
-import InstagramForm from "@/components/instagram-form";
-import Navbar from "@/components/navbar";
+import InstagramForm from "@/components/InstagramForm";
+import Navbar from "@/components/Navigation";
 
 export default function HomePage() {
   return (

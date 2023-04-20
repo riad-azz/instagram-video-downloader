@@ -1,8 +1,8 @@
 import { ABeeZee as MainFont } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { cookies } from "next/headers";
+import ThemeInitializer from "@/components/ThemeInitializer";
 import "@/styles/globals.css";
-
-import Provider from "@/components/provider";
 
 const mainFont = MainFont({
   weight: "400",
@@ -79,12 +79,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const sessionCookies = cookies();
+  const themeCookie = sessionCookies.get("theme");
+  const theme = themeCookie?.value ?? "light";
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <body
         className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
       >
-        <Provider>{children}</Provider>
+        <ThemeInitializer theme={theme} />
+        {children}
       </body>
     </html>
   );
