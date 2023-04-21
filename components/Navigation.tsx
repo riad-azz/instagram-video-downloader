@@ -91,7 +91,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header
+    <nav
       role="navigation"
       className="mb-12 flex w-full flex-col items-center justify-between gap-2 border-b border-gray-300 px-2 py-1 shadow-md dark:border-gray-600 dark:shadow-black/25 md:flex-row md:px-8"
     >
@@ -127,7 +127,7 @@ const Navbar = () => {
           icon={<Icons.github />}
         />
       </ul>
-    </header>
+    </nav>
   );
 };
 
