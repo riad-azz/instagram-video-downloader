@@ -1,6 +1,6 @@
 "use client";
 
-import { useStore } from "@/providers/theme";
+import { useStore } from "@/stores/themeStore";
 import { Icons } from "@/components/Icons";
 
 const ThemeButton = () => {

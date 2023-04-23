@@ -6,6 +6,8 @@ Simple Website/API for downloading instagram videos made with Next.js 13 app dir
 
 A website that lets you download Instagram videos easily and quickly. You can paste the URL of any public Instagram post and get the video file in MP4 format. there is also an API that you can use to integrate this functionality into your own applications. The API is simple, and it returns JSON responses with the video URL and other metadata.
 
+Note : This does not work on instagram stories.
+
 **You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)**
 
 ## Getting Started
@@ -80,9 +82,9 @@ curl -i "https://riad-insta.vercel.app/api/post?url=https://www.instagram.com/p/
   "videos":[
     {
     "width":"720"
-    "height":"720"
+    "height":"480"
     "caption": "post caption",
-    "description": "(?) Likes count, (?) Comments count - Extra description info",
+    "description": "(18) Likes , (10) Comments - description info...",
     "uploadDate": "2023-01-24T08:01:47-07:00",
     "url": "https://scontent.cdninstagram.../.../121671754_677314989877709_3634507045561235384_n.mp4...."
     "thumbnail": "https://scontent.cdninstagram.../.../121828820_350967549295657_6595550933958484113_n.jpg....",

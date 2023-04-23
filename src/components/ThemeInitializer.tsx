@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useStore } from "@/providers/theme";
+import { useStore } from "@/stores/themeStore";
 
 const ThemeInitializer = ({ theme }: { theme: string }) => {
   const initialized = useRef(false);

@@ -1,16 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import { MouseEventHandler, useState } from "react";
 
-import { useStore } from "@/providers/theme";
 import ThemeButton from "@/components/ui/ThemeButton";
 import { Icons } from "@/components/Icons";
 
 const LogoLink = ({ title }: { title: string }) => {
-  const { theme } = useStore();
   return (
     <Link className="flex items-center gap-2 py-2" href="/">
       <Icons.logo size={40} />
