@@ -1,96 +1,83 @@
 import axios from "axios";
 import { load } from "cheerio";
-import { InstagramVideo, VideoObject, InstagramPostJson } from "@/types";
+import { VideoJson } from "@/types";
+import { InstagramVideo, InstagramPostJson } from "@/types/instagram";
+import { BadRequest, ServerError } from "@/exceptions/instagramExceptions";
 
-export const formatVideoInfo = ({
-  width,
-  height,
-  caption,
-  description,
-  uploadDate,
-  contentUrl,
-  thumbnailUrl,
-}: InstagramVideo) => {
-  const formattedVideoInfo: VideoObject = {
-    width: width,
-    height: height,
-    caption: caption,
-    description: description,
-    uploadDate: uploadDate,
-    url: contentUrl,
-    thumbnail: thumbnailUrl,
-  };
-
-  return formattedVideoInfo;
-};
-
-export const formatResponse = (postID: string, json: InstagramPostJson) => {
-  const username = json.author.identifier.value;
-  const videoList = json.video;
-
-  const formattedVideoList: VideoObject[] = [];
-
-  if (videoList.length === 0) {
-    throw Error("This post does not contain any videos");
-  }
-
-  for (let video of videoList) {
-    let videoObj = formatVideoInfo(video);
-    formattedVideoList.push(videoObj);
-  }
-
-  const result = {
-    id: postID,
-    username: username,
-    videos: formattedVideoList,
-  };
-
-  return result;
-};
-
-export const formatDownloadVideo = (
-  postID: string,
-  json: InstagramPostJson
-) => {
+export const getVideoJson = (json: InstagramPostJson) => {
   const videoList = json.video;
 
   if (videoList.length === 0) {
-    throw Error("This post does not contain any videos");
+    throw new BadRequest("This post does not contain a video");
   }
 
+  const video: InstagramVideo = videoList[0];
+
+  const videoJson: VideoJson = {
+    username: json.author.identifier.value,
+    width: video.width,
+    height: video.height,
+    caption: video.caption,
+    downloadUrl: video.contentUrl,
+    thumbnailUrl: video.thumbnailUrl,
+  };
+
+  return videoJson;
+};
+
+export const getDownloadJson = (json: InstagramPostJson) => {
+  const videoList = json.video;
+
+  if (videoList.length === 0) {
+    throw new BadRequest("This post does not contain a video");
+  }
+
+  const postId = json.identifier.value;
   const username = json.author.identifier.value;
-  const filename = `${username}_instagram_${postID}.mp4`;
+  const filename = `${username}-instagram-${postId}.mp4`;
 
   const video = videoList[0];
   const downloadUrl = video.contentUrl;
 
-  const result = {
+  const downloadJson = {
     filename: filename,
     downloadUrl: downloadUrl,
   };
 
-  return result;
+  return downloadJson;
 };
 
 export const fetchPostJson = async (postID: string) => {
   const postUrl = "https://www.instagram.com/p/" + postID;
   const response = await axios.get(postUrl);
+  if (response.statusText !== "OK") {
+    throw new ServerError(`Could not reach post, please try again.`);
+  }
+
   const $ = load(response.data);
   const jsonElement = $("script[type='application/ld+json']");
+
   if (jsonElement.length === 0) {
-    throw Error(`Could not reach post, please try again.`);
+    throw new ServerError(
+      `Could not find video JSON, download request was aborted.`
+    );
   }
+
   const jsonText: string = jsonElement.text();
   const json: InstagramPostJson = JSON.parse(jsonText);
   return json;
 };
 
-export const getPostId = (postUrl: string) => {
+export const getPostId = (postUrl: string | null) => {
   const postRegex =
     /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?/;
   const reelRegex =
     /^https:\/\/(?:www\.)?instagram\.com\/reels?\/([a-zA-Z0-9_-]+)\/?/;
   let postId;
+
+  if (!postUrl) {
+    throw new BadRequest("Instagram URL was not provided");
+  }
 
   const postCheck = postUrl.match(postRegex);
   if (postCheck) {
@@ -103,8 +90,7 @@ export const getPostId = (postUrl: string) => {
   }
 
   if (!postId) {
-    const error = new Error("Instagram post/reel ID was not found");
-    throw error;
+    throw new BadRequest("Instagram post/reel ID was not found");
   }
 
   return postId;

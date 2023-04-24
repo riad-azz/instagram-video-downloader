@@ -10,23 +10,21 @@ Note : This does not work on instagram stories.
 
 **You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)**
 
-## Getting Started
+## Website Preview
 
-### Website Preview
-
-* Dark/Light themes
+### Dark/Light themes
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true)
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
 
-* Fetching/Error handling
+### Fetching/Error handling
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-03.png?raw=true)
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
 
-* Responsive on mobile
+### Responsive on mobile
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true)
 
@@ -77,19 +75,12 @@ curl -i "https://riad-insta.vercel.app/api/post?url=https://www.instagram.com/p/
 
 ```bash
 {
-  "id": "CGh4a0iASGS",
   "username": "rick_roll_memes",
-  "videos":[
-    {
-    "width":"720"
-    "height":"480"
-    "caption": "post caption",
-    "description": "(18) Likes , (10) Comments - description info...",
-    "uploadDate": "2023-01-24T08:01:47-07:00",
-    "url": "https://scontent.cdninstagram.../.../121671754_677314989877709_3634507045561235384_n.mp4...."
-    "thumbnail": "https://scontent.cdninstagram.../.../121828820_350967549295657_6595550933958484113_n.jpg....",
-    }
-  ]
+  "caption": "Rick roll day #rickroll #rickrolled #rickrolling #rickastley #rickastleytou...",
+  "width":"720"
+  "height":"480"
+  "downloadUrl": "https://scontent.cdninstagram.../.../121671754_677314989877709_3634507045561235384_n.mp4..."
+  "thumbnailUrl": "https://scontent.cdninstagram.../.../121828820_350967549295657_6595550933958484113_n.jpg...",
 }
 ```
 

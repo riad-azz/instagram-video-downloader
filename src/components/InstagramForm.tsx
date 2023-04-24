@@ -8,7 +8,7 @@ const InstagramForm = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function downloadVideo(downloadUrl: string, filename: string) {
+  async function downloadVideo(filename: string, downloadUrl: any) {
     await fetch(downloadUrl)
       .then((response) => response.blob())
       .then((blob) => {
@@ -20,7 +20,7 @@ const InstagramForm = () => {
         a.click();
         a.remove();
       });
-    // Reset error message
+    // // Reset error message
     setErrorMsg("");
   }
 
@@ -58,9 +58,9 @@ const InstagramForm = () => {
       if (contentType && contentType.includes("application/json")) {
         const data = await response.json();
         if (data.error) return setErrorMsg(data.error);
-        const downloadUrl = data.downloadUrl;
         const filename = data.filename;
-        await downloadVideo(downloadUrl, filename);
+        const downloadUrl = data.downloadUrl;
+        await downloadVideo(filename, downloadUrl);
       } else {
         return setErrorMsg("Internal server error");
       }
@@ -87,7 +87,9 @@ const InstagramForm = () => {
 
   return (
     <>
-      {errorMsg !== "" && <div className="mb-1 text-red-500">{errorMsg}</div>}
+      {errorMsg !== "" && (
+        <div className="mb-1 text-sm text-red-500 md:text-base">{errorMsg}</div>
+      )}
       <form
         className="flex flex-col items-center gap-4 motion-safe:animate-[animate-up_1.5s_ease-in-out_1] md:flex-row md:gap-2"
         onSubmit={handleSubmit}
