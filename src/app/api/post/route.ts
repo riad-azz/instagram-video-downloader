@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import {
-  InstagramException,
-  BadRequest,
-} from "@/exceptions/instagramExceptions";
+import { InstagramException } from "@/exceptions/instagramExceptions";
 import {
   getPostId,
   fetchPostJson,
