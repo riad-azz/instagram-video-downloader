@@ -61,6 +61,17 @@ npm run build
 npm run start
 ```
 
+## Instagram Graphql API Option
+
+You can enable the Graphql API to use Instagram API as a fallback incase the page scraping doesn't work.
+
+To do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_GRAPHQL_API` to `true` and provide your instagram sessionId.
+
+```env
+USE_GRAPHQL=true
+INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
+```
+
 ## API Documentation
 
 The API is pretty simple and straightforward.
