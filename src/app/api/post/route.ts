@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
+
+import { fetchPostJson } from "@/utils/api";
+import { getPostId, formatDownloadJson } from "@/utils/helpers";
 import { InstagramException } from "@/exceptions/instagramExceptions";
-import {
-  getPostId,
-  fetchPostJson,
-  getVideoJson,
-  getDownloadJson,
-} from "./utils";
 
 function handleError(error: any) {
   if (error instanceof InstagramException) {
@@ -32,9 +29,8 @@ export async function GET(request: Request) {
 
   try {
     const postJson = await fetchPostJson(postId);
-    const response = getVideoJson(postJson);
 
-    return NextResponse.json(response);
+    return NextResponse.json(postJson);
   } catch (error: any) {
     return handleError(error);
   }
@@ -53,9 +49,9 @@ export async function POST(request: Request) {
 
   try {
     const postJson = await fetchPostJson(postId);
-    const response = getDownloadJson(postJson);
+    const downloadJson = formatDownloadJson(postId, postJson);
 
-    return NextResponse.json(response);
+    return NextResponse.json(downloadJson);
   } catch (error: any) {
     return handleError(error);
   }

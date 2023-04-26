@@ -18,7 +18,7 @@ export type VideoJson = {
   thumbnailUrl: string;
 };
 
-export type DownloadVideoJson = {
+export type DownloadJson = {
   filename: string;
   downloadUrl: string;
 };

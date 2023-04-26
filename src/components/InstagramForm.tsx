@@ -14,13 +14,14 @@ const InstagramForm = () => {
       .then((blob) => {
         const blobUrl = URL.createObjectURL(blob);
         const a = document.createElement("a");
+        a.target = "_blank";
         a.href = blobUrl;
         a.download = filename;
         document.body.appendChild(a);
         a.click();
         a.remove();
       });
-    // // Reset error message
+    // Reset error message
     setErrorMsg("");
   }
 
