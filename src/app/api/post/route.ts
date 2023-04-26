@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-
-import { fetchPostJson } from "@/utils/api";
-import { getPostId, formatDownloadJson } from "@/utils/helpers";
+import { getPostId, fetchPostJson, formatDownloadJson } from "@/utils";
 import { InstagramException } from "@/exceptions/instagramExceptions";
 
 function handleError(error: any) {

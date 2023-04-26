@@ -10,10 +10,7 @@ const mainFont = MainFont({
 });
 
 export const metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
+  title: "Download Instagram videos and reels for free",
   description: siteConfig.description,
   keywords: [
     "Instagram downloader",
@@ -29,6 +26,7 @@ export const metadata = {
     "Instagram reel saver",
     "Instagram reel video downloader",
     "Reels video saver",
+    "Free Instagram saver",
     "Instagram video download app",
     "Free Instagram downloader",
   ],
@@ -68,7 +66,7 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/images/favicon-16x16.png",
+    shortcut: "/images/favicon-32x32.png",
     apple: "/images/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",

@@ -1,32 +1,7 @@
 {
-  "name": "Instagram Video Downloader",
-  "short_name": "Instagram Video Downloader",
+  "name": "Riad Insta",
+  "short_name": "Riad Insta",
   "icons": [
-    {
-      "src": "/images/icon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icon-168x168.png",
-      "sizes": "168x168",
-      "type": "image/png"
-    },
     {
       "src": "/images/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -52,5 +27,5 @@
   "display": "standalone",
   "orientation": "landscape-primary",
   "description": "Download Instagram videos and reels for free with our easy-to-use Instagram downloader tool. Save Instagram videos and reels in high quality with our fast, reliable downloader.",
-  "categories": ["Entertainment", "Social"]
+  "categories": ["Entertainment", "Social", "Video", "Saver"]
 }

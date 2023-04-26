@@ -95,7 +95,7 @@ const Navbar = () => {
       <div className="flex w-full items-center md:gap-2">
         {/* Logo */}
         <div className="mr-auto w-fit">
-          <LogoLink title="Riad-Azz" />
+          <LogoLink title="Riad-Insta" />
         </div>
         {/* Dropdown menu button */}
         <MenuButton onClick={() => setShowMenu(!showMenu)} />
@@ -103,7 +103,7 @@ const Navbar = () => {
         <ul className="mr-2 hidden shrink-0 gap-2 md:flex">
           <NavLink
             target="_blank"
-            title="Github Repository"
+            title="Source Code"
             href="https://github.com/riad-azz/instagram-videos-downloader"
             icon={<Icons.github />}
           />
@@ -118,7 +118,7 @@ const Navbar = () => {
         } md:hidden`}
       >
         <MobileMenuLink
-          title="Github Repository"
+          title="Source Code"
           target="_blank"
           href="https://github.com/riad-azz/instagram-videos-downloader"
           icon={<Icons.github />}

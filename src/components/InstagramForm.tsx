@@ -95,7 +95,11 @@ const InstagramForm = () => {
         className="flex flex-col items-center gap-4 motion-safe:animate-[animate-up_1.5s_ease-in-out_1] md:flex-row md:gap-2"
         onSubmit={handleSubmit}
       >
+        <label htmlFor="url-input" className="sr-only">
+          instagram URL input
+        </label>
         <input
+          id="url-input"
           type="url"
           value={postUrl}
           autoFocus={true}
