@@ -1,4 +1,4 @@
-export type SiteConfig = {
+export interface SiteConfig {
   name: string;
   description: string;
   url: string;
@@ -7,22 +7,22 @@ export type SiteConfig = {
     twitter: string;
     github: string;
   };
-};
+}
 
-export type VideoJson = {
+export interface VideoJson {
   username: string;
   caption: string;
   width: string;
   height: string;
   downloadUrl: string;
   thumbnailUrl: string;
-};
+}
 
-export type DownloadJson = {
+export interface DownloadJson {
   filename: string;
   downloadUrl: string;
-};
+}
 
-export type IconSize = {
+export interface IconSize {
   size?: number;
-};
+}

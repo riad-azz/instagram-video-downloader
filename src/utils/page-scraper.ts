@@ -2,7 +2,7 @@ import axios from "axios";
 import { load } from "cheerio";
 
 import { VideoJson } from "@/types";
-import { PostJson, PostJsonVideo } from "@/types/instagram";
+import { PostJson, PostJsonVideo } from "@/types/instagram-post";
 import { BadRequest } from "@/exceptions/instagramExceptions";
 
 const formatPageJson = (json: PostJson) => {
@@ -27,7 +27,17 @@ const formatPageJson = (json: PostJson) => {
 };
 
 export const fetchFromPage = async (postUrl: string) => {
-  const response = await axios.get(postUrl);
+  let response;
+  try {
+    response = await axios.get(postUrl);
+  } catch (error: any) {
+    if (error.message.includes("404")) {
+      throw new BadRequest("This post page isn't available.", 404);
+    }
+    console.log(error.message);
+    return null;
+  }
+
   if (response.statusText !== "OK") {
     return null;
   }
