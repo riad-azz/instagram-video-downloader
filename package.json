@@ -2,11 +2,18 @@
   "name": "instagram-videos-downloader",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18.15.0",
+    "npm": ">=9.5.0",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/node": "18.15.11",
@@ -26,6 +33,9 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
+    "husky": "^8.0.3",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7"
   }
