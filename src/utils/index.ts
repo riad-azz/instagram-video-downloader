@@ -1,6 +1,6 @@
 import { VideoJson, DownloadJson } from "@/types";
-import { fetchFromPage } from "@/utils/page-scraper";
-import { useGraphqlAPI, fetchFromAPI } from "@/utils/instagram-api";
+import { fetchFromPage } from "@/utils/instagramScraper";
+import { useInstagramAPI, fetchFromAPI } from "@/utils/instagramAPI";
 import { BadRequest, ServerError } from "@/exceptions/instagramExceptions";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
@@ -47,10 +47,13 @@ export const getPostId = (postUrl: string | null) => {
 export const fetchPostJson = async (postID: string) => {
   const postUrl = "https://www.instagram.com/p/" + postID;
   const pageJson = await fetchFromPage(postUrl);
+
   if (pageJson) return pageJson;
-  if (useGraphqlAPI) {
+
+  if (useInstagramAPI) {
     const apiJson = await fetchFromAPI(postUrl);
     if (apiJson) return apiJson;
   }
+
   throw new ServerError("Could not find download link for this post", 500);
 };

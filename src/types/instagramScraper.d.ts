@@ -1,4 +1,4 @@
-export interface PostJson {
+export interface ScrapedPost {
   articleBody: string;
   author: Author;
   comment: Comment;

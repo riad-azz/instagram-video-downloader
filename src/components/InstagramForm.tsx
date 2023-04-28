@@ -51,7 +51,7 @@ const InstagramForm = () => {
     }
 
     try {
-      const response = await fetch(`/api/post?url=${postUrl}`, {
+      const response = await fetch(`/api/instagram?url=${postUrl}`, {
         method: "POST",
       });
 

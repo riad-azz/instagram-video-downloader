@@ -2,10 +2,10 @@ import axios from "axios";
 import { load } from "cheerio";
 
 import { VideoJson } from "@/types";
-import { PostJson, PostJsonVideo } from "@/types/instagram-post";
+import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 import { BadRequest } from "@/exceptions/instagramExceptions";
 
-const formatPageJson = (json: PostJson) => {
+const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;
 
   if (videoList.length === 0) {
@@ -34,7 +34,7 @@ export const fetchFromPage = async (postUrl: string) => {
     if (error.message.includes("404")) {
       throw new BadRequest("This post page isn't available.", 404);
     }
-    console.log(error.message);
+    console.error(error.message);
     return null;
   }
 
@@ -51,11 +51,11 @@ export const fetchFromPage = async (postUrl: string) => {
 
   try {
     const jsonText: string = jsonElement.text();
-    const json: PostJson = JSON.parse(jsonText);
+    const json: ScrapedPost = JSON.parse(jsonText);
     const formattedJson = formatPageJson(json);
     return formattedJson;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return null;
   }
 };

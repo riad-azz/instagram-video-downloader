@@ -14,9 +14,7 @@ Note : This does not work on instagram stories.
 
 ### Dark/Light themes
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true)
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true) ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
 
 ### Fetching/Error handling
 
@@ -26,9 +24,7 @@ Note : This does not work on instagram stories.
 
 ### Responsive on mobile
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true)
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true) ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
 
 ## Installation & Running
 
@@ -61,14 +57,14 @@ npm run build
 npm run start
 ```
 
-## Instagram Graphql API Option
+## Instagram API Option
 
-You can enable the Graphql API to use Instagram API as a fallback incase the page scraping doesn't work.
+You can enable the Instagram API as a fallback incase the page scraping doesn't work.
 
-To do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_GRAPHQL_API` to `true` and provide your instagram sessionId.
+To do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_INSTAGRAM_API` to `true` and provide your instagram sessionId.
 
 ```env
-USE_GRAPHQL=true
+USE_INSTAGRAM_API=true
 INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
 ```
 
@@ -76,12 +72,12 @@ INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
 
 The API is pretty simple and straightforward.
 
-Endpoint `/api/post` takes a Instagram post or reel URL as a param `url` _(required)_.
+Endpoint `/api/instagram` takes a Instagram post or reel URL as a param `url` _(required)_.
 
-`GET /api/post?url={POST_URL}`
+`GET /api/instagram?url={POST_URL}`
 
 ```bash
-curl -i "https://riad-insta.vercel.app/api/post?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "https://riad-insta.vercel.app/api/instagram?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 ```bash

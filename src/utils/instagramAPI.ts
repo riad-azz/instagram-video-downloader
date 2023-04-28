@@ -1,10 +1,10 @@
 import axios from "axios";
 
 import { VideoJson } from "@/types";
-import { GraphqlPostJson, GraphqlResponse } from "@/types/instagram-graphql";
+import { GraphqlResponse, GraphqlPostJson } from "@/types/instagramAPI";
 import { BadRequest } from "@/exceptions/instagramExceptions";
 
-export const useGraphqlAPI = process.env.USE_GRAPHQL_API === "true";
+export const useInstagramAPI = process.env.USE_INSTAGRAM_API === "true";
 
 const formatGraphqlJson = (json: GraphqlPostJson) => {
   if (!json.video_versions) {
@@ -50,7 +50,7 @@ export const fetchFromAPI = async (postUrl: string) => {
     if (error.message.includes("404")) {
       throw new BadRequest("This post page isn't available.", 404);
     }
-    console.log(error.message);
+    console.error(error.message);
     return null;
   }
 
