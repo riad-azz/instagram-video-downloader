@@ -1,6 +1,6 @@
 import { VideoJson, DownloadJson } from "@/types";
-import { fetchFromPage } from "@/utils/instagramScraper";
-import { useInstagramAPI, fetchFromAPI } from "@/utils/instagramAPI";
+import { fetchFromPage } from "./instagramScraper";
+import { useInstagramAPI, fetchFromAPI } from "./instagramAPI";
 import { BadRequest, ServerError } from "@/exceptions/instagramExceptions";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {

@@ -33,6 +33,10 @@ const formatGraphqlJson = (json: GraphqlPostJson) => {
 };
 
 export const fetchFromAPI = async (postUrl: string) => {
+  const sessionId = process.env.INSTAGRAM_SESSION_ID;
+
+  if (!sessionId) return null;
+
   const HEADERS = {
     Cookie: `ds_user_id=0; sessionid=${process.env.INSTAGRAM_SESSION_ID};`,
     "User-Agent":
@@ -40,7 +44,6 @@ export const fetchFromAPI = async (postUrl: string) => {
   };
 
   let response;
-
   try {
     const apiUrl = postUrl + "/?__a=1&__d=dis";
     response = await axios.get(apiUrl, {
@@ -60,6 +63,7 @@ export const fetchFromAPI = async (postUrl: string) => {
   const json: GraphqlResponse = response.data;
 
   if (!json.items) {
+    console.error("sessionId might be expired");
     return null;
   }
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getPostId, fetchPostJson, formatDownloadJson } from "@/utils";
 import { InstagramException } from "@/exceptions/instagramExceptions";
+import { getPostId, fetchPostJson, formatDownloadJson } from "@/lib/instagram";
 
 function handleError(error: any) {
   if (error instanceof InstagramException) {
