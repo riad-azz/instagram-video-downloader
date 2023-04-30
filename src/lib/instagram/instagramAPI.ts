@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { VideoJson } from "@/types";
+import { IFetchPostFunction, VideoJson } from "@/types";
 import {
   IGUserResponse,
   IGGuestResponse,
@@ -8,10 +8,10 @@ import {
   IGGuestPostJson,
 } from "@/types/instagramAPI";
 
-import { IGBadRequest } from "@/exceptions/instagramExceptions";
-import { getRandomUserAgent } from "@/lib/helpers";
+import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
+import { IGBadRequest, IGTimeout } from "@/exceptions/instagramExceptions";
 
-export const useInstagramAPI = process.env.USE_INSTAGRAM_API === "true";
+export const useInstagramAPI = process.env.USE_SESSION === "true";
 
 const formatUserJson = (json: IGUserPostJson) => {
   if (!json.video_versions) {
@@ -59,33 +59,35 @@ const formatGuestJson = (json: IGGuestPostJson) => {
   return videoJson;
 };
 
-export const fetchAsUser = async (postUrl: string) => {
+export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
   const sessionId = process.env.INSTAGRAM_SESSION_ID;
 
   if (!sessionId) return null;
 
-  const HEADERS = {
+  const headers = {
     Cookie: `ds_user_id=0; sessionid=${process.env.INSTAGRAM_SESSION_ID};`,
     "User-Agent": getRandomUserAgent(),
   };
 
-  let response;
-  try {
-    const apiUrl = postUrl + "/?__a=1&__d=dis";
-    response = await axios.get(apiUrl, {
-      headers: HEADERS,
-    });
-  } catch (error: any) {
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const response = await axiosFetch({ url: apiUrl, headers, timeout });
+  if (!response) {
     return null;
   }
 
   if (response.statusText !== "OK") {
     return null;
   }
+
   const json: IGUserResponse = response.data;
 
+  if (json.require_login) {
+    console.error("sessionId has been expired, it should be updated");
+    return null;
+  }
+
   if (!json.items) {
-    console.error("sessionId might be expired");
+    console.error("Instagram User API response has been modified");
     return null;
   }
 
@@ -99,18 +101,17 @@ export const fetchAsUser = async (postUrl: string) => {
   return formattedJson;
 };
 
-export const fetchAsGuest = async (postUrl: string) => {
-  const HEADERS = {
+export const fetchAsGuest = async ({
+  postUrl,
+  timeout,
+}: IFetchPostFunction) => {
+  const headers = {
     "User-Agent": getRandomUserAgent(),
   };
 
-  let response;
-  try {
-    const apiUrl = postUrl + "/?__a=1&__d=dis";
-    response = await axios.get(apiUrl, {
-      headers: HEADERS,
-    });
-  } catch (error: any) {
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const response = await axiosFetch({ url: apiUrl, headers, timeout });
+  if (!response) {
     return null;
   }
 
@@ -121,12 +122,12 @@ export const fetchAsGuest = async (postUrl: string) => {
   const json: IGGuestResponse = response.data;
 
   if (json.require_login) {
-    console.error("Rate limited by Instagram API");
+    console.error("Guest graphql got rate limited by Instagram API");
     return null;
   }
 
   if (!json.graphql) {
-    console.error("Instagram API response was modified");
+    console.error("Instagram Guest API response has been modified");
     return null;
   }
 
@@ -136,13 +137,18 @@ export const fetchAsGuest = async (postUrl: string) => {
   return formattedJson;
 };
 
-export const fetchFromAPI = async (postUrl: string) => {
-  const jsonAsGuest = await fetchAsGuest(postUrl);
+export const fetchFromAPI = async ({
+  postUrl,
+  timeout,
+}: IFetchPostFunction) => {
+  const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
 
   if (jsonAsGuest) return jsonAsGuest;
 
   if (useInstagramAPI) {
-    const jsonAsUser = await fetchAsUser(postUrl);
+    const jsonAsUser = await fetchAsUser({ postUrl, timeout });
     if (jsonAsUser) return jsonAsUser;
   }
+
+  return null;
 };

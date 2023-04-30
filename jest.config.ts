@@ -12,7 +12,7 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   modulePaths: ["<rootDir>/src/"],
-  testEnvironment: "node",
+  moduleDirectories: ["node_modules", "<rootDir>/"],
   moduleFileExtensions: [...defaults.moduleFileExtensions, "d.ts"],
 };
 

@@ -23,6 +23,7 @@ export interface DownloadJson {
   downloadUrl: string;
 }
 
-export interface IconSize {
-  size?: number;
+export interface IFetchPostFunction {
+  postUrl: string;
+  timeout?: number;
 }

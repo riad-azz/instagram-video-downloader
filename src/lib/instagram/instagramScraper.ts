@@ -1,8 +1,10 @@
 import axios from "axios";
 import { load } from "cheerio";
 
-import { VideoJson } from "@/types";
+import { IFetchPostFunction, VideoJson } from "@/types";
 import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
+
+import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { IGBadRequest } from "@/exceptions/instagramExceptions";
 
 const formatPageJson = (json: ScrapedPost) => {
@@ -26,15 +28,16 @@ const formatPageJson = (json: ScrapedPost) => {
   return videoJson;
 };
 
-export const fetchFromPage = async (postUrl: string) => {
-  let response;
-  try {
-    response = await axios.get(postUrl);
-  } catch (error: any) {
-    if (error.message.includes("404")) {
-      throw new IGBadRequest("This post page isn't available.", 404);
-    }
-    console.error(error.message);
+export const fetchFromPage = async ({
+  postUrl,
+  timeout,
+}: IFetchPostFunction) => {
+  const headers = {
+    "User-Agent": getRandomUserAgent(),
+  };
+
+  const response = await axiosFetch({ url: postUrl, headers, timeout });
+  if (!response) {
     return null;
   }
 
@@ -49,13 +52,8 @@ export const fetchFromPage = async (postUrl: string) => {
     return null;
   }
 
-  try {
-    const jsonText: string = jsonElement.text();
-    const json: ScrapedPost = JSON.parse(jsonText);
-    const formattedJson = formatPageJson(json);
-    return formattedJson;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
+  const jsonText: string = jsonElement.text();
+  const json: ScrapedPost = JSON.parse(jsonText);
+  const formattedJson = formatPageJson(json);
+  return formattedJson;
 };

@@ -28,13 +28,13 @@ Note : This does not work on instagram stories.
 
 ## Installation & Running
 
-1. Cloning the repository
+> 1.Cloning the repository
 
 ```bash
 git clone https://github.com/riad-azz/instagram-video-downloader.git
 ```
 
-2. Installing dependencies
+> 2.Installing dependencies
 
 ```bash
 cd instagram-video-downloader
@@ -44,7 +44,7 @@ cd instagram-video-downloader
 npm install
 ```
 
-3. Starting the server
+> 3.Starting the server
 
 ```bash
 # Development
@@ -57,22 +57,47 @@ npm run build
 npm run start
 ```
 
-## Instagram API Option
+> 4.Testing
 
-You can enable the Instagram API as a fallback incase the page scraping doesn't work.
+I am using [jest library](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
 
-To do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_INSTAGRAM_API` to `true` and provide your instagram sessionId.
+>> Run all tests
+
+```bash
+# Run all tests
+npm run test
+```
+
+>> Run a single test
+
+```bash
+# Command
+npx jest -t "<test-name>"
+
+# Example
+npx jest -t "success-fetchPostJson"
+```
+
+## Instagram Graphql API Option
+
+This is a fallback in case the page scraping doesn't work.
+
+The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
+
+You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_SESSION` to `true` and provide your instagram `sessionId`.
 
 ```env
-USE_INSTAGRAM_API=true
+USE_SESSION=true
 INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
 ```
+
+*Note : you will have to refresh the session whenever it expires, but it will not cause any runtime problems in the case it expires while live (might add ajax login in the future to avoid this).*
 
 ## API Documentation
 
 The API is pretty simple and straightforward.
 
-Endpoint `/api/instagram` takes a Instagram post or reel URL as a param `url` _(required)_.
+Endpoint `/api/instagram` takes an Instagram **Post** or **Reel** link as a param `url` (required).
 
 `GET /api/instagram?url={POST_URL}`
 
@@ -82,14 +107,16 @@ curl -i "https://riad-insta.vercel.app/api/instagram?url=https://www.instagram.c
 
 ```bash
 {
-  "username": "rick_roll_memes",
-  "caption": "Rick roll day #rickroll #rickrolled #rickrolling #rickastley #rickastleytou...",
-  "width":"720"
-  "height":"480"
-  "downloadUrl": "https://scontent.cdninstagram.../.../121671754_677314989877709_3634507045561235384_n.mp4..."
-  "thumbnailUrl": "https://scontent.cdninstagram.../.../121828820_350967549295657_6595550933958484113_n.jpg...",
+  "username": string; # Poster username
+  "caption": string; # Post caption
+  "width": string; # Video width ex. 1920
+  "height": string; # Video height ex. 1080
+  "downloadUrl": string; # MP4 file link
+  "thumbnailUrl": string; # Thumbnail image link
 }
 ```
+
+API live response example : [https://riad-insta.vercel.app/api/example](https://riad-insta.vercel.app/api/instagram?url=https://www.instagram.com/p/CGh4a0iASGS)
 
 ## License
 

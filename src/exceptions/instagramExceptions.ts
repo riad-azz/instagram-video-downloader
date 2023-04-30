@@ -32,6 +32,16 @@ export class IGServerError extends IGException {
   }
 }
 
+export class IGTimeout extends IGException {
+  /**
+   * @param message
+   * @param code
+   */
+  constructor(message = "Request timeout, please try again.", code = 408) {
+    super(message, code);
+  }
+}
+
 /* Client Exceptions */
 
 export class IGClientException extends IGException {

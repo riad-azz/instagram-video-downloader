@@ -1,7 +1,6 @@
-import axios from "axios";
-import { VideoJson, DownloadJson } from "@/types";
+import { VideoJson, DownloadJson, IFetchPostFunction } from "@/types";
 
-import { getRandomUserAgent } from "@/lib/helpers";
+import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { IGBadRequest, IGServerError } from "@/exceptions/instagramExceptions";
 
 import { fetchFromPage } from "./instagramScraper";
@@ -48,38 +47,42 @@ export const getPostId = (postUrl: string | null) => {
   return postId;
 };
 
-export const pageExist = async (postUrl: string) => {
-  const HEADERS = {
+export const pageExist = async ({ postUrl, timeout }: IFetchPostFunction) => {
+  const headers = {
     "User-Agent": getRandomUserAgent(),
   };
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
-
   try {
-    await axios.get(apiUrl, {
+    const response = await axiosFetch({
+      url: apiUrl,
       method: "HEAD",
-      headers: HEADERS,
+      throwError: true,
+      headers,
+      timeout,
     });
   } catch (error: any) {
-    if (error.message.includes("404")) return false;
+    if (error.message.includes("404")) {
+      return false;
+    }
   }
 
   return true;
 };
 
-export const fetchPostJson = async (postID: string) => {
+export const fetchPostJson = async (postID: string, timeout?: number) => {
   const postUrl = "https://www.instagram.com/p/" + postID;
 
-  const isPageExist = await pageExist(postUrl);
+  const isPageExist = await pageExist({ postUrl, timeout });
   if (!isPageExist) {
     throw new IGBadRequest("This post page isn't available.", 404);
   }
 
-  const pageJson = await fetchFromPage(postUrl);
+  const pageJson = await fetchFromPage({ postUrl, timeout });
   if (pageJson) return pageJson;
 
   if (useInstagramAPI) {
-    const apiJson = await fetchFromAPI(postUrl);
+    const apiJson = await fetchFromAPI({ postUrl, timeout });
     if (apiJson) return apiJson;
   }
 

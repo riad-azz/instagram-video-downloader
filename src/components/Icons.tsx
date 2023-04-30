@@ -1,4 +1,6 @@
-import { IconSize } from "@/types";
+export interface IconSize {
+  size?: number;
+}
 
 const Menu = ({ size = 24 }: IconSize) => {
   return (

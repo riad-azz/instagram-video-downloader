@@ -1,6 +1,7 @@
 /* User Response */
 
 export interface IGUserResponse {
+  require_login?: boolean;
   items: Item[];
   num_results: number;
   more_available: boolean;

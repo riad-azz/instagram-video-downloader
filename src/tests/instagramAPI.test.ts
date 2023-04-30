@@ -1,15 +1,15 @@
-/**
- * @jest-environment node
- */
-import { fetchFromAPI } from "@/lib/instagram/instagramAPI";
+import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { fetchAsUser, fetchFromAPI } from "@/lib/instagram/instagramAPI";
 
-// url for post page with no ld+json included
+// URL for post page with no ld+json included
 const postUrl = "https://www.instagram.com/p/CrYKenNJeey";
+// Url for post page that does not contain a video
+const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 
 // Check if the environment variables are defined
-describe("env", () => {
-  it("should have a use instagram API variable", () => {
-    expect(process.env.USE_INSTAGRAM_API).toBeDefined();
+describe("valid-environment-variables", () => {
+  it("should have a use session variable", () => {
+    expect(process.env.USE_SESSION).toBeDefined();
   });
 
   it("should have a session id variable", () => {
@@ -17,10 +17,32 @@ describe("env", () => {
   });
 });
 
+// Check if Instagram session expired
+describe("expired-session-fetchAsUser", () => {
+  it("should return null if session expired", async () => {
+    // Store session id temporarily
+    const tempSessionId = process.env.INSTAGRAM_SESSION_ID;
+    // Invalidate session id to force server error
+    process.env.INSTAGRAM_SESSION_ID = "";
+    const response = await fetchAsUser({ postUrl });
+    expect(response).toBeNull();
+    // Restore session id
+    process.env.INSTAGRAM_SESSION_ID = tempSessionId;
+  });
+});
+
 // Check if the Instagram API is working
-describe("fetchFromAPI", () => {
-  it("should return an object", async () => {
-    const response = await fetchFromAPI(postUrl);
-    expect(typeof response).toBe("object");
+describe("success-fetchFromAPI", () => {
+  it("should return VideoJson object", async () => {
+    const response = await fetchFromAPI({ postUrl });
+    expect(response).not.toBeNull();
+  });
+});
+
+describe("no-video-fetchFromAPI", () => {
+  it("should throw IGBadRequest error", async () => {
+    await expect(fetchFromAPI({ postUrl: imagePostUrl })).rejects.toThrow(
+      IGBadRequest
+    );
   });
 });
