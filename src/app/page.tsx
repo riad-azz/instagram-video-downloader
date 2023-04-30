@@ -1,4 +1,4 @@
-import InstagramForm from "@/components/InstagramForm";
+import { InstagramForm } from "@/components/instagram/InstagramForm";
 
 export default function HomePage() {
   return (

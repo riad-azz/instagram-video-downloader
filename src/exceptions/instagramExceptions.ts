@@ -1,4 +1,4 @@
-export class InstagramException extends Error {
+export class IGException extends Error {
   code: number;
   /**
    * @param message
@@ -10,7 +10,9 @@ export class InstagramException extends Error {
   }
 }
 
-export class BadRequest extends InstagramException {
+/* Server Exceptions */
+
+export class IGBadRequest extends IGException {
   /**
    * @param message
    * @param code
@@ -20,12 +22,24 @@ export class BadRequest extends InstagramException {
   }
 }
 
-export class ServerError extends InstagramException {
+export class IGServerError extends IGException {
   /**
    * @param message
    * @param code
    */
   constructor(message = "Internal Server Error", code = 500) {
+    super(message, code);
+  }
+}
+
+/* Client Exceptions */
+
+export class IGClientException extends IGException {
+  /**
+   * @param message
+   * @param code
+   */
+  constructor(message = "Instagram Client Exception", code = 400) {
     super(message, code);
   }
 }

@@ -3,13 +3,13 @@ import { load } from "cheerio";
 
 import { VideoJson } from "@/types";
 import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
-import { BadRequest } from "@/exceptions/instagramExceptions";
+import { IGBadRequest } from "@/exceptions/instagramExceptions";
 
 const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;
 
   if (videoList.length === 0) {
-    throw new BadRequest("This post does not contain a video");
+    throw new IGBadRequest("This post does not contain a video");
   }
 
   const video: PostJsonVideo = videoList[0];
@@ -32,7 +32,7 @@ export const fetchFromPage = async (postUrl: string) => {
     response = await axios.get(postUrl);
   } catch (error: any) {
     if (error.message.includes("404")) {
-      throw new BadRequest("This post page isn't available.", 404);
+      throw new IGBadRequest("This post page isn't available.", 404);
     }
     console.error(error.message);
     return null;

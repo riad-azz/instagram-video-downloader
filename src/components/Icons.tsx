@@ -181,6 +181,7 @@ const Logo = ({ size = 20 }: IconSize) => {
     </svg>
   );
 };
+
 export const Icons = {
   logo: Logo,
   menu: Menu,

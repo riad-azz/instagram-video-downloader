@@ -1,14 +1,21 @@
 import axios from "axios";
 
 import { VideoJson } from "@/types";
-import { GraphqlResponse, GraphqlPostJson } from "@/types/instagramAPI";
-import { BadRequest } from "@/exceptions/instagramExceptions";
+import {
+  IGUserResponse,
+  IGGuestResponse,
+  IGUserPostJson,
+  IGGuestPostJson,
+} from "@/types/instagramAPI";
+
+import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { getRandomUserAgent } from "@/lib/helpers";
 
 export const useInstagramAPI = process.env.USE_INSTAGRAM_API === "true";
 
-const formatGraphqlJson = (json: GraphqlPostJson) => {
+const formatUserJson = (json: IGUserPostJson) => {
   if (!json.video_versions) {
-    throw new BadRequest("This post does not contain a video", 400);
+    throw new IGBadRequest("This post does not contain a video", 400);
   }
 
   const video = json.video_versions.filter((vid) =>
@@ -16,7 +23,10 @@ const formatGraphqlJson = (json: GraphqlPostJson) => {
   )[0];
 
   if (!video) {
-    throw new BadRequest("This post does not contain any download links", 400);
+    throw new IGBadRequest(
+      "This post does not contain any download links",
+      400
+    );
   }
   const thumbnail = json.image_versions2.candidates[0];
 
@@ -32,15 +42,31 @@ const formatGraphqlJson = (json: GraphqlPostJson) => {
   return videoJson;
 };
 
-export const fetchFromAPI = async (postUrl: string) => {
+const formatGuestJson = (json: IGGuestPostJson) => {
+  if (!json.is_video) {
+    throw new IGBadRequest("This post does not contain a video", 400);
+  }
+
+  const videoJson: VideoJson = {
+    username: json.owner.username,
+    width: json.dimensions.width.toString(),
+    height: json.dimensions.height.toString(),
+    caption: json.edge_media_to_caption.edges[0]?.node.text ?? "No caption",
+    downloadUrl: json.video_url,
+    thumbnailUrl: json.thumbnail_src,
+  };
+
+  return videoJson;
+};
+
+export const fetchAsUser = async (postUrl: string) => {
   const sessionId = process.env.INSTAGRAM_SESSION_ID;
 
   if (!sessionId) return null;
 
   const HEADERS = {
     Cookie: `ds_user_id=0; sessionid=${process.env.INSTAGRAM_SESSION_ID};`,
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+    "User-Agent": getRandomUserAgent(),
   };
 
   let response;
@@ -50,17 +76,13 @@ export const fetchFromAPI = async (postUrl: string) => {
       headers: HEADERS,
     });
   } catch (error: any) {
-    if (error.message.includes("404")) {
-      throw new BadRequest("This post page isn't available.", 404);
-    }
-    console.error(error.message);
     return null;
   }
 
   if (response.statusText !== "OK") {
     return null;
   }
-  const json: GraphqlResponse = response.data;
+  const json: IGUserResponse = response.data;
 
   if (!json.items) {
     console.error("sessionId might be expired");
@@ -71,8 +93,56 @@ export const fetchFromAPI = async (postUrl: string) => {
     return null;
   }
 
-  const postJson = json.items[0];
+  const postJson: IGUserPostJson = json.items[0];
 
-  const formattedJson = formatGraphqlJson(postJson);
+  const formattedJson = formatUserJson(postJson);
   return formattedJson;
+};
+
+export const fetchAsGuest = async (postUrl: string) => {
+  const HEADERS = {
+    "User-Agent": getRandomUserAgent(),
+  };
+
+  let response;
+  try {
+    const apiUrl = postUrl + "/?__a=1&__d=dis";
+    response = await axios.get(apiUrl, {
+      headers: HEADERS,
+    });
+  } catch (error: any) {
+    return null;
+  }
+
+  if (response.statusText !== "OK") {
+    return null;
+  }
+
+  const json: IGGuestResponse = response.data;
+
+  if (json.require_login) {
+    console.error("Rate limited by Instagram API");
+    return null;
+  }
+
+  if (!json.graphql) {
+    console.error("Instagram API response was modified");
+    return null;
+  }
+
+  const postJson: IGGuestPostJson = json.graphql.shortcode_media;
+
+  const formattedJson = formatGuestJson(postJson);
+  return formattedJson;
+};
+
+export const fetchFromAPI = async (postUrl: string) => {
+  const jsonAsGuest = await fetchAsGuest(postUrl);
+
+  if (jsonAsGuest) return jsonAsGuest;
+
+  if (useInstagramAPI) {
+    const jsonAsUser = await fetchAsUser(postUrl);
+    if (jsonAsUser) return jsonAsUser;
+  }
 };

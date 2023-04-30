@@ -1,21 +1,31 @@
 "use client";
 
-import { useStore } from "@/stores/themeStore";
+import { useContext } from "react";
+import { setCookie } from "cookies-next";
+
+import { ThemeContext } from "@/contexts/themeContext";
 import { Icons } from "@/components/Icons";
 
-const ThemeButton = () => {
-  const { theme } = useStore();
+export const ThemeButton = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
 
   function toggleTheme() {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    const newTheme = isDarkMode ? "light" : "dark";
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-    } else {
+    const newTheme = theme === "dark" ? "light" : "dark";
+
+    if (newTheme === "dark") {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
-    document.cookie = `theme=${newTheme}; expires=Tue, 19 Jan 9999 03:14:07 GMT; path=/`;
-    useStore.setState({ theme: newTheme });
+
+    setCookie("theme", newTheme, {
+      path: "/",
+      sameSite: true,
+      maxAge: 31536000,
+      httpOnly: false,
+    });
+
+    setTheme(newTheme);
   }
 
   return (
@@ -29,5 +39,3 @@ const ThemeButton = () => {
     </button>
   );
 };
-
-export default ThemeButton;

@@ -4,11 +4,11 @@
 import { fetchFromAPI } from "@/lib/instagram/instagramAPI";
 
 // url for post page with no ld+json included
-const postUrl = "https://www.instagram.com/reel/CrYKenNJeey";
+const postUrl = "https://www.instagram.com/p/CrYKenNJeey";
 
 // Check if the environment variables are defined
 describe("env", () => {
-  it("should have a use instagram api variable", () => {
+  it("should have a use instagram API variable", () => {
     expect(process.env.USE_INSTAGRAM_API).toBeDefined();
   });
 
@@ -17,7 +17,7 @@ describe("env", () => {
   });
 });
 
-// Check if the Instagram session expired && if the API is working
+// Check if the Instagram API is working
 describe("fetchFromAPI", () => {
   it("should return an object", async () => {
     const response = await fetchFromAPI(postUrl);

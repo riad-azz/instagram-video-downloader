@@ -1,7 +1,11 @@
+import axios from "axios";
 import { VideoJson, DownloadJson } from "@/types";
+
+import { getRandomUserAgent } from "@/lib/helpers";
+import { IGBadRequest, IGServerError } from "@/exceptions/instagramExceptions";
+
 import { fetchFromPage } from "./instagramScraper";
 import { useInstagramAPI, fetchFromAPI } from "./instagramAPI";
-import { BadRequest, ServerError } from "@/exceptions/instagramExceptions";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
   const username = json.username;
@@ -24,7 +28,7 @@ export const getPostId = (postUrl: string | null) => {
   let postId;
 
   if (!postUrl) {
-    throw new BadRequest("Instagram URL was not provided");
+    throw new IGBadRequest("Instagram URL was not provided");
   }
 
   const postCheck = postUrl.match(postRegex);
@@ -38,16 +42,40 @@ export const getPostId = (postUrl: string | null) => {
   }
 
   if (!postId) {
-    throw new BadRequest("Instagram post/reel ID was not found");
+    throw new IGBadRequest("Instagram post/reel ID was not found");
   }
 
   return postId;
 };
 
+export const pageExist = async (postUrl: string) => {
+  const HEADERS = {
+    "User-Agent": getRandomUserAgent(),
+  };
+
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
+
+  try {
+    await axios.get(apiUrl, {
+      method: "HEAD",
+      headers: HEADERS,
+    });
+  } catch (error: any) {
+    if (error.message.includes("404")) return false;
+  }
+
+  return true;
+};
+
 export const fetchPostJson = async (postID: string) => {
   const postUrl = "https://www.instagram.com/p/" + postID;
-  const pageJson = await fetchFromPage(postUrl);
 
+  const isPageExist = await pageExist(postUrl);
+  if (!isPageExist) {
+    throw new IGBadRequest("This post page isn't available.", 404);
+  }
+
+  const pageJson = await fetchFromPage(postUrl);
   if (pageJson) return pageJson;
 
   if (useInstagramAPI) {
@@ -55,5 +83,5 @@ export const fetchPostJson = async (postID: string) => {
     if (apiJson) return apiJson;
   }
 
-  throw new ServerError("Could not find download link for this post", 500);
+  throw new IGServerError("Could not find download link for this post", 500);
 };
