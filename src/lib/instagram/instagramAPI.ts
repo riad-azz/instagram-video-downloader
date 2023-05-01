@@ -9,9 +9,9 @@ import {
 } from "@/types/instagramAPI";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
-import { IGBadRequest, IGTimeout } from "@/exceptions/instagramExceptions";
+import { IGBadRequest } from "@/exceptions/instagramExceptions";
 
-export const useInstagramAPI = process.env.USE_SESSION === "true";
+export const useInstagramAPI = process.env.USE_IG_SESSION === "true";
 
 const formatUserJson = (json: IGUserPostJson) => {
   if (!json.video_versions) {

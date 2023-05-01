@@ -9,7 +9,7 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 // Check if the environment variables are defined
 describe("valid-environment-variables", () => {
   it("should have a use session variable", () => {
-    expect(process.env.USE_SESSION).toBeDefined();
+    expect(process.env.USE_IG_SESSION).toBeDefined();
   });
 
   it("should have a session id variable", () => {

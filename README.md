@@ -84,10 +84,10 @@ This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
-You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_SESSION` to `true` and provide your instagram `sessionId`.
+You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_IG_SESSION` to `true` and provide your instagram `sessionId`.
 
 ```env
-USE_SESSION=true
+USE_IG_SESSION=true
 INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
 ```
 
