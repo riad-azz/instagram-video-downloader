@@ -140,7 +140,7 @@ export const InstagramForm = () => {
           placeholder="e.g. https://www.instagram.com/p/CGh4a0iASGS"
           aria-label="Instagram video download URL input"
           title="Instagram video download URL input"
-          className="w-full rounded border border-slate-100 px-2 py-3 placeholder-gray-400/80 drop-shadow-md focus:outline-none dark:border-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+          className="w-full rounded border border-slate-100 px-2 py-3 placeholder-gray-400/80 drop-shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-none dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
         />
         <DownloadButton isLoading={isLoading} />
       </form>
