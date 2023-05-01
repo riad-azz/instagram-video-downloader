@@ -18,9 +18,11 @@ const formatUserJson = (json: IGUserPostJson) => {
     throw new IGBadRequest("This post does not contain a video", 400);
   }
 
-  const video = json.video_versions.filter((vid) =>
+  let video = json.video_versions.filter((vid) =>
     vid.url.includes("video_dashinit")
   )[0];
+
+  if (!video) video = json.video_versions[0];
 
   if (!video) {
     throw new IGBadRequest(
@@ -28,6 +30,7 @@ const formatUserJson = (json: IGUserPostJson) => {
       400
     );
   }
+
   const thumbnail = json.image_versions2.candidates[0];
 
   const videoJson: VideoJson = {
@@ -142,7 +145,6 @@ export const fetchFromAPI = async ({
   timeout,
 }: IFetchPostFunction) => {
   const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
-
   if (jsonAsGuest) return jsonAsGuest;
 
   if (useInstagramAPI) {

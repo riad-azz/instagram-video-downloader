@@ -36,18 +36,29 @@ const validateInput = (postUrl: string) => {
 };
 
 const downloadVideo = async (filename: string, downloadUrl: any) => {
-  await fetch(downloadUrl)
-    .then((response) => response.blob())
-    .then((blob) => {
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.target = "_blank";
-      a.href = blobUrl;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    });
+  try {
+    await fetch(downloadUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.target = "_blank";
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+  } catch (error) {
+    const a = document.createElement("a");
+    a.target = "_blank";
+    a.href = downloadUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    console.log(error);
+  }
 };
 
 const fetchVideo = async (postUrl: string) => {
@@ -80,7 +91,9 @@ export const InstagramForm = () => {
       setErrorMsg(error.message);
     } else {
       console.error(error);
-      setErrorMsg("Something went wrong take a guess!!");
+      setErrorMsg(
+        "Something went wrong, if this problem persists contact the developer."
+      );
     }
     setIsLoading(false);
   }
