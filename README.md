@@ -14,7 +14,9 @@ Note : This does not work on instagram stories.
 
 ### Dark/Light themes
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true) ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true)
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
 
 ### Fetching/Error handling
 
@@ -24,7 +26,9 @@ Note : This does not work on instagram stories.
 
 ### Responsive on mobile
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true) ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true) 
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
 
 ## Installation & Running
 
@@ -84,10 +88,13 @@ This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
-You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_IG_SESSION` to `true` and provide the rest of the info that you can get from any request header that you send to instagram while logged in, and make sure you are not using your real account just make a dummy account.
+1. Create `.env.local` file.
+2. Copy and paste the content of `.env.example` in your `.env.local` file.
+3. set `USE_IG_SESSION` to `true`.
+4. Fill in the rest of variables with your dummy account session info.
 
 > **Warning**
-> DO NOT USE YOUR REAL ACCOUNT
+> DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
 
 ```env
 USE_IG_SESSION="true"
@@ -96,7 +103,11 @@ SESSION_ID="INSTAGRAM-SESSION-ID"
 CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
 ```
 
-*Note : you will have to refresh the session whenever it expires, but it will not cause any runtime problems in the case it expires while live (might add ajax login in the future to avoid this).*
+To get the session info open your browser in incognito mode then login to your dummy account then open the dev tool in your browser and go to the network tab then visit here https://www.instagram.com/data/shared_data/
+
+*Note : if the network tab is empty just refresh the page and the request will appear.*
+
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
 
 ## API Documentation
 
