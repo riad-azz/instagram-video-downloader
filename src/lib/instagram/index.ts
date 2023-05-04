@@ -1,10 +1,10 @@
 import { VideoJson, DownloadJson, IFetchPostFunction } from "@/types";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
-import { IGBadRequest, IGServerError } from "@/exceptions/instagramExceptions";
+import { BadRequest, ServerException } from "@/exceptions";
 
+import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
-import { useInstagramAPI, fetchFromAPI } from "./instagramAPI";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
   const username = json.username;
@@ -27,7 +27,7 @@ export const getPostId = (postUrl: string | null) => {
   let postId;
 
   if (!postUrl) {
-    throw new IGBadRequest("Instagram URL was not provided");
+    throw new BadRequest("Instagram URL was not provided");
   }
 
   const postCheck = postUrl.match(postRegex);
@@ -41,7 +41,7 @@ export const getPostId = (postUrl: string | null) => {
   }
 
   if (!postId) {
-    throw new IGBadRequest("Instagram post/reel ID was not found");
+    throw new BadRequest("Instagram post/reel ID was not found");
   }
 
   return postId;
@@ -54,7 +54,7 @@ export const pageExist = async ({ postUrl, timeout }: IFetchPostFunction) => {
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
   try {
-    const response = await axiosFetch({
+    await axiosFetch({
       url: apiUrl,
       method: "HEAD",
       throwError: true,
@@ -75,16 +75,17 @@ export const fetchPostJson = async (postID: string, timeout?: number) => {
 
   const isPageExist = await pageExist({ postUrl, timeout });
   if (!isPageExist) {
-    throw new IGBadRequest("This post page isn't available.", 404);
+    throw new BadRequest("This post page isn't available.", 404);
   }
 
   const pageJson = await fetchFromPage({ postUrl, timeout });
   if (pageJson) return pageJson;
 
-  if (useInstagramAPI) {
-    const apiJson = await fetchFromAPI({ postUrl, timeout });
-    if (apiJson) return apiJson;
-  }
+  const apiJson = await fetchFromAPI({ postUrl, timeout });
+  if (apiJson) return apiJson;
 
-  throw new IGServerError("Could not find download link for this post", 500);
+  throw new ServerException(
+    "Server Instagram session is expired, try again later.",
+    500
+  );
 };

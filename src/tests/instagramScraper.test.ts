@@ -1,4 +1,4 @@
-import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { BadRequest } from "@/exceptions";
 import { fetchFromPage } from "@/lib/instagram/instagramScraper";
 
 // Url for post page with ld+json include
@@ -19,7 +19,7 @@ describe("no-video-fetchFromPage", () => {
     try {
       await fetchFromPage({ postUrl: imagePostUrl });
     } catch (error) {
-      expect(error instanceof IGBadRequest).toBe(true);
+      expect(error instanceof BadRequest).toBe(true);
     }
   });
 });

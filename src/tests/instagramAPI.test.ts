@@ -1,4 +1,4 @@
-import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { BadRequest } from "@/exceptions";
 import { fetchAsUser, fetchFromAPI } from "@/lib/instagram/instagramAPI";
 
 // URL for post page with no ld+json included
@@ -12,22 +12,16 @@ describe("valid-environment-variables", () => {
     expect(process.env.USE_IG_SESSION).toBeDefined();
   });
 
-  it("should have a session id variable", () => {
-    expect(process.env.INSTAGRAM_SESSION_ID).toBeDefined();
+  it("should have a user id variable", () => {
+    expect(process.env.USER_ID).toBeDefined();
   });
-});
 
-// Check if Instagram session expired
-describe("expired-session-fetchAsUser", () => {
-  it("should return null if session expired", async () => {
-    // Store session id temporarily
-    const tempSessionId = process.env.INSTAGRAM_SESSION_ID;
-    // Invalidate session id to force server error
-    process.env.INSTAGRAM_SESSION_ID = "";
-    const response = await fetchAsUser({ postUrl });
-    expect(response).toBeNull();
-    // Restore session id
-    process.env.INSTAGRAM_SESSION_ID = tempSessionId;
+  it("should have a session id variable", () => {
+    expect(process.env.SESSION_ID).toBeDefined();
+  });
+
+  it("should have a csrf token variable", () => {
+    expect(process.env.CSRF_TOKEN).toBeDefined();
   });
 });
 
@@ -42,7 +36,7 @@ describe("success-fetchFromAPI", () => {
 describe("no-video-fetchFromAPI", () => {
   it("should throw IGBadRequest error", async () => {
     await expect(fetchFromAPI({ postUrl: imagePostUrl })).rejects.toThrow(
-      IGBadRequest
+      BadRequest
     );
   });
 });

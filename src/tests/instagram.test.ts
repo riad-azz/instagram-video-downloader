@@ -1,4 +1,5 @@
-import { IGBadRequest, IGTimeout } from "@/exceptions/instagramExceptions";
+import { BadRequest, TimeoutException } from "@/exceptions";
+import { ajaxLogin } from "@/lib/helpers";
 import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
 
 // URL for post page with no ld+json included
@@ -20,7 +21,7 @@ describe("fail-pageExist", () => {
     try {
       await pageExist({ postUrl: apiUrl });
     } catch (error) {
-      expect(error instanceof IGBadRequest).toBe(true);
+      expect(error instanceof BadRequest).toBe(true);
     }
   });
 });
@@ -38,7 +39,7 @@ describe("fail-getPostId", () => {
     const invalidPostUrl = "https://www.doesnt-exist.com/p/CrYKenNJeey/";
     expect(() => {
       getPostId(invalidPostUrl);
-    }).toThrow(IGBadRequest);
+    }).toThrow(BadRequest);
   });
 });
 
@@ -56,7 +57,7 @@ describe("timeout-fetchPostJson", () => {
       // Set timeout of 1ms to force timeout error
       await fetchPostJson(postId, 1);
     } catch (error) {
-      expect(error instanceof IGTimeout).toBe(true);
+      expect(error instanceof TimeoutException).toBe(true);
     }
   });
 });

@@ -2,24 +2,19 @@
 
 import { useState, FormEvent } from "react";
 import { DownloadButton } from "./DownloadButton";
-import {
-  IGException,
-  IGClientException,
-} from "@/exceptions/instagramExceptions";
+import { Exception, ClientException } from "@/exceptions";
 
 const validateInput = (postUrl: string) => {
   if (!postUrl) {
-    throw new IGClientException("Instagram URL was not provided");
+    throw new ClientException("Instagram URL was not provided");
   }
 
   if (!postUrl.includes("instagram.com/")) {
-    throw new IGClientException(
-      "Invalid URL does not contain Instagram domain"
-    );
+    throw new ClientException("Invalid URL does not contain Instagram domain");
   }
 
   if (!postUrl.startsWith("https://")) {
-    throw new IGClientException(
+    throw new ClientException(
       'Invalid URL it should start with "https://www.instagram.com..."'
     );
   }
@@ -31,7 +26,7 @@ const validateInput = (postUrl: string) => {
     /^https:\/\/(?:www\.)?instagram\.com\/reels?\/([a-zA-Z0-9_-]+)\/?/;
 
   if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
-    throw new IGClientException("URL does not match Instagram post or reel");
+    throw new ClientException("URL does not match Instagram post or reel");
   }
 };
 
@@ -68,11 +63,11 @@ const fetchVideo = async (postUrl: string) => {
 
   const contentType = response.headers.get("content-type");
   if (!contentType || !contentType.includes("application/json")) {
-    throw new IGClientException("Internal server error");
+    throw new ClientException("Internal server error");
   }
   const data = await response.json();
   if (data.error) {
-    throw new IGClientException(data.error);
+    throw new ClientException(data.error);
   }
   const filename = data.filename;
   const downloadUrl = data.downloadUrl;
@@ -87,7 +82,7 @@ export const InstagramForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleError(error: any) {
-    if (error instanceof IGException) {
+    if (error instanceof Exception) {
       setErrorMsg(error.message);
     } else {
       console.error(error);

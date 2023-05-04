@@ -4,13 +4,14 @@ import { IFetchPostFunction, VideoJson } from "@/types";
 import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
-import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { BadRequest } from "@/exceptions";
+import { useIGScraper } from "@/config/instagram";
 
 const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;
 
   if (videoList.length === 0) {
-    throw new IGBadRequest("This post does not contain a video");
+    throw new BadRequest("This post does not contain a video");
   }
 
   const video: PostJsonVideo = videoList[0];
@@ -34,6 +35,11 @@ export const fetchFromPage = async ({
   const headers = {
     "User-Agent": getRandomUserAgent(),
   };
+
+  if (!useIGScraper) {
+    console.log("Instagram Scraper is disabled in @config/instagram");
+    return null;
+  }
 
   const response = await axiosFetch({ url: postUrl, headers, timeout });
   if (!response) {

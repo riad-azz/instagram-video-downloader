@@ -2,6 +2,7 @@
 
 export interface IGUserResponse {
   require_login?: boolean;
+  graphql?: any;
   items: Item[];
   num_results: number;
   more_available: boolean;

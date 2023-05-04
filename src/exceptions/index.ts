@@ -1,4 +1,4 @@
-export class IGException extends Error {
+export class Exception extends Error {
   code: number;
   /**
    * @param message
@@ -12,7 +12,7 @@ export class IGException extends Error {
 
 /* Server Exceptions */
 
-export class IGBadRequest extends IGException {
+export class BadRequest extends Exception {
   /**
    * @param message
    * @param code
@@ -22,7 +22,7 @@ export class IGBadRequest extends IGException {
   }
 }
 
-export class IGServerError extends IGException {
+export class ServerException extends Exception {
   /**
    * @param message
    * @param code
@@ -32,7 +32,7 @@ export class IGServerError extends IGException {
   }
 }
 
-export class IGTimeout extends IGException {
+export class TimeoutException extends Exception {
   /**
    * @param message
    * @param code
@@ -44,7 +44,7 @@ export class IGTimeout extends IGException {
 
 /* Client Exceptions */
 
-export class IGClientException extends IGException {
+export class ClientException extends Exception {
   /**
    * @param message
    * @param code

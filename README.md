@@ -28,13 +28,13 @@ Note : This does not work on instagram stories.
 
 ## Installation & Running
 
-> 1.Cloning the repository
+### 1.Cloning the repository
 
 ```bash
 git clone https://github.com/riad-azz/instagram-video-downloader.git
 ```
 
-> 2.Installing dependencies
+### 2.Installing dependencies
 
 ```bash
 cd instagram-video-downloader
@@ -44,7 +44,7 @@ cd instagram-video-downloader
 npm install
 ```
 
-> 3.Starting the server
+### 3.Starting the server
 
 ```bash
 # Development
@@ -57,18 +57,18 @@ npm run build
 npm run start
 ```
 
-> 4.Testing
+### 4.Testing
 
-I am using [jest library](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
+I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
 
->> Run all tests
+> Run all tests
 
 ```bash
 # Run all tests
 npm run test
 ```
 
->> Run a single test
+> Run a single test
 
 ```bash
 # Command
@@ -84,11 +84,16 @@ This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
-You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_IG_SESSION` to `true` and provide your instagram `sessionId`.
+You can enable the Instagram session to avoid being rate limited and to do that all you need is to create a `.env.local` file like the example `.env.example` and set `USE_IG_SESSION` to `true` and provide the rest of the info that you can get from any request header that you send to instagram while logged in, and make sure you are not using your real account just make a dummy account.
+
+> **Warning**
+> DO NOT USE YOUR REAL ACCOUNT
 
 ```env
-USE_IG_SESSION=true
-INSTAGRAM_SESSION_ID=YOUR-INSTAGRAM-SESSION-ID
+USE_IG_SESSION="true"
+USER_ID="INSTAGRAM-USER-ID"
+SESSION_ID="INSTAGRAM-SESSION-ID"
+CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
 ```
 
 *Note : you will have to refresh the session whenever it expires, but it will not cause any runtime problems in the case it expires while live (might add ajax login in the future to avoid this).*

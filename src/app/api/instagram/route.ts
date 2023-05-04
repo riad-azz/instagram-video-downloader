@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { IGException } from "@/exceptions/instagramExceptions";
+import { Exception } from "@/exceptions";
 import { getPostId, fetchPostJson, formatDownloadJson } from "@/lib/instagram";
 
 function handleError(error: any) {
-  if (error instanceof IGException) {
+  if (error instanceof Exception) {
     return NextResponse.json({ error: error.message }, { status: error.code });
   } else {
     console.error(error);

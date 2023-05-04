@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { IFetchPostFunction, VideoJson } from "@/types";
 import {
   IGUserResponse,
@@ -9,13 +7,51 @@ import {
 } from "@/types/instagramAPI";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
-import { IGBadRequest } from "@/exceptions/instagramExceptions";
+import { BadRequest } from "@/exceptions";
 
-export const useInstagramAPI = process.env.USE_IG_SESSION === "true";
+import {
+  authCookie,
+  csrfToken,
+  sessionId,
+  userId,
+  useApiGuest,
+  useApiUser,
+  useIGSession,
+} from "@/config/instagram";
+
+const isValidSession = () => {
+  if (!userId) {
+    console.log("USER_ID is missing from your environment variables.");
+  }
+  if (!sessionId) {
+    console.log("SESSION_ID is missing from your environment variables.");
+  }
+  if (!csrfToken) {
+    console.log("CSRF_TOKEN is missing from your environment variables.");
+  }
+  return csrfToken && sessionId && userId;
+};
+
+const formatGuestJson = (json: IGGuestPostJson) => {
+  if (!json.is_video) {
+    throw new BadRequest("This post does not contain a video", 400);
+  }
+
+  const videoJson: VideoJson = {
+    username: json.owner.username,
+    width: json.dimensions.width.toString(),
+    height: json.dimensions.height.toString(),
+    caption: json.edge_media_to_caption.edges[0]?.node.text ?? "No caption",
+    downloadUrl: json.video_url,
+    thumbnailUrl: json.thumbnail_src,
+  };
+
+  return videoJson;
+};
 
 const formatUserJson = (json: IGUserPostJson) => {
   if (!json.video_versions) {
-    throw new IGBadRequest("This post does not contain a video", 400);
+    throw new BadRequest("This post does not contain a video", 400);
   }
 
   let video = json.video_versions.filter((vid) =>
@@ -25,10 +61,7 @@ const formatUserJson = (json: IGUserPostJson) => {
   if (!video) video = json.video_versions[0];
 
   if (!video) {
-    throw new IGBadRequest(
-      "This post does not contain any download links",
-      400
-    );
+    throw new BadRequest("This post does not contain any download links", 400);
   }
 
   const thumbnail = json.image_versions2.candidates[0];
@@ -45,69 +78,14 @@ const formatUserJson = (json: IGUserPostJson) => {
   return videoJson;
 };
 
-const formatGuestJson = (json: IGGuestPostJson) => {
-  if (!json.is_video) {
-    throw new IGBadRequest("This post does not contain a video", 400);
-  }
-
-  const videoJson: VideoJson = {
-    username: json.owner.username,
-    width: json.dimensions.width.toString(),
-    height: json.dimensions.height.toString(),
-    caption: json.edge_media_to_caption.edges[0]?.node.text ?? "No caption",
-    downloadUrl: json.video_url,
-    thumbnailUrl: json.thumbnail_src,
-  };
-
-  return videoJson;
-};
-
-export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
-  const sessionId = process.env.INSTAGRAM_SESSION_ID;
-
-  if (!sessionId) return null;
-
-  const headers = {
-    Cookie: `ds_user_id=0; sessionid=${process.env.INSTAGRAM_SESSION_ID};`,
-    "User-Agent": getRandomUserAgent(),
-  };
-
-  const apiUrl = postUrl + "/?__a=1&__d=dis";
-  const response = await axiosFetch({ url: apiUrl, headers, timeout });
-  if (!response) {
-    return null;
-  }
-
-  if (response.statusText !== "OK") {
-    return null;
-  }
-
-  const json: IGUserResponse = response.data;
-
-  if (json.require_login) {
-    console.error("sessionId has been expired, it should be updated");
-    return null;
-  }
-
-  if (!json.items) {
-    console.error("Instagram User API response has been modified");
-    return null;
-  }
-
-  if (json.items.length === 0) {
-    return null;
-  }
-
-  const postJson: IGUserPostJson = json.items[0];
-
-  const formattedJson = formatUserJson(postJson);
-  return formattedJson;
-};
-
 export const fetchAsGuest = async ({
   postUrl,
   timeout,
 }: IFetchPostFunction) => {
+  if (!useApiGuest) {
+    console.log("Instagram Guest API is disabled in @config/instagram");
+    return null;
+  }
   const headers = {
     "User-Agent": getRandomUserAgent(),
   };
@@ -140,6 +118,57 @@ export const fetchAsGuest = async ({
   return formattedJson;
 };
 
+export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
+  if (!useApiUser) {
+    console.log("Instagram User API is disabled in @config/instagram");
+    return null;
+  }
+
+  const validSession = isValidSession();
+  if (!validSession) return null;
+
+  const headers = {
+    "User-Agent": getRandomUserAgent(),
+    Cookie: authCookie,
+  };
+
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const response = await axiosFetch({ url: apiUrl, headers, timeout });
+  if (!response) {
+    return null;
+  }
+
+  if (response.statusText !== "OK") {
+    return null;
+  }
+
+  const json: IGUserResponse = response.data;
+
+  if (json.require_login) {
+    console.error("sessionId has been expired, it should be updated");
+    return null;
+  }
+
+  if (json.graphql) {
+    console.error("Instagram User API returned Guest response");
+    return null;
+  }
+
+  if (!json.items) {
+    console.error("Instagram User API response has been modified");
+    return null;
+  }
+
+  if (json.items.length === 0) {
+    return null;
+  }
+
+  const postJson: IGUserPostJson = json.items[0];
+
+  const formattedJson = formatUserJson(postJson);
+  return formattedJson;
+};
+
 export const fetchFromAPI = async ({
   postUrl,
   timeout,
@@ -147,7 +176,7 @@ export const fetchFromAPI = async ({
   const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
   if (jsonAsGuest) return jsonAsGuest;
 
-  if (useInstagramAPI) {
+  if (useIGSession) {
     const jsonAsUser = await fetchAsUser({ postUrl, timeout });
     if (jsonAsUser) return jsonAsUser;
   }
