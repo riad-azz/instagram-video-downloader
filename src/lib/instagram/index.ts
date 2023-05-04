@@ -5,6 +5,7 @@ import { BadRequest, ServerException } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
+import { useApiUser, useIGSession } from "@/config/instagram";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
   const username = json.username;
@@ -84,8 +85,11 @@ export const fetchPostJson = async (postID: string, timeout?: number) => {
   const apiJson = await fetchFromAPI({ postUrl, timeout });
   if (apiJson) return apiJson;
 
+  if (useIGSession && useApiUser) {
+    console.error("Instagram session might have been expired.");
+  }
   throw new ServerException(
-    "Server Instagram session is expired, try again later.",
+    "The server is having problems, please try again later.",
     500
   );
 };

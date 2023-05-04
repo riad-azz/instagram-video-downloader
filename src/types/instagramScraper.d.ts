@@ -1,4 +1,4 @@
-export interface ScrapedPost {
+export type ScrapedPost = {
   articleBody: string;
   author: Author;
   comment: Comment;
@@ -14,52 +14,52 @@ export interface ScrapedPost {
   mainEntityOfPage: MainEntityOfPage;
   "@type": string;
   video: InstagramPageVideo[];
-}
+};
 
-export interface Author {
+export type Author = {
   "@type": string;
   identifier: Identifier;
   image: string;
   name: string;
   alternateName: string;
   url: string;
-}
+};
 
-export interface Comment {
+export type Comment = {
   "@type": string;
   text: string;
   author: CommentAuthor;
   dateCreated: string;
   interactionStatistic: InteractionStatistic;
-}
+};
 
-export interface CommentAuthor {
+export type CommentAuthor = {
   "@type": string;
   identifier: Identifier;
   image: string;
   name: string;
   alternateName: string;
   url: string;
-}
+};
 
-export interface InteractionStatistic {
+export type InteractionStatistic = {
   "@type": string;
   interactionType: string;
   userInteractionCount: number;
-}
+};
 
-export interface Identifier {
+export type Identifier = {
   "@type": string;
   propertyID: string;
   value: string;
-}
+};
 
-export interface MainEntityOfPage {
+export type MainEntityOfPage = {
   "@type": string;
   "@id": string;
-}
+};
 
-export interface PostJsonVideo {
+export type PostJsonVideo = {
   "@type": string;
   uploadDate: string;
   description: string;
@@ -71,4 +71,4 @@ export interface PostJsonVideo {
   thumbnailUrl: string;
   genre: string[];
   keywords: string[];
-}
+};

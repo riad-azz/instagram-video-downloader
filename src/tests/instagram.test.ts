@@ -16,7 +16,7 @@ describe("success-pageExist", () => {
 });
 
 describe("fail-pageExist", () => {
-  it("should throw IGBadRequest error", async () => {
+  it("should throw BadRequest error", async () => {
     const apiUrl = postUrl + "this-post-doesnt-exist" + "/?__a=1&__d=dis";
     try {
       await pageExist({ postUrl: apiUrl });
@@ -35,7 +35,7 @@ describe("success-getPostId", () => {
 });
 
 describe("fail-getPostId", () => {
-  it("should throw IGBadRequest error", () => {
+  it("should throw BadRequest error", () => {
     const invalidPostUrl = "https://www.doesnt-exist.com/p/CrYKenNJeey/";
     expect(() => {
       getPostId(invalidPostUrl);
@@ -47,12 +47,12 @@ describe("fail-getPostId", () => {
 describe("success-fetchPostJson", () => {
   it("should return a VideoJson object", async () => {
     const response = await fetchPostJson(postId);
-    expect(response.username).toBeDefined();
+    expect(response?.username).toBeDefined();
   }, 15000); // 15 seconds timeout because it can make up to 4 fetch requests
 });
 
 describe("timeout-fetchPostJson", () => {
-  it("should throw IGTimeout error", async () => {
+  it("should throw TimeoutException error", async () => {
     try {
       // Set timeout of 1ms to force timeout error
       await fetchPostJson(postId, 1);

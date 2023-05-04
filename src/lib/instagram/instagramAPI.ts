@@ -21,13 +21,13 @@ import {
 
 const isValidSession = () => {
   if (!userId) {
-    console.log("USER_ID is missing from your environment variables.");
+    console.error("USER_ID is missing from your environment variables.");
   }
   if (!sessionId) {
-    console.log("SESSION_ID is missing from your environment variables.");
+    console.error("SESSION_ID is missing from your environment variables.");
   }
   if (!csrfToken) {
-    console.log("CSRF_TOKEN is missing from your environment variables.");
+    console.error("CSRF_TOKEN is missing from your environment variables.");
   }
   return csrfToken && sessionId && userId;
 };

@@ -52,7 +52,7 @@ export const getCsrfToken = async () => {
   const loginPageUrl = "https://www.instagram.com/accounts/login/";
   const response = await axiosFetch({ url: loginPageUrl });
   if (!response) {
-    console.log("Failed to fetch Instagram CSRF token page");
+    console.error("Failed to fetch Instagram CSRF token page");
     return null;
   }
   const htmlText = response.data;
@@ -64,7 +64,7 @@ export const getCsrfToken = async () => {
     const csrfToken = match[1];
     return csrfToken;
   } else {
-    console.log("Instagram CSRF token not found.");
+    console.error("Instagram CSRF token not found.");
     return null;
   }
 };
@@ -99,13 +99,13 @@ export const ajaxLogin = async (username: string, password: string) => {
   });
 
   if (!response) {
-    console.log("Login to instagram failed");
+    console.error("Login to instagram failed");
     return null;
   }
 
   const cookies = response.headers["set-cookie"];
   if (!cookies) {
-    console.log("No cookies found");
+    console.error("No cookies found");
     return null;
   }
 

@@ -8,19 +8,19 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 
 // Check if the environment variables are defined
 describe("valid-environment-variables", () => {
-  it("should have a use session variable", () => {
+  it("should have a USE_IG_SESSION variable", () => {
     expect(process.env.USE_IG_SESSION).toBeDefined();
   });
 
-  it("should have a user id variable", () => {
+  it("should have a USER_ID variable", () => {
     expect(process.env.USER_ID).toBeDefined();
   });
 
-  it("should have a session id variable", () => {
+  it("should have a SESSION_ID variable", () => {
     expect(process.env.SESSION_ID).toBeDefined();
   });
 
-  it("should have a csrf token variable", () => {
+  it("should have a CSRF_TOKEN variable", () => {
     expect(process.env.CSRF_TOKEN).toBeDefined();
   });
 });
@@ -29,12 +29,12 @@ describe("valid-environment-variables", () => {
 describe("success-fetchFromAPI", () => {
   it("should return VideoJson object", async () => {
     const response = await fetchFromAPI({ postUrl });
-    expect(response).not.toBeNull();
+    expect(response?.username).toBeDefined();
   });
 });
 
 describe("no-video-fetchFromAPI", () => {
-  it("should throw IGBadRequest error", async () => {
+  it("should throw BadRequest error", async () => {
     await expect(fetchFromAPI({ postUrl: imagePostUrl })).rejects.toThrow(
       BadRequest
     );

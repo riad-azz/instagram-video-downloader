@@ -1,6 +1,6 @@
 /* User Response */
 
-export interface IGUserResponse {
+export type IGUserResponse = {
   require_login?: boolean;
   graphql?: any;
   items: Item[];
@@ -8,9 +8,9 @@ export interface IGUserResponse {
   more_available: boolean;
   auto_load_more_enabled: boolean;
   showQRModal: boolean;
-}
+};
 
-export interface IGUserPostJson {
+export type IGUserPostJson = {
   taken_at: number;
   pk: number;
   id: string;
@@ -89,9 +89,9 @@ export interface IGUserPostJson {
   reshare_count: number;
   clips_metadata: ClipsMetadata;
   media_cropping_info: MediaCroppingInfo;
-}
+};
 
-export interface Caption {
+export type Caption = {
   pk: string;
   user_id: number;
   text: string;
@@ -108,9 +108,9 @@ export interface Caption {
   is_ranked_comment: boolean;
   media_id: number;
   private_reply_status: number;
-}
+};
 
-export interface User {
+export type User = {
   has_anonymous_profile_picture: boolean;
   fan_club_info: FanClubInfo;
   fbid_v2: number;
@@ -131,26 +131,26 @@ export interface User {
   account_badges: any[];
   show_account_transparency_details: boolean;
   third_party_downloads_enabled: number;
-}
+};
 
-export interface FanClubInfo {
+export type FanClubInfo = {
   fan_club_id: null;
   fan_club_name: null;
   is_fan_club_referral_eligible: null;
   fan_consideration_page_revamp_eligiblity: null;
   is_fan_club_gifting_eligible: null;
   subscriber_count: null;
-}
+};
 
-export interface FriendshipStatus {
+export type FriendshipStatus = {
   following: boolean;
   outgoing_request: boolean;
   is_bestie: boolean;
   is_restricted: boolean;
   is_feed_favorite: boolean;
-}
+};
 
-export interface ClipsMetadata {
+export type ClipsMetadata = {
   music_info: null;
   original_sound_info: OriginalSoundInfo;
   audio_type: string;
@@ -183,36 +183,36 @@ export interface ClipsMetadata {
   merchandising_pill_info: null;
   is_public_chat_welcome_video: boolean;
   professional_clips_upsell_type: number;
-}
+};
 
-export interface AchievementsInfo {
+export type AchievementsInfo = {
   show_achievements: boolean;
   num_earned_achievements: null;
-}
+};
 
-export interface AdditionalAudioInfo {
+export type AdditionalAudioInfo = {
   additional_audio_username: null;
   audio_reattribution_info: AudioReattributionInfo;
-}
+};
 
-export interface AudioReattributionInfo {
+export type AudioReattributionInfo = {
   should_allow_restore: boolean;
-}
+};
 
-export interface AudioRankingInfo {
+export type AudioRankingInfo = {
   best_audio_cluster_id: string;
-}
+};
 
-export interface BrandedContentTagInfo {
+export type BrandedContentTagInfo = {
   can_add_tag: boolean;
-}
+};
 
-export interface ContentAppreciationInfo {
+export type ContentAppreciationInfo = {
   enabled: boolean;
   entry_point_container: null;
-}
+};
 
-export interface MashupInfo {
+export type MashupInfo = {
   mashups_allowed: boolean;
   can_toggle_mashups_allowed: boolean;
   has_been_mashed_up: boolean;
@@ -223,9 +223,9 @@ export interface MashupInfo {
   mashup_type: null;
   is_creator_requesting_mashup: boolean;
   has_nonmimicable_additional_audio: boolean;
-}
+};
 
-export interface OriginalSoundInfo {
+export type OriginalSoundInfo = {
   audio_asset_id: number;
   music_canonical_id: null;
   progressive_download_url: string;
@@ -250,17 +250,17 @@ export interface OriginalSoundInfo {
   xpost_fb_creator_info: null;
   nft_info: null;
   is_original_audio_download_eligible: boolean;
-}
+};
 
-export interface ConsumptionInfo {
+export type ConsumptionInfo = {
   is_bookmarked: boolean;
   should_mute_audio_reason: string;
   is_trending_in_clips: boolean;
   should_mute_audio_reason_type: null;
   display_media_id: null;
-}
+};
 
-export interface IgArtist {
+export type IgArtist = {
   pk: number;
   pk_id: string;
   username: string;
@@ -269,39 +269,39 @@ export interface IgArtist {
   is_verified: boolean;
   profile_pic_id: string;
   profile_pic_url: string;
-}
+};
 
-export interface CommentInformTreatment {
+export type CommentInformTreatment = {
   should_have_inform_treatment: boolean;
   text: string;
   url: null;
   action_type: null;
-}
+};
 
-export interface ImageVersions2 {
+export type ImageVersions2 = {
   candidates: FirstFrame[];
   additional_candidates: AdditionalCandidates;
   smart_thumbnail_enabled: boolean;
   scrubber_spritesheet_info_candidates: ScrubberSpritesheetInfoCandidates;
-}
+};
 
-export interface AdditionalCandidates {
+export type AdditionalCandidates = {
   igtv_first_frame: FirstFrame;
   first_frame: FirstFrame;
   smart_frame: null;
-}
+};
 
-export interface FirstFrame {
+export type FirstFrame = {
   width: number;
   height: number;
   url: string;
-}
+};
 
-export interface ScrubberSpritesheetInfoCandidates {
+export type ScrubberSpritesheetInfoCandidates = {
   default: Default;
-}
+};
 
-export interface Default {
+export type Default = {
   video_length: number;
   thumbnail_width: number;
   thumbnail_height: number;
@@ -314,50 +314,50 @@ export interface Default {
   sprite_height: number;
   rendered_width: number;
   file_size_kb: number;
-}
+};
 
-export interface MediaCroppingInfo {
+export type MediaCroppingInfo = {
   feed_preview_crop: null;
   square_crop: SquareCrop;
   three_by_four_preview_crop: null;
-}
+};
 
-export interface SquareCrop {
+export type SquareCrop = {
   crop_bottom: number;
   crop_left: number;
   crop_right: number;
   crop_top: number;
-}
+};
 
-export interface SharingFrictionInfo {
+export type SharingFrictionInfo = {
   should_have_sharing_friction: boolean;
   bloks_app_url: null;
   sharing_friction_payload: null;
-}
+};
 
-export interface VideoVersion {
+export type VideoVersion = {
   type: number;
   width: number;
   height: number;
   url: string;
   id: string;
-}
+};
 
 /* ------------------------------------------------ */
 /* ---------------- Guest Response ---------------- */
 /* ------------------------------------------------ */
 
-export interface IGGuestResponse {
+export type IGGuestResponse = {
   require_login?: boolean;
   graphql: Graphql;
   showQRModal: boolean;
-}
+};
 
-export interface Graphql {
+export type Graphql = {
   shortcode_media: ShortcodeMedia;
-}
+};
 
-export interface IGGuestPostJson {
+export type IGGuestPostJson = {
   __typename: Typename;
   id: string;
   shortcode: string;
@@ -416,7 +416,7 @@ export interface IGGuestPostJson {
   thumbnail_src: string;
   clips_music_attribution_info: ClipsMusicAttributionInfo;
   edge_related_profiles: EdgeRelatedProfiles;
-}
+};
 
 export enum Typename {
   GraphImage = "GraphImage",
@@ -424,44 +424,44 @@ export enum Typename {
   GraphVideo = "GraphVideo",
 }
 
-export interface ClipsMusicAttributionInfo {
+export type ClipsMusicAttributionInfo = {
   artist_name: string;
   song_name: string;
   uses_original_audio: boolean;
   should_mute_audio: boolean;
   should_mute_audio_reason: string;
   audio_id: string;
-}
+};
 
-export interface DashInfo {
+export type DashInfo = {
   is_dash_eligible: boolean;
   video_dash_manifest: null;
   number_of_qualities: number;
-}
+};
 
-export interface Dimensions {
+export type Dimensions = {
   height: number;
   width: number;
-}
+};
 
-export interface DisplayResource {
+export type DisplayResource = {
   src: string;
   config_width: number;
   config_height: number;
-}
+};
 
-export interface EdgeMediaPreview {
+export type EdgeMediaPreview = {
   count: number;
   edges: EdgeMediaPreviewCommentEdge[];
-}
+};
 
-export interface EdgeMediaToParentCommentClass {
+export type EdgeMediaToParentCommentClass = {
   count: number;
   page_info: PageInfo;
   edges: EdgeMediaPreviewCommentEdge[];
-}
+};
 
-export interface PurpleNode {
+export type PurpleNode = {
   id: string;
   text: string;
   created_at: number;
@@ -471,50 +471,50 @@ export interface PurpleNode {
   edge_liked_by: EdgeFollowedByClass;
   is_restricted_pending: boolean;
   edge_threaded_comments?: EdgeMediaToParentCommentClass;
-}
+};
 
-export interface EdgeMediaPreviewCommentEdge {
+export type EdgeMediaPreviewCommentEdge = {
   node: PurpleNode;
-}
+};
 
-export interface PageInfo {
+export type PageInfo = {
   has_next_page: boolean;
   end_cursor: null | string;
-}
+};
 
-export interface EdgeFollowedByClass {
+export type EdgeFollowedByClass = {
   count: number;
-}
+};
 
-export interface PurpleOwner {
+export type PurpleOwner = {
   id: string;
   is_verified: boolean;
   profile_pic_url: string;
   username: string;
-}
+};
 
-export interface EdgeMediaToCaptionClass {
+export type EdgeMediaToCaptionClass = {
   edges: EdgeMediaToCaptionEdge[];
-}
+};
 
-export interface EdgeMediaToCaptionEdge {
+export type EdgeMediaToCaptionEdge = {
   node: FluffyNode;
-}
+};
 
-export interface FluffyNode {
+export type FluffyNode = {
   created_at: string;
   text: string;
-}
+};
 
-export interface EdgeRelatedProfiles {
+export type EdgeRelatedProfiles = {
   edges: EdgeRelatedProfilesEdge[];
-}
+};
 
-export interface EdgeRelatedProfilesEdge {
+export type EdgeRelatedProfilesEdge = {
   node: TentacledNode;
-}
+};
 
-export interface TentacledNode {
+export type TentacledNode = {
   id: string;
   full_name: string;
   is_private: boolean;
@@ -523,18 +523,18 @@ export interface TentacledNode {
   username: string;
   edge_followed_by: EdgeFollowedByClass;
   edge_owner_to_timeline_media: EdgeOwnerToTimelineMedia;
-}
+};
 
-export interface EdgeOwnerToTimelineMedia {
+export type EdgeOwnerToTimelineMedia = {
   count: number;
   edges: EdgeOwnerToTimelineMediaEdge[];
-}
+};
 
-export interface EdgeOwnerToTimelineMediaEdge {
+export type EdgeOwnerToTimelineMediaEdge = {
   node: StickyNode;
-}
+};
 
-export interface StickyNode {
+export type StickyNode = {
   __typename: Typename;
   id: string;
   shortcode: string;
@@ -547,19 +547,19 @@ export interface StickyNode {
   media_overlay_info: null;
   is_video: boolean;
   accessibility_caption: null;
-}
+};
 
-export interface FluffyOwner {
+export type FluffyOwner = {
   id: string;
   username: string;
-}
+};
 
-export interface SharingFrictionInfo {
+export type SharingFrictionInfo = {
   should_have_sharing_friction: boolean;
   bloks_app_url: null;
-}
+};
 
-export interface ShortcodeMediaOwner {
+export type ShortcodeMediaOwner = {
   id: string;
   is_verified: boolean;
   profile_pic_url: string;
@@ -576,4 +576,4 @@ export interface ShortcodeMediaOwner {
   pass_tiering_recommendation: boolean;
   edge_owner_to_timeline_media: EdgeFollowedByClass;
   edge_followed_by: EdgeFollowedByClass;
-}
+};
