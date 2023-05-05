@@ -21,7 +21,6 @@ const Menu = ({ size = 24 }: IconSize) => {
   );
 };
 
-export default Menu;
 const Download = ({ size = 16 }: IconSize) => {
   return (
     <svg

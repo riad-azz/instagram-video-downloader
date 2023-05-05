@@ -26,7 +26,7 @@ Note : This does not work on instagram stories.
 
 ### Responsive on mobile
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true) 
+![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true)
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
 
@@ -54,7 +54,7 @@ npm install
 # Development
 npm run dev
 
-# Build 
+# Build
 npm run build
 
 # Start
@@ -105,7 +105,7 @@ CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
 
 To get the session info open your browser in incognito mode then login to your dummy account then open the dev tool in your browser and go to the network tab then visit here https://www.instagram.com/data/shared_data/
 
-*Note : if the network tab is empty just refresh the page and the request will appear.*
+_Note : if the network tab is empty just refresh the page and the request will appear._
 
 ![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
 
