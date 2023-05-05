@@ -162,8 +162,6 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
 
   if (!json.items) {
     console.error("Instagram User API response has been modified");
-    console.log(response.status);
-    return json;
     return null;
   }
 
