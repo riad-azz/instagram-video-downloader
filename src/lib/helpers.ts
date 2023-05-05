@@ -16,6 +16,7 @@ export const getRandomUserAgent = () => {
 };
 
 interface IAxiosFetchFunction {
+  credentials?: boolean;
   url: string;
   headers?: object;
   timeout?: number;
@@ -25,6 +26,7 @@ interface IAxiosFetchFunction {
 }
 
 export const axiosFetch = async ({
+  credentials = false,
   url,
   method = "GET",
   throwError = false,
@@ -33,8 +35,16 @@ export const axiosFetch = async ({
   data,
 }: IAxiosFetchFunction) => {
   let response;
+
   try {
-    response = await axios({ url, method, headers, timeout, data });
+    response = await axios({
+      withCredentials: credentials,
+      url,
+      method,
+      headers,
+      timeout,
+      data,
+    });
     return response;
   } catch (error: any) {
     if (error.message.includes("timeout")) {

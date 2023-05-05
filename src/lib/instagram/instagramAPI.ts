@@ -133,7 +133,13 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
   };
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
-  const response = await axiosFetch({ url: apiUrl, headers, timeout });
+
+  const response = await axiosFetch({
+    credentials: true,
+    url: apiUrl,
+    headers,
+    timeout,
+  });
   if (!response) {
     return null;
   }
@@ -156,6 +162,8 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
 
   if (!json.items) {
     console.error("Instagram User API response has been modified");
+    console.log(response.status);
+    return json;
     return null;
   }
 
