@@ -89,7 +89,7 @@ export const fetchPostJson = async (postID: string, timeout?: number) => {
     console.error("Instagram session might have been expired.");
   }
   throw new ServerException(
-    "The server is having problems, please try again later.",
+    "Cannot download from this post at the moment, please try again later.",
     500
   );
 };
