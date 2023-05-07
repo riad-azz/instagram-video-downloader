@@ -1,7 +1,7 @@
 import { VideoJson, DownloadJson, IFetchPostFunction } from "@/types";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
-import { BadRequest, ServerException } from "@/exceptions";
+import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
@@ -88,8 +88,9 @@ export const fetchPostJson = async (postID: string, timeout?: number) => {
   if (useIGSession && useApiUser) {
     console.error("Instagram session might have been expired.");
   }
-  throw new ServerException(
-    "Cannot download from this post at the moment, please try again later.",
-    500
+
+  throw new BadRequest(
+    "The video download link for this post is not available.",
+    401
   );
 };

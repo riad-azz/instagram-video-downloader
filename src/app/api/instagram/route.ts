@@ -36,7 +36,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
-  let url: string | null = searchParams.get("url");
+  const url: string | null = searchParams.get("url");
   let postId;
 
   try {

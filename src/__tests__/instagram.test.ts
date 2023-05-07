@@ -2,9 +2,9 @@ import { BadRequest, TimeoutException } from "@/exceptions";
 import { ajaxLogin } from "@/lib/helpers";
 import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
 
-// URL for post page with no ld+json included
-const postUrl = "https://www.instagram.com/p/CrYKenNJeey";
-const postId = "CrYKenNJeey";
+// URL for post page with ld+json included
+const postUrl = "https://www.instagram.com/p/CGh4a0iASGS";
+const postId = "CGh4a0iASGS";
 
 // Check if pageExist function is working
 describe("success-pageExist", () => {
@@ -48,7 +48,7 @@ describe("success-fetchPostJson", () => {
   it("should return a VideoJson object", async () => {
     const response = await fetchPostJson(postId);
     expect(response?.username).toBeDefined();
-  }, 15000); // 15 seconds timeout because it can make up to 4 fetch requests
+  });
 });
 
 describe("timeout-fetchPostJson", () => {
