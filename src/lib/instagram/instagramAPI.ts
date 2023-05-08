@@ -41,7 +41,7 @@ const formatGuestJson = (json: IGGuestPostJson) => {
     username: json.owner.username,
     width: json.dimensions.width.toString(),
     height: json.dimensions.height.toString(),
-    caption: json.edge_media_to_caption.edges[0]?.node.text ?? "No caption",
+    caption: json.edge_media_to_caption?.edges[0]?.node?.text ?? "No caption",
     downloadUrl: json.video_url,
     thumbnailUrl: json.thumbnail_src,
   };
@@ -68,9 +68,9 @@ const formatUserJson = (json: IGUserPostJson) => {
 
   const videoJson: VideoJson = {
     username: json.user.username,
-    width: video.width.toString(),
-    height: video.height.toString(),
-    caption: json.caption.text,
+    width: video.width?.toString(),
+    height: video.height?.toString(),
+    caption: json.caption?.text ?? "No caption",
     downloadUrl: video.url,
     thumbnailUrl: thumbnail.url,
   };
