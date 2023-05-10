@@ -105,11 +105,15 @@ CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
 
 To get the session info :
 
-1. open your browser in incognito mode then login to your dummy account then open the dev tool in your browser.
+1. Open the browser in incognito mode.
 
-2. Visit here : [Shared data endpoint](https://www.instagram.com/data/shared_data/).
+2. Login to your dummy account.
 
-3. Get the info from the request headers (Check the image below).
+3. Open the dev tool in your browser.
+
+4. Visit this instagram endpoint : [Shared Data endpoint](https://www.instagram.com/data/shared_data/).
+
+5. Get the info from the request headers (Check the image below).
 
 _Note : if the network tab is empty just refresh the page and the request will appear._
 
