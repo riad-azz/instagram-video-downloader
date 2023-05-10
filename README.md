@@ -103,11 +103,17 @@ SESSION_ID="INSTAGRAM-SESSION-ID"
 CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
 ```
 
-To get the session info open your browser in incognito mode then login to your dummy account then open the dev tool in your browser and go to the network tab then visit here https://www.instagram.com/data/shared_data/
+To get the session info :
+
+1. open your browser in incognito mode then login to your dummy account then open the dev tool in your browser.
+
+2. Visit here : [Shared data endpoint](https://www.instagram.com/data/shared_data/).
+
+3. Get the info from the request headers (Check the image below).
 
 _Note : if the network tab is empty just refresh the page and the request will appear._
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
+![Session info image tutorial](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
 
 ## API Documentation
 

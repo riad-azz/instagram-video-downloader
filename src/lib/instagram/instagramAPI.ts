@@ -87,7 +87,8 @@ export const fetchAsGuest = async ({
     return null;
   }
   const headers = {
-    "User-Agent": getRandomUserAgent(),
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
   };
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
@@ -128,7 +129,8 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
   if (!validSession) return null;
 
   const headers = {
-    "User-Agent": getRandomUserAgent(),
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
     Cookie: authCookie,
   };
 
