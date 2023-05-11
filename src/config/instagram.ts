@@ -8,4 +8,7 @@ export const useIGSession = process.env.USE_IG_SESSION === "true";
 export const userId = process.env.USER_ID;
 export const sessionId = process.env.SESSION_ID;
 export const csrfToken = process.env.CSRF_TOKEN;
-export const authCookie = `ds_user_id=${userId}; csrftoken=${csrfToken}; sessionid=${sessionId};`;
+export const instagramDatr = process.env.DATR;
+export const instagramIgDid = process.env.IG_DID;
+export const instagramMid = process.env.MID;
+export const authCookie = `ds_user_id=${userId}; csrftoken=${csrfToken}; sessionid=${sessionId}; datr=${instagramDatr}; ig_did=${instagramIgDid}; mid=${instagramMid}; ig_nrcb=1;`;
