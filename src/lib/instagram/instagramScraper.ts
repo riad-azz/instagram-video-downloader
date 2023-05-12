@@ -3,7 +3,7 @@ import { load } from "cheerio";
 import { IFetchPostFunction, VideoJson } from "@/types";
 import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 
-import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
+import { axiosFetch } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
 import { useIGScraper } from "@/config/instagram";
 
@@ -33,7 +33,8 @@ export const fetchFromPage = async ({
   timeout,
 }: IFetchPostFunction) => {
   const headers = {
-    "User-Agent": getRandomUserAgent(),
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
   };
 
   if (!useIGScraper) {

@@ -6,12 +6,11 @@ import {
   IGGuestPostJson,
 } from "@/types/instagramAPI";
 
-import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
+import { axiosFetch } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
 
 import {
   authCookie,
-  csrfToken,
   sessionId,
   userId,
   useApiGuest,
@@ -26,10 +25,7 @@ const isValidSession = () => {
   if (!sessionId) {
     console.error("SESSION_ID is missing from your environment variables.");
   }
-  if (!csrfToken) {
-    console.error("CSRF_TOKEN is missing from your environment variables.");
-  }
-  return csrfToken && sessionId && userId;
+  return sessionId && userId;
 };
 
 const formatGuestJson = (json: IGGuestPostJson) => {
@@ -88,10 +84,12 @@ export const fetchAsGuest = async ({
   }
   const headers = {
     "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
   };
 
-  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const apiUrl =
+    postUrl +
+    "/?__a=1&__d=dis&utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==";
   const response = await axiosFetch({ url: apiUrl, headers, timeout });
   if (!response) {
     return null;
@@ -130,14 +128,15 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
 
   const headers = {
     "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/113.0",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
     Cookie: authCookie,
   };
 
-  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const apiUrl =
+    postUrl +
+    "/?__a=1&__d=dis&utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==";
 
   const response = await axiosFetch({
-    credentials: true,
     url: apiUrl,
     headers,
     timeout,

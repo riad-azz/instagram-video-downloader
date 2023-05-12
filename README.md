@@ -100,10 +100,7 @@ The application already uses instagram API as a fallback but as a Guest (Not aut
 USE_IG_SESSION="false"
 USER_ID="INSTAGRAM-USER-ID"
 SESSION_ID="INSTAGRAM-SESSION-ID"
-CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
-DATR="INSTAGRAM-DATR"
 IG_DID="INSTAGRAM-DID"
-MID="INSTAGRAM-MID"
 ```
 
 To get the session info :
