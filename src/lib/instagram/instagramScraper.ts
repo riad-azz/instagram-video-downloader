@@ -41,11 +41,14 @@ export const fetchFromPage = async ({
     return null;
   }
 
+  const scrapeUrl =
+    postUrl +
+    "/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==&surface=comet";
+
   const response = await axiosFetch({
-    url: postUrl,
+    url: scrapeUrl,
     headers,
     timeout,
-    throwError: true,
   });
 
   if (!response) {

@@ -1,5 +1,9 @@
 import { BadRequest } from "@/exceptions";
-import { fetchAsUser, fetchFromAPI } from "@/lib/instagram/instagramAPI";
+import {
+  fetchAsGuest,
+  fetchAsUser,
+  fetchFromAPI,
+} from "@/lib/instagram/instagramAPI";
 
 // URL for post page with no ld+json included
 const postUrl = "https://www.instagram.com/p/CrYKenNJeey";

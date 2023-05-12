@@ -93,6 +93,7 @@ export const fetchAsGuest = async ({
   }
 
   if (response.statusText !== "OK") {
+    console.error("Bad response from API Guest");
     return null;
   }
 
@@ -119,13 +120,13 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
     console.log("Instagram User API is disabled in @config/instagram");
     return null;
   }
-
+  const cookie = await authCookie;
   const validSession = isValidSession();
   if (!validSession) return null;
 
   const headers = {
     "User-Agent": getRandomUserAgent(),
-    Cookie: authCookie,
+    Cookie: cookie,
   };
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
