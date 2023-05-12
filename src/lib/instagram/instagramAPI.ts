@@ -6,7 +6,7 @@ import {
   IGGuestPostJson,
 } from "@/types/instagramAPI";
 
-import { axiosFetch } from "@/lib/helpers";
+import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
 
 import {
@@ -83,8 +83,8 @@ export const fetchAsGuest = async ({
     return null;
   }
   const headers = {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+    "User-Agent": getRandomUserAgent(),
+    Connection: "keep-alive",
   };
 
   const apiUrl =
@@ -127,8 +127,8 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
   if (!validSession) return null;
 
   const headers = {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+    "User-Agent": getRandomUserAgent(),
+    Connection: "keep-alive",
     Cookie: authCookie,
   };
 

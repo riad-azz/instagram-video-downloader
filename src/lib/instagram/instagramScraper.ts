@@ -3,7 +3,7 @@ import { load } from "cheerio";
 import { IFetchPostFunction, VideoJson } from "@/types";
 import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 
-import { axiosFetch } from "@/lib/helpers";
+import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
 import { useIGScraper } from "@/config/instagram";
 
@@ -33,8 +33,8 @@ export const fetchFromPage = async ({
   timeout,
 }: IFetchPostFunction) => {
   const headers = {
-    "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
+    "User-Agent": getRandomUserAgent(),
+    Connection: "keep-alive",
   };
 
   if (!useIGScraper) {
@@ -42,7 +42,13 @@ export const fetchFromPage = async ({
     return null;
   }
 
-  const response = await axiosFetch({ url: postUrl, headers, timeout });
+  const response = await axiosFetch({
+    url: postUrl,
+    headers,
+    timeout,
+    throwError: true,
+  });
+
   if (!response) {
     return null;
   }
@@ -55,6 +61,7 @@ export const fetchFromPage = async ({
   const jsonElement = $("script[type='application/ld+json']");
 
   if (jsonElement.length === 0) {
+    console.log("No JSON element found");
     return null;
   }
 
