@@ -86,9 +86,7 @@ export const fetchAsGuest = async ({
     "User-Agent": getRandomUserAgent(),
   };
 
-  const apiUrl =
-    postUrl +
-    "/?__a=1&__d=dis&utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==";
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
   const response = await axiosFetch({ url: apiUrl, headers, timeout });
   if (!response) {
     return null;
@@ -130,9 +128,7 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
     Cookie: authCookie,
   };
 
-  const apiUrl =
-    postUrl +
-    "/?__a=1&__d=dis&utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==";
+  const apiUrl = postUrl + "/?__a=1&__d=dis";
 
   const response = await axiosFetch({
     url: apiUrl,
