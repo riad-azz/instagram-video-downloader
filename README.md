@@ -14,7 +14,6 @@ _PS: Instagram stories aren't supported._
 > This mainly works on posts with `application/ld+json` script present in the html.
 > If its missing the app will try to fallback on the API but its not that stable due to vercel being serverless.
 
-
 ## Website Preview
 
 ### Dark/Light themes
