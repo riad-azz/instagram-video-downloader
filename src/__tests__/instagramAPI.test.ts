@@ -20,8 +20,8 @@ describe("valid-environment-variables", () => {
     expect(process.env.SESSION_ID).toBeDefined();
   });
 
-  it("should have a CSRF_TOKEN variable", () => {
-    expect(process.env.CSRF_TOKEN).toBeDefined();
+  it("should have a IG_DID variable", () => {
+    expect(process.env.IG_DID).toBeDefined();
   });
 });
 
