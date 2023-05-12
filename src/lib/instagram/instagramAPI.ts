@@ -84,7 +84,6 @@ export const fetchAsGuest = async ({
   }
   const headers = {
     "User-Agent": getRandomUserAgent(),
-    Connection: "keep-alive",
   };
 
   const apiUrl =
@@ -128,7 +127,6 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
 
   const headers = {
     "User-Agent": getRandomUserAgent(),
-    Connection: "keep-alive",
     Cookie: authCookie,
   };
 

@@ -34,7 +34,6 @@ export const fetchFromPage = async ({
 }: IFetchPostFunction) => {
   const headers = {
     "User-Agent": getRandomUserAgent(),
-    Connection: "keep-alive",
   };
 
   if (!useIGScraper) {
