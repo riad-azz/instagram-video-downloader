@@ -2,11 +2,6 @@
   "name": "instagram-videos-downloader",
   "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": ">=18.15.0",
-    "npm": ">=9.5.0",
-    "yarn": "please-use-npm"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

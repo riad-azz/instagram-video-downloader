@@ -1,2 +1,7 @@
 .env.example
 .env.local
+.husky
+.next
+.vscode
+.github
+node_modules
