@@ -86,6 +86,29 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
+## Rate limiter
+
+The website has been getting spammed a lot which was resulting in the session being terminated repeatably so i decided to add rate limiting.
+
+[Upstash](https://upstash.com/) is used for rate limiting and stopping spam. You can enable it by creating your own account and setting up the environment variables in `.env.local` .
+
+```env
+UPSTASH_URL="UPSTASH-URL"
+UPSTASH_TOKEN="UPSTASH-TOKEN"
+```
+
+You can change the rate limit options in `src/lib/rate-limiter.ts`.
+
+```ts
+// A Rate limiter, that allows 1 requests per 1 minute
+export const ratelimit = new Ratelimit({
+  redis: redis,
+  limiter: Ratelimit.fixedWindow(1, `1 m`),
+});
+```
+
+And if you would like to change the identifier for the rate limiter you can update it in `src/middleware.ts`.
+
 ## Instagram Graphql API Option
 
 This is a fallback in case the page scraping doesn't work.

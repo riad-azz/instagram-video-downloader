@@ -42,6 +42,16 @@ export class TimeoutException extends Exception {
   }
 }
 
+export class RatelimitException extends Exception {
+  /**
+   * @param message
+   * @param code
+   */
+  constructor(message = "Too many requests, try again later.", code = 429) {
+    super(message, code);
+  }
+}
+
 /* Client Exceptions */
 
 export class ClientException extends Exception {
