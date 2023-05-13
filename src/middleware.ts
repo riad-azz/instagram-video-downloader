@@ -1,15 +1,14 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { ratelimit } from "./lib/rate-limiter";
 
-async function isNotLimited(request: NextApiRequest) {
+async function isNotLimited(request: NextRequest) {
   try {
-    const ip =
-      request.headers["x-real-ip"] ||
-      request.headers["x-forwarded-for"] ||
-      request.socket?.remoteAddress;
-    const ipString = Array.isArray(ip) ? ip.join(",") : ip?.toString();
-    const identifier = ipString ?? "riad-insta";
+    let ip = request.ip ?? request.headers.get("x-real-ip");
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    if (!ip && forwardedFor) {
+      ip = forwardedFor.split(",").at(0) ?? null;
+    }
+    const identifier = ip ?? "riad-insta";
     console.log("identifier:", identifier);
     const result = await ratelimit.limit(identifier);
     return result.success;
@@ -20,7 +19,7 @@ async function isNotLimited(request: NextApiRequest) {
 }
 
 // This function can be marked `async` if using `await` inside
-export async function middleware(request: NextApiRequest) {
+export async function middleware(request: NextRequest) {
   const success = await isNotLimited(request);
   if (!success) {
     return NextResponse.json(
