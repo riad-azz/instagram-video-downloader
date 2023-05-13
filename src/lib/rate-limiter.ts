@@ -3,13 +3,13 @@ import { Redis } from "@upstash/redis";
 
 const upstashUrl = process.env.UPSTASH_URL ?? "";
 const upstashToken = process.env.UPSTASH_TOKEN ?? "";
-const redis = new Redis({
+export const redisClient = new Redis({
   url: upstashUrl,
   token: upstashToken,
 });
 
 // Create a new ratelimiter, that allows 1 requests per 1 minute
 export const ratelimit = new Ratelimit({
-  redis: redis,
-  limiter: Ratelimit.fixedWindow(1, `1 m`),
+  redis: redisClient,
+  limiter: Ratelimit.fixedWindow(5, `1 m`),
 });
