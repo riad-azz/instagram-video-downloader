@@ -1,9 +1,5 @@
 import { BadRequest } from "@/exceptions";
-import {
-  fetchAsGuest,
-  fetchAsUser,
-  fetchFromAPI,
-} from "@/lib/instagram/instagramAPI";
+import { fetchFromAPI } from "@/lib/instagram/instagramAPI";
 
 // URL for post page with no ld+json included
 const postUrl = "https://www.instagram.com/p/CrYKenNJeey";
@@ -11,7 +7,7 @@ const postUrl = "https://www.instagram.com/p/CrYKenNJeey";
 const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 
 // Check if the environment variables are defined
-describe("valid-environment-variables", () => {
+describe("instagram-env-variables", () => {
   it("should have a USE_IG_SESSION variable", () => {
     expect(process.env.USE_IG_SESSION).toBeDefined();
   });

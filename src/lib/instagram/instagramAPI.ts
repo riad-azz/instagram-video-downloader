@@ -13,9 +13,9 @@ import {
   authCookie,
   sessionId,
   userId,
-  useApiGuest,
-  useApiUser,
-  useIGSession,
+  enableApiGuest,
+  enableApiUser,
+  enableIGSession,
 } from "@/config/instagram";
 
 const isValidSession = () => {
@@ -78,7 +78,7 @@ export const fetchAsGuest = async ({
   postUrl,
   timeout,
 }: IFetchPostFunction) => {
-  if (!useApiGuest) {
+  if (!enableApiGuest) {
     console.log("Instagram Guest API is disabled in @config/instagram");
     return null;
   }
@@ -116,7 +116,7 @@ export const fetchAsGuest = async ({
 };
 
 export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
-  if (!useApiUser) {
+  if (!enableApiUser) {
     console.log("Instagram User API is disabled in @config/instagram");
     return null;
   }
@@ -178,7 +178,7 @@ export const fetchFromAPI = async ({
   const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
   if (jsonAsGuest) return jsonAsGuest;
 
-  if (useIGSession) {
+  if (enableIGSession) {
     const jsonAsUser = await fetchAsUser({ postUrl, timeout });
     if (jsonAsUser) return jsonAsUser;
   }

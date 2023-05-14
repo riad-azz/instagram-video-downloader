@@ -5,7 +5,7 @@ import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
-import { useApiUser, useIGSession } from "@/config/instagram";
+import { enableApiUser, enableIGSession } from "@/config/instagram";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
   const username = json.username;
@@ -85,7 +85,7 @@ export const fetchPostJson = async (postID: string, timeout?: number) => {
   const apiJson = await fetchFromAPI({ postUrl, timeout });
   if (apiJson) return apiJson;
 
-  if (useIGSession && useApiUser) {
+  if (enableIGSession && enableApiUser) {
     console.error("Instagram session might have been expired.");
   }
 

@@ -10,8 +10,6 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 describe("success-fetchFromPage", () => {
   it("should return a VideoJson object", async () => {
     const response = await fetchFromPage({ postUrl });
-    console.log(response);
-
     expect(response?.username).toBeDefined();
   });
 });

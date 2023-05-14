@@ -93,8 +93,9 @@ The website has been getting spammed a lot which was resulting in the session be
 [Upstash](https://upstash.com/) is used for rate limiting and stopping spam. You can enable it by creating your own account and setting up the environment variables in `.env.local` .
 
 ```env
-UPSTASH_URL="UPSTASH-URL"
-UPSTASH_TOKEN="UPSTASH-TOKEN"
+USE_UPSTASH="true"
+UPSTASH_URL="YOUR-UPSTASH-URL"
+UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
 
 You can change the rate limit options in `src/lib/rate-limiter.ts`.
@@ -124,10 +125,10 @@ The application already uses instagram API as a fallback but as a Guest (Not aut
 > DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
 
 ```env
-USE_IG_SESSION="false"
-USER_ID="INSTAGRAM-USER-ID"
-SESSION_ID="INSTAGRAM-SESSION-ID"
-CSRF_TOKEN="INSTAGRAM-CSRF-TOKEN"
+USE_IG_SESSION="true"
+USER_ID="YOUR-INSTAGRAM-USER-ID"
+SESSION_ID="YOUR-INSTAGRAM-SESSION-ID"
+CSRF_TOKEN="YOUR-INSTAGRAM-CSRF-TOKEN"
 ```
 
 To get the session info :

@@ -5,7 +5,7 @@ import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
-import { useIGScraper } from "@/config/instagram";
+import { enableIGScraper } from "@/config/instagram";
 
 const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;
@@ -36,7 +36,7 @@ export const fetchFromPage = async ({
     "User-Agent": getRandomUserAgent(),
   };
 
-  if (!useIGScraper) {
+  if (!enableIGScraper) {
     console.log("Instagram Scraper is disabled in @config/instagram");
     return null;
   }
@@ -63,7 +63,7 @@ export const fetchFromPage = async ({
   const jsonElement = $("script[type='application/ld+json']");
 
   if (jsonElement.length === 0) {
-    console.log("No JSON element found");
+    console.log("No JSON element found in Instagram Scraper");
     return null;
   }
 

@@ -1,9 +1,10 @@
 // Scraper vars
-export const useIGScraper = true;
+export const enableIGScraper = true;
 // API vars
-export const useApiGuest = true;
-export const useApiUser = true;
-export const useIGSession = process.env.USE_IG_SESSION === "true";
+export const enableApiGuest = false;
+export const enableApiUser = false;
+// export const useIGSession = process.env.USE_IG_SESSION === "true";
+export const enableIGSession = false;
 // Login vars
 export const userId = process.env.USER_ID;
 export const sessionId = process.env.SESSION_ID;

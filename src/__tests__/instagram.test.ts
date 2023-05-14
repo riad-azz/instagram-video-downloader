@@ -1,5 +1,4 @@
 import { BadRequest, TimeoutException } from "@/exceptions";
-import { ajaxLogin } from "@/lib/helpers";
 import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
 
 // URL for post page with ld+json included

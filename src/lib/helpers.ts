@@ -1,5 +1,6 @@
 import axios from "axios";
 import { TimeoutException } from "@/exceptions";
+import { NextRequest } from "next/server";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299",
@@ -59,77 +60,12 @@ export const axiosFetch = async ({
   }
 };
 
-export const getCsrfToken = async () => {
-  const loginPageUrl = "https://www.instagram.com/accounts/login/";
-  try {
-    const response = await axiosFetch({ url: loginPageUrl, throwError: true });
-    if (!response) {
-      console.error("Failed to fetch Instagram CSRF token page");
-      return null;
-    }
-    const htmlText = response.data;
-
-    const regex = /\\"csrf_token\\":\\"(.*?)\\"/;
-    const match = regex.exec(htmlText);
-
-    if (match) {
-      const csrfToken = match[1];
-      return csrfToken;
-    } else {
-      console.error("Instagram CSRF token not found.");
-      return null;
-    }
-  } catch (error: any) {
-    console.error(error.message);
-    return null;
+export const getClientIp = (request: NextRequest) => {
+  let ip = request.ip ?? request.headers.get("x-real-ip");
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (!ip && forwardedFor) {
+    ip = forwardedFor.split(",").at(0) ?? null;
+    return ip;
   }
-};
-
-export const ajaxLogin = async (username: string, password: string) => {
-  const loginUrl = "https://www.instagram.com/accounts/login/ajax/";
-  const csrfToken = await getCsrfToken();
-  if (!csrfToken) {
-    return null;
-  }
-
-  const timestamp = Math.floor(Date.now() / 1000);
-  const headers = {
-    "user-agent": getRandomUserAgent(),
-    referer: "https://www.instagram.com/accounts/login/",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "X-CSRFToken": csrfToken,
-  };
-
-  const data = {
-    username: username,
-    enc_password: `#PWD_INSTAGRAM_BROWSER:0:${timestamp}:${password}`,
-    queryParams: {},
-    optIntoOneTap: "false",
-  };
-
-  try {
-    const response = await axiosFetch({
-      url: loginUrl,
-      method: "POST",
-      headers: headers,
-      data: data,
-      throwError: true,
-    });
-
-    if (!response) {
-      console.error("Login to instagram failed");
-      return null;
-    }
-
-    const cookies = response.headers["set-cookie"];
-    if (!cookies) {
-      console.error("No cookies found");
-      return null;
-    }
-
-    return cookies;
-  } catch (error: any) {
-    console.error(error.message);
-    return null;
-  }
+  return ip;
 };
