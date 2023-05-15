@@ -1,7 +1,7 @@
 // Scraper vars
 export const enableIGScraper = true;
 // API vars
-export const enableApiGuest = false;
+export const enableApiGuest = true;
 export const enableApiUser = false;
 // export const useIGSession = process.env.USE_IG_SESSION === "true";
 export const enableIGSession = false;
