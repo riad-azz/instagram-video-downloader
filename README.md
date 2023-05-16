@@ -112,7 +112,7 @@ And if you would like to change the identifier for the rate limiter you can upda
 
 ## Instagram Graphql API Option
 
-This is a fallback in case the page scraping doesn't work.
+This is a fallback in case the page scraping doesn't work, you can enable/disable it from `src/config/instagram.ts`.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
