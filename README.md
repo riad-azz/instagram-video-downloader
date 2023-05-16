@@ -98,21 +98,13 @@ UPSTASH_URL="YOUR-UPSTASH-URL"
 UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
 
-You can change the rate limit options in `src/lib/rate-limiter.ts`.
+More config options in `src/config/upstash.ts`.
 
-```ts
-// A Rate limiter, that allows 1 requests per 1 minute
-export const ratelimit = new Ratelimit({
-  redis: redis,
-  limiter: Ratelimit.fixedWindow(1, `1 m`),
-});
-```
-
-And if you would like to change the identifier for the rate limiter you can update it in `src/middleware.ts`.
+If you would like to change the ban identifier (default is IP) you can change it in `src/middleware.ts`.
 
 ## Instagram Graphql API Option
 
-This is a fallback in case the page scraping doesn't work, you can enable/disable it from `src/config/instagram.ts`.
+This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
@@ -120,6 +112,8 @@ The application already uses instagram API as a fallback but as a Guest (Not aut
 2. Copy and paste the content of `.env.example` in your `.env.local` file.
 3. set `USE_IG_SESSION` to `true`.
 4. Fill in the rest of variables with your dummy account session info.
+
+More config options in `src/config/instagram.ts`.
 
 > **Warning**
 > DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
@@ -131,7 +125,7 @@ SESSION_ID="YOUR-INSTAGRAM-SESSION-ID"
 CSRF_TOKEN="YOUR-INSTAGRAM-CSRF-TOKEN"
 ```
 
-To get the session info :
+### Getting the Session info
 
 1. Open the browser in incognito mode.
 
@@ -143,7 +137,7 @@ To get the session info :
 
 5. Get the info from the request headers (Check the image below).
 
-_Note : if the network tab is empty just refresh the page and the request will appear._
+Note : if the network tab is empty just refresh the page and the request will appear.
 
 ![Session info image tutorial](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
 

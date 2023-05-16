@@ -4,8 +4,6 @@ import { ABeeZee as MainFont } from "next/font/google";
 import "@/styles/globals.css";
 import { instagramMetadata } from "@/config/seo";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ThemeProvider from "@/contexts/themeContext";
 
 const mainFont = MainFont({
@@ -29,13 +27,7 @@ export default function RootLayout({
       <body
         className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
       >
-        <ThemeProvider value={theme}>
-          <div className="flex min-h-screen flex-col justify-between">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <ThemeProvider value={theme}>{children}</ThemeProvider>
       </body>
     </html>
   );
