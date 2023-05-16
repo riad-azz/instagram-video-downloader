@@ -18,14 +18,14 @@ import {
   enableIGSession,
 } from "@/config/instagram";
 
-const isValidSession = () => {
+export const isValidSession = () => {
   if (!userId) {
     console.error("USER_ID is missing from your environment variables.");
   }
   if (!sessionId) {
     console.error("SESSION_ID is missing from your environment variables.");
   }
-  return sessionId && userId;
+  return sessionId !== "" && userId != "" && sessionId?.startsWith(userId);
 };
 
 const formatGuestJson = (json: IGGuestPostJson) => {
