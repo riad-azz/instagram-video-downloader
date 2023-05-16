@@ -92,7 +92,7 @@ The website has been getting spammed a lot which was resulting in the session be
 
 [Upstash](https://upstash.com/) is used for rate limiting and stopping spam. You can enable it by creating your own account and setting up the environment variables in `.env.local` .
 
-All ratelimit configs can be found in `src/config/upstash.ts`.
+All ratelimit configs can be found in `src/configs/upstash.ts`.
 
 ```env
 USE_UPSTASH="true"
@@ -108,7 +108,7 @@ This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
-All Instagram configs can be found in `src/config/instagram.ts`.
+All Instagram configs can be found in `src/configs/instagram.ts`.
 
 1. Create `.env.local` file.
 2. Copy and paste the content of `.env.example` in your `.env.local` file.
