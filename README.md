@@ -98,7 +98,7 @@ UPSTASH_URL="YOUR-UPSTASH-URL"
 UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
 
-More config options in `src/config/upstash.ts`.
+All ratelimit configs can be found in `src/config/upstash.ts`.
 
 If you would like to change the ban identifier (default is IP) you can change it in `src/middleware.ts`.
 
@@ -108,15 +108,12 @@ This is a fallback in case the page scraping doesn't work.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
 
+All Instagram configs can be found in `src/config/instagram.ts`.
+
 1. Create `.env.local` file.
 2. Copy and paste the content of `.env.example` in your `.env.local` file.
 3. set `USE_IG_SESSION` to `true`.
 4. Fill in the rest of variables with your dummy account session info.
-
-More config options in `src/config/instagram.ts`.
-
-> **Warning**
-> DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
 
 ```env
 USE_IG_SESSION="true"
@@ -126,6 +123,9 @@ CSRF_TOKEN="YOUR-INSTAGRAM-CSRF-TOKEN"
 ```
 
 ### Getting the Session info
+
+> **Warning**
+> DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
 
 1. Open the browser in incognito mode.
 
