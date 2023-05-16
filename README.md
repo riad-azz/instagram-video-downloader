@@ -92,13 +92,13 @@ The website has been getting spammed a lot which was resulting in the session be
 
 [Upstash](https://upstash.com/) is used for rate limiting and stopping spam. You can enable it by creating your own account and setting up the environment variables in `.env.local` .
 
+All ratelimit configs can be found in `src/config/upstash.ts`.
+
 ```env
 USE_UPSTASH="true"
 UPSTASH_URL="YOUR-UPSTASH-URL"
 UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
-
-All ratelimit configs can be found in `src/config/upstash.ts`.
 
 If you would like to change the ban identifier (default is IP) you can change it in `src/middleware.ts`.
 
