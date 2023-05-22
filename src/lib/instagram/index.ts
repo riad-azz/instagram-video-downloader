@@ -5,7 +5,7 @@ import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
-import { enableApiUser, enableIGSession } from "@/config/instagram";
+import { enableApiUser, enableIGSession } from "@/configs/instagram";
 
 export const formatDownloadJson = (postId: string, json: VideoJson) => {
   const username = json.username;

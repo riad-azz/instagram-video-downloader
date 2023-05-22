@@ -1,4 +1,4 @@
-import { enableIGSession } from "@/config/instagram";
+import { enableIGSession } from "@/configs/instagram";
 import { BadRequest, TimeoutException } from "@/exceptions";
 import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
 import { isValidSession } from "@/lib/instagram/instagramAPI";

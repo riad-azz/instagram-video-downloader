@@ -16,7 +16,7 @@ import {
   enableApiGuest,
   enableApiUser,
   enableIGSession,
-} from "@/config/instagram";
+} from "@/configs/instagram";
 
 export const isValidSession = () => {
   if (!userId) {

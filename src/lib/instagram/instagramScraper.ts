@@ -5,7 +5,7 @@ import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
 
 import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
-import { enableIGScraper } from "@/config/instagram";
+import { enableIGScraper } from "@/configs/instagram";
 
 const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;

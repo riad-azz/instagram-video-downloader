@@ -10,7 +10,7 @@ import {
   upstashBanDuration,
   maxRequests,
   maxRequestsDuration,
-} from "@/config/upstash";
+} from "@/configs/upstash";
 
 const isValidUpstash = () => {
   if (!upstashUrl) {

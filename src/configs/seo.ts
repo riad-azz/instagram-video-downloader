@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/configs/site";
 import { Metadata } from "next";
 
 export const instagramMetadata: Metadata = {
