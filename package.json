@@ -22,7 +22,7 @@
     "cheerio": "^1.0.0-rc.12",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
-    "next": "^13.4.2",
+    "next": "^13.4.4",
     "next-themes": "^0.2.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
