@@ -1,7 +1,7 @@
 import { siteConfig } from "@/configs/site";
 import { Metadata } from "next";
 
-export const instagramMetadata: Metadata = {
+export const mainMetadata: Metadata = {
   title: "Download Instagram videos and reels for free",
   description: siteConfig.description,
   keywords: [

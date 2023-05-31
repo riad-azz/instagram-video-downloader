@@ -5,7 +5,7 @@ export const enableApiGuest = true;
 export const enableApiUser = false;
 const isUsingSession = process.env.USE_IG_SESSION ?? "";
 export const enableIGSession = isUsingSession === "true";
-// Login vars
+// Session vars
 export const userId = process.env.USER_ID ?? "";
 export const sessionId = process.env.SESSION_ID ?? "";
 export const csrfToken = process.env.CSRF_TOKEN ?? "";

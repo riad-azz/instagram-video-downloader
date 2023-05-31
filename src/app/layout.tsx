@@ -1,7 +1,7 @@
 import { ABeeZee as MainFont } from "next/font/google";
 
 import "@/styles/globals.css";
-import { instagramMetadata } from "@/configs/seo";
+import { mainMetadata } from "@/configs/seo";
 
 import Provider from "@/components/Provider";
 
@@ -10,7 +10,7 @@ const mainFont = MainFont({
   subsets: ["latin"],
 });
 
-export const metadata = instagramMetadata;
+export const metadata = mainMetadata;
 
 export default function RootLayout({
   children,
