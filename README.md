@@ -10,10 +10,6 @@ _PS: Instagram stories aren't supported._
 
 **You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)**
 
-> **Note**
-> This mainly works on posts with `application/ld+json` script present in the html.
-> If its missing the app will try to fallback on the API but its not that stable due to vercel being serverless.
-
 ## Website Preview
 
 ### Dark/Light themes
@@ -103,6 +99,10 @@ UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 If you would like to change the ban identifier (default is IP) you can change it in `src/middleware.ts`.
 
 ## Instagram Graphql API Option
+
+> **Note**
+> This performs better if hosted on the cloud rather than serverless.
+> In serverless your session will get suspended easily due to the account being accessed from many regions at once.
 
 This is a fallback in case the page scraping doesn't work.
 

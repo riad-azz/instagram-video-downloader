@@ -10,6 +10,10 @@ import { enableIGScraper } from "@/configs/instagram";
 const formatPageJson = (json: ScrapedPost) => {
   const videoList = json.video;
 
+  if (!videoList) {
+    throw new BadRequest("This post does not contain a video");
+  }
+
   if (videoList.length === 0) {
     throw new BadRequest("This post does not contain a video");
   }
