@@ -100,13 +100,10 @@ If you would like to change the ban identifier (default is IP) you can change it
 
 ## Instagram Graphql API Option
 
-This is a fallback in case the page scraping doesn't work.
+This is a fallback in case the page scraping doesn't work. This works better if hosted on your own cloud instance rather than serverless.
+In serverless your session will get suspended easily due to the account being accessed from different regions at once.
 
 The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
-
-> **Note**
-> This performs better if hosted on the cloud rather than serverless.
-> In serverless your session will get suspended easily due to the account being accessed from many regions at once.
 
 All Instagram configs can be found in `src/configs/instagram.ts`.
 
