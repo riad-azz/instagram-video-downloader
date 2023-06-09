@@ -7,8 +7,21 @@ import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
 import { BadRequest } from "@/exceptions";
 import { enableIGScraper } from "@/configs/instagram";
 
-const formatPageJson = (json: ScrapedPost) => {
-  const videoList = json.video;
+const formatPageJson = (json: any) => {
+  let scrapedPost;
+  console.log(json);
+
+  if (Array.isArray(json)) {
+    scrapedPost = json.find((item: any) => item.video);
+  } else {
+    scrapedPost = json;
+  }
+
+  if (!scrapedPost) {
+    return null;
+  }
+
+  const videoList = scrapedPost.video;
 
   if (!videoList) {
     throw new BadRequest("This post does not contain a video");
@@ -21,7 +34,7 @@ const formatPageJson = (json: ScrapedPost) => {
   const video: PostJsonVideo = videoList[0];
 
   const videoJson: VideoJson = {
-    username: json.author.identifier.value,
+    username: scrapedPost.author.identifier.value,
     width: video.width,
     height: video.height,
     caption: video.caption,
@@ -72,7 +85,7 @@ export const fetchFromPage = async ({
   }
 
   const jsonText: string = jsonElement.text();
-  const json: ScrapedPost = JSON.parse(jsonText);
+  const json = JSON.parse(jsonText);
   const formattedJson = formatPageJson(json);
   return formattedJson;
 };
