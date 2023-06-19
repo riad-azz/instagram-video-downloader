@@ -14,9 +14,9 @@ You can preview and try the website live in vercel here : [riad-insta.vercel.app
 
 The frontend includes the following:
 
-* Dark/Light themes supported.
-* Responsive UI on mobile.
-* Easy and User friendly UI (Interactions feedback and error messages).
+- Dark/Light themes supported.
+- Responsive UI on mobile.
+- Easy and User friendly UI (Interactions feedback and error messages).
 
 ![Website preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/website-preview.png?raw=true)
 
@@ -96,7 +96,7 @@ The API is pretty simple and straightforward.
 
 Parameters :
 
-* `url` : Instagram Post or Reel link **(required)**.
+- `url` : Instagram Post or Reel link **(required)**.
 
 `GET Request example`
 
