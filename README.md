@@ -8,37 +8,27 @@ A website that lets you download Instagram videos easily and quickly. You can pa
 
 _PS: Instagram stories aren't supported._
 
-**You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)**
+You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)
 
 ## Website Preview
 
-### Dark/Light themes
+The frontend includes the following:
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-01.png?raw=true)
+* Dark/Light themes supported.
+* Responsive UI on mobile.
+* Easy and User friendly UI (Interactions feedback and error messages).
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-02.png?raw=true)
+![Website preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/website-preview.png?raw=true)
 
-### Fetching/Error handling
+## Getting Started
 
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-03.png?raw=true)
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-04.png?raw=true)
-
-### Responsive on mobile
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-05.png?raw=true)
-
-![webpage preview image](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-06.png?raw=true)
-
-## Installation & Running
-
-### 1.Cloning the repository
+1.Cloning the repository
 
 ```bash
 git clone https://github.com/riad-azz/instagram-video-downloader.git
 ```
 
-### 2.Installing dependencies
+2.Installing dependencies
 
 ```bash
 cd instagram-video-downloader
@@ -48,7 +38,7 @@ cd instagram-video-downloader
 npm install
 ```
 
-### 3.Starting the server
+3.Starting the server
 
 ```bash
 # Development
@@ -61,7 +51,7 @@ npm run build
 npm run start
 ```
 
-### 4.Testing
+4.Testing
 
 I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
 
@@ -82,13 +72,11 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
-## Rate limiter
+## Rate Limiter - Upstash
 
-The website has been getting spammed a lot which was resulting in the session being terminated repeatably so i decided to add rate limiting.
+In order to reduce the load on the API and ensure optimal performance, I have implemented rate limiting using Upstash. This integration allows me to restrict the number of requests made to the API within a specified time frame, preventing excessive traffic and potential service disruptions.
 
-[Upstash](https://upstash.com/) is used for rate limiting and stopping spam. You can enable it by creating your own account and setting up the environment variables in `.env.local` .
-
-All ratelimit configs can be found in `src/configs/upstash.ts`.
+To set up Upstash create `.env.local` file and insert your `URL` and `Token`:
 
 ```env
 USE_UPSTASH="true"
@@ -96,74 +84,29 @@ UPSTASH_URL="YOUR-UPSTASH-URL"
 UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
 
-If you would like to change the ban identifier (default is IP) you can change it in `src/middleware.ts`.
+All ratelimit configs can be found in `src/configs/upstash.ts`.
 
-## Instagram Graphql API Option
-
-This is a fallback in case the page scraping doesn't work. This works better if hosted on your own cloud instance rather than serverless.
-In serverless your session will get suspended easily due to the account being accessed from different regions at once.
-
-The application already uses instagram API as a fallback but as a Guest (Not authorized) so it will be rate limited every few requests (around 20 - 30) or in case of spam.
-
-All Instagram configs can be found in `src/configs/instagram.ts`.
-
-In order to enable this follow the steps:
-
-1. Create `.env.local` file.
-2. Copy and paste the content of `.env.example` in your `.env.local` file.
-3. set `USE_IG_SESSION` to `true`.
-4. Fill in the rest of variables with your dummy account session info.
-
-```env
-USE_IG_SESSION="true"
-USER_ID="YOUR-INSTAGRAM-USER-ID"
-SESSION_ID="YOUR-INSTAGRAM-SESSION-ID"
-CSRF_TOKEN="YOUR-INSTAGRAM-CSRF-TOKEN"
-```
-
-### Getting the Session info
-
-> **Warning**
-> DO NOT USE YOUR REAL ACCOUNT AND DO NOT SHARE THE SESSION INFO WITH ANYONE
-
-1. Open the browser in incognito mode.
-
-2. Login to your dummy account.
-
-3. Open the dev tool in your browser.
-
-4. Visit this instagram endpoint : [Shared Data endpoint](https://www.instagram.com/data/shared_data/).
-
-5. Get the info from the request headers (Check the image below).
-
-Note : if the network tab is empty just refresh the page and the request will appear.
-
-![Session info image tutorial](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/sc-07.png?raw=true)
+If you would like to change the identifier (default is IP) you can change it in `src/middleware.ts`.
 
 ## API Documentation
 
 The API is pretty simple and straightforward.
 
-Endpoint `/api/instagram` takes an Instagram **Post** or **Reel** link as a param `url` (required).
+### Endpoint: /api?url={POST_URL}
 
-`GET /api/instagram?url={POST_URL}`
+Parameters :
+
+* `url` : Instagram Post or Reel link **(required)**.
+
+`GET Request example`
 
 ```bash
-curl -i "https://riad-insta.vercel.app/api/instagram?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "https://riad-insta.vercel.app/api?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
-```bash
-{
-  "username": string; # Poster username
-  "caption": string; # Post caption
-  "width": string; # Video width ex. 1920
-  "height": string; # Video height ex. 1080
-  "downloadUrl": string; # MP4 file link
-  "thumbnailUrl": string; # Thumbnail image link
-}
-```
+`GET Response preview`
 
-API live response example : [https://riad-insta.vercel.app/api/example](https://riad-insta.vercel.app/api/instagram?url=https://www.instagram.com/p/CGh4a0iASGS)
+![API response preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/api-response.png?raw=true)
 
 ## License
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { TimeoutException } from "@/exceptions";
 import { NextRequest } from "next/server";
+import { IAxiosFetchFunction } from "@/types";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299",
@@ -15,16 +16,6 @@ const userAgents = [
 export const getRandomUserAgent = () => {
   return userAgents[Math.floor(Math.random() * userAgents.length)];
 };
-
-interface IAxiosFetchFunction {
-  credentials?: boolean;
-  url: string;
-  headers?: object;
-  timeout?: number;
-  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
-  data?: any;
-  throwError?: boolean;
-}
 
 export const axiosFetch = async ({
   credentials = false,

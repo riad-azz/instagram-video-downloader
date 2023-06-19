@@ -57,7 +57,7 @@ const downloadVideo = async (filename: string, downloadUrl: any) => {
 };
 
 const fetchVideo = async (postUrl: string) => {
-  const response = await fetch(`/api/instagram?url=${postUrl}`, {
+  const response = await fetch(`/api?url=${postUrl}`, {
     method: "POST",
   });
 

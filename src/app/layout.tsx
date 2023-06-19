@@ -1,9 +1,7 @@
 import { ABeeZee as MainFont } from "next/font/google";
-
-import "@/styles/globals.css";
-import { mainMetadata } from "@/configs/seo";
-
 import Provider from "@/components/Provider";
+import { mainMetadata } from "@/configs/seo";
+import "@/styles/globals.css";
 
 const mainFont = MainFont({
   weight: "400",

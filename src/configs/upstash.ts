@@ -5,7 +5,7 @@ const isUsingUpstash = process.env.USE_UPSTASH ?? "";
 export const enableUpstash = isUsingUpstash === "true";
 // Ratelimit configs
 export const maxRequests = 5; // Max requests per IP
-export const maxRequestsDuration = "1 m"; // 5 requests allowed every 1 min
+export const requestsWindow = "1 m"; // 5 requests allowed every 1 min
 // Ban configs
 export const upstashBanEnabled = false; // Ban user by ip in case of spam
-export const upstashBanDuration = 86400; // 24 hours;
+export const upstashBanDuration = 14400; // 4 hours;

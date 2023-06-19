@@ -1,9 +1,9 @@
 import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "Riad Insta",
+  name: "Free Insta Downloader",
   description:
-    "Riad Insta is a tool that lets you download Instagram content in high quality for free. You can save videos and reels with a few steps with no login required.",
+    "Free Insta Downloader is a tool that lets you download Instagram content in high quality for free. You can save videos and reels with a few steps with no login required.",
   url: "https://riad-insta.vercel.app/",
   ogImageUrl: "https://riad-insta.vercel.app/og.png",
   links: {

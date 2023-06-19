@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="flex w-full items-center md:gap-2">
         {/* Logo */}
         <div className="mr-auto w-fit">
-          <LogoLink title="Riad-Insta" />
+          <LogoLink title="Insta Downloader" />
         </div>
         {/* Dropdown menu button */}
         <MenuButton onClick={() => setShowMenu(!showMenu)} />
@@ -31,7 +31,7 @@ const Navbar = () => {
             target="_blank"
             href="https://github.com/riad-azz/instagram-videos-downloader"
           >
-            {<Icons.github />}
+            <Icons.github />
             <span>Source Code</span>
           </NavLink>
         </ul>
@@ -48,7 +48,7 @@ const Navbar = () => {
           target="_blank"
           href="https://github.com/riad-azz/instagram-videos-downloader"
         >
-          {<Icons.github />}
+          <Icons.github />
           <span>Source Code</span>
         </MobileMenuLink>
       </ul>

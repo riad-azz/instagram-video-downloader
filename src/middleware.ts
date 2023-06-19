@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isNotRatelimited } from "./lib/rate-limiter";
-import { getClientIp } from "@/lib/helpers";
+import { isRatelimited } from "./lib/rate-limiter";
+import { getClientIp } from "@/lib/utils";
+import { upstashBanDuration } from "./configs/upstash";
 
 const isStaticPath = (path: string) => {
   return (
@@ -23,11 +24,12 @@ export async function middleware(request: NextRequest) {
   }
 
   if (requestPath.startsWith("/api")) {
-    const notLimited = await isNotRatelimited(request);
-    if (!notLimited) {
+    const isLimited = await isRatelimited(request);
+    if (isLimited) {
+      const banDuration = Math.floor(upstashBanDuration / 60 / 60); // Ban duration in hours
       return NextResponse.json(
         {
-          error: "Too many requests you have been banned for 24 hours.",
+          error: `Too many requests, you have been banned for ${banDuration} hours.`,
         },
         { status: 429 }
       );

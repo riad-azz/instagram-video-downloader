@@ -1,4 +1,4 @@
-export type ScrapedPost = {
+export type PostJSON = {
   articleBody: string;
   author: Author;
   comment: Comment;
@@ -59,7 +59,7 @@ export type MainEntityOfPage = {
   "@id": string;
 };
 
-export type PostJsonVideo = {
+export type PostVideo = {
   "@type": string;
   uploadDate: string;
   description: string;

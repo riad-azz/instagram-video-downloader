@@ -1,6 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { getClientIp } from "./helpers";
+import { getClientIp } from "./utils";
 import { NextRequest } from "next/server";
 import {
   upstashToken,
@@ -9,7 +9,7 @@ import {
   upstashBanEnabled,
   upstashBanDuration,
   maxRequests,
-  maxRequestsDuration,
+  requestsWindow,
 } from "@/configs/upstash";
 
 const isValidUpstash = () => {
@@ -32,32 +32,32 @@ export const redisClient = new Redis({
 // Create a new ratelimiter, that allows 1 requests per 1 minute
 export const ratelimit = new Ratelimit({
   redis: redisClient,
-  limiter: Ratelimit.fixedWindow(maxRequests, maxRequestsDuration),
+  limiter: Ratelimit.slidingWindow(maxRequests, requestsWindow),
 });
 
-export const isNotRatelimited = async (request: NextRequest) => {
-  if (!enableUpstash) return true;
+export const isRatelimited = async (request: NextRequest) => {
+  if (!enableUpstash) return false;
 
   // Check if upstash variables are set correctly
   const validUpstash = isValidUpstash();
-  if (!validUpstash) return true;
+  if (!validUpstash) return false;
 
   try {
-    const clientIp = getClientIp(request);
-    const identifier = clientIp ?? "riad-insta";
+    const identifier = getClientIp(request);
+    if (!identifier) return false;
     const result = await ratelimit.limit(identifier);
+    if (result.success) return false;
     // Ban user if ratelimit exceeded
-    if (!result.success && upstashBanEnabled) {
-      // Ban spammer for 24 hours
+    if (upstashBanEnabled) {
       await redisClient.setex(
         `ban:${identifier}`,
         upstashBanDuration,
         "banned"
       );
     }
-    return result.success;
+    return true;
   } catch (error: any) {
     console.error(error.message);
-    return true;
+    return false;
   }
 };

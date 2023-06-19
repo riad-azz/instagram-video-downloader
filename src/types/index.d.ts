@@ -23,6 +23,16 @@ export type DownloadJson = {
   downloadUrl: string;
 };
 
+export interface IAxiosFetchFunction {
+  credentials?: boolean;
+  url: string;
+  headers?: object;
+  timeout?: number;
+  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
+  data?: any;
+  throwError?: boolean;
+}
+
 export interface IFetchPostFunction {
   postUrl: string;
   timeout?: number;

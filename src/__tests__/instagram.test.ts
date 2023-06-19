@@ -1,7 +1,5 @@
-import { enableIGSession } from "@/configs/instagram";
 import { BadRequest, TimeoutException } from "@/exceptions";
 import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
-import { isValidSession } from "@/lib/instagram/instagramAPI";
 
 // URL for post page with ld+json included
 const postUrl = "https://www.instagram.com/p/CGh4a0iASGS";
@@ -62,13 +60,3 @@ describe("timeout-fetchPostJson", () => {
     }
   });
 });
-
-// Check if session variables are correct if its enabled
-if (enableIGSession) {
-  describe("valid-session-variables", () => {
-    it("should return a VideoJson object", async () => {
-      const validSession = isValidSession();
-      expect(validSession).toBe(true);
-    });
-  });
-}

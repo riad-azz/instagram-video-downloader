@@ -1,15 +1,14 @@
 import { load } from "cheerio";
 
 import { IFetchPostFunction, VideoJson } from "@/types";
-import { ScrapedPost, PostJsonVideo } from "@/types/instagramScraper";
+import { PostVideo } from "@/types/instagramScraper";
 
-import { axiosFetch, getRandomUserAgent } from "@/lib/helpers";
+import { axiosFetch, getRandomUserAgent } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
-import { enableIGScraper } from "@/configs/instagram";
+import { enableScraper } from "@/configs/instagram";
 
 const formatPageJson = (json: any) => {
   let scrapedPost;
-  console.log(json);
 
   if (Array.isArray(json)) {
     scrapedPost = json.find((item: any) => item.video);
@@ -31,7 +30,7 @@ const formatPageJson = (json: any) => {
     throw new BadRequest("This post does not contain a video");
   }
 
-  const video: PostJsonVideo = videoList[0];
+  const video: PostVideo = videoList[0];
 
   const videoJson: VideoJson = {
     username: scrapedPost.author.identifier.value,
@@ -53,7 +52,7 @@ export const fetchFromPage = async ({
     "User-Agent": getRandomUserAgent(),
   };
 
-  if (!enableIGScraper) {
+  if (!enableScraper) {
     console.log("Instagram Scraper is disabled in @config/instagram");
     return null;
   }
