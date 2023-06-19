@@ -98,13 +98,13 @@ Parameters :
 
 - `url` : Instagram Post or Reel link **(required)**.
 
-`GET Request example`
+#### GET Request example
 
 ```bash
 curl -i "https://riad-insta.vercel.app/api?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
-`GET Response preview`
+#### API Response
 
 ![API response preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/api-response.png?raw=true)
 
