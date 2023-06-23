@@ -2,6 +2,7 @@ import { siteConfig } from "@/configs/site";
 import { Metadata } from "next";
 
 export const mainMetadata: Metadata = {
+  metadataBase: new URL("https://riad-insta.vercel.app"),
   title: "Download Instagram videos and reels for free",
   description: siteConfig.description,
   keywords: [
@@ -55,6 +56,29 @@ export const mainMetadata: Metadata = {
     description: siteConfig.description,
     images: [siteConfig.ogImageUrl],
     creator: "@riadazz",
+  },
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
   },
   icons: {
     icon: "/favicon.ico",

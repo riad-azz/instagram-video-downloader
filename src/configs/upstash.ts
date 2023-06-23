@@ -7,5 +7,5 @@ export const enableUpstash = isUsingUpstash === "true";
 export const maxRequests = 5; // Max requests per IP
 export const requestsWindow = "1 m"; // 5 requests allowed every 1 min
 // Ban configs
-export const upstashBanEnabled = false; // Ban user by ip in case of spam
+export const upstashBanEnabled = true; // Ban user by ip in case of spam
 export const upstashBanDuration = 14400; // 4 hours;

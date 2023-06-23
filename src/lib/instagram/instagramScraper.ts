@@ -57,12 +57,8 @@ export const fetchFromPage = async ({
     return null;
   }
 
-  const scrapeUrl =
-    postUrl +
-    "/?utm_source=ig_web_copy_link&igshid=MzRlODBiNWFlZA==&surface=comet";
-
   const response = await axiosFetch({
-    url: scrapeUrl,
+    url: postUrl,
     headers,
     timeout,
   });
@@ -79,7 +75,6 @@ export const fetchFromPage = async ({
   const jsonElement = $("script[type='application/ld+json']");
 
   if (jsonElement.length === 0) {
-    console.log("No JSON element found in Instagram Scraper");
     return null;
   }
 
