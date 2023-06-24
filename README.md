@@ -72,18 +72,18 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
-## Instagram API
+## Authenticated Instagram API
 
-Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the Session cookie, but to put it simply you just have to login to your Instagram account and open the developer tools of your browser then go to the networking tab and you should be able to find your Session cookie in the request headers.
+Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the **Session Cookie**, but to put it simply you have to login to your Instagram account and open the developer tools of your browser and go to the networking tab and you should be able to find your **Session Cookie** in the request headers.
 
-I do not recommend this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from many different regions.
+**I do not** recommend using this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from different regions.
 
 To enable this simply follow these steps:
 
 1. Set `enableUserApi` to `true` in `src/configs/instagram.ts` .
 2. Create `.env.local` file in the root directory of the project.
 3. Get your Session Cookie from Instagram (I recommend using a dummy account for this).
-4. Copy the Cookie and paste it in the `.env.local` as `AUTH_COOKIE` file that you created.
+4. Copy the Session Cookie and paste it in the `.env.local` as `AUTH_COOKIE` file that you created.
 
 This is how your `.env.local` should look like:
 
@@ -98,13 +98,13 @@ If you are confused just check `.env.example` and copy whats there then replace 
 For example (this is not a real cookie just for demonstration) :
 
 ```env
-AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb"'
+AUTH_COOKIE='...etc; rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb";'
 ```
 
 This will become :
 
 ```env
-AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb"'
+AUTH_COOKIE='..etc; rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb";'
 ```
 
 ## Rate Limiter - Upstash
