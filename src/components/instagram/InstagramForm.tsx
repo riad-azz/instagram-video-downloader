@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { DownloadButton } from "./DownloadButton";
 import { Exception, ClientException } from "@/exceptions";
+import { apiBaseUrl } from "@/configs/instagram";
 
 const validateInput = (postUrl: string) => {
   if (!postUrl) {
@@ -57,7 +58,7 @@ const downloadVideo = async (filename: string, downloadUrl: any) => {
 };
 
 const fetchVideo = async (postUrl: string) => {
-  const response = await fetch(`/api?url=${postUrl}`, {
+  const response = await fetch(`${apiBaseUrl}?url=${postUrl}`, {
     method: "POST",
   });
 

@@ -1,4 +1,4 @@
-import { ABeeZee as MainFont } from "next/font/google";
+import { DM_Sans as MainFont } from "next/font/google";
 import Provider from "@/components/Provider";
 import { mainMetadata } from "@/configs/seo";
 import "@/styles/globals.css";

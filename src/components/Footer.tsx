@@ -17,14 +17,20 @@ const Footer = () => {
         </span>
         <div className="mt-3 flex items-center gap-2 text-sm sm:text-center md:mt-0">
           <Icons.github />
-          <span>Full Open Source project</span>
+          <a
+            target="_blank"
+            href="https://github.com/riad-azz/instagram-video-downloader/"
+            className="block text-gray-700 hover:underline dark:text-gray-200"
+          >
+            Open Source project
+          </a>
         </div>
-        <ul className="mt-3 flex flex-wrap items-center text-sm font-medium md:mt-0">
+        <ul className="mt-3 flex flex-wrap items-center gap-4 text-sm font-medium md:mt-0">
           <li>
             <a
               target="_blank"
               href="https://github.com/riad-azz/instagram-video-downloader/blob/master/LICENSE.md"
-              className="mr-4 hover:underline md:mr-6"
+              className="hover:underline"
             >
               Licensing
             </a>

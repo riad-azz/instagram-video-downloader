@@ -1,8 +1,8 @@
-export interface IconSize {
+export interface IIcon {
   size?: number;
 }
 
-const Menu = ({ size = 24 }: IconSize) => {
+const Menu: React.FC<IIcon> = ({ size = 24 }) => {
   return (
     <svg
       width={size}
@@ -21,7 +21,7 @@ const Menu = ({ size = 24 }: IconSize) => {
   );
 };
 
-const Download = ({ size = 16 }: IconSize) => {
+const Download: React.FC<IIcon> = ({ size = 16 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -37,7 +37,7 @@ const Download = ({ size = 16 }: IconSize) => {
   );
 };
 
-const Spinner = ({ size = 20 }: IconSize) => {
+const Spinner: React.FC<IIcon> = ({ size = 20 }) => {
   return (
     <svg
       width={size}
@@ -61,46 +61,7 @@ const Spinner = ({ size = 20 }: IconSize) => {
   );
 };
 
-const Moon = ({ size = 20 }: IconSize) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-    </svg>
-  );
-};
-
-const Sun = ({ size = 20 }: IconSize) => {
-  return (
-    <svg
-      width={size}
-      height={size}
-      aria-hidden="true"
-      fill="currentColor"
-      viewBox="0 0 20 20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-        fillRule="evenodd"
-        clipRule="evenodd"
-      ></path>
-    </svg>
-  );
-};
-
-const Theme = ({ size = 20 }: IconSize) => {
+const Theme: React.FC<IIcon> = ({ size = 20 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -128,7 +89,7 @@ const Theme = ({ size = 20 }: IconSize) => {
   );
 };
 
-const Github = ({ size = 24 }: IconSize) => {
+const Github: React.FC<IIcon> = ({ size = 24 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -143,7 +104,7 @@ const Github = ({ size = 24 }: IconSize) => {
   );
 };
 
-const Logo = ({ size = 20 }: IconSize) => {
+const Logo: React.FC<IIcon> = ({ size = 20 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -183,13 +144,79 @@ const Logo = ({ size = 20 }: IconSize) => {
   );
 };
 
+const Home: React.FC<IIcon> = ({ size = 20 }) => {
+  return (
+    <svg
+      fill="currentColor"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 495.398 495.398"
+      width={size}
+      height={size}
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <g>
+          <g>
+            <g>
+              <path d="M487.083,225.514l-75.08-75.08V63.704c0-15.682-12.708-28.391-28.413-28.391c-15.669,0-28.377,12.709-28.377,28.391 v29.941L299.31,37.74c-27.639-27.624-75.694-27.575-103.27,0.05L8.312,225.514c-11.082,11.104-11.082,29.071,0,40.158 c11.087,11.101,29.089,11.101,40.172,0l187.71-187.729c6.115-6.083,16.893-6.083,22.976-0.018l187.742,187.747 c5.567,5.551,12.825,8.312,20.081,8.312c7.271,0,14.541-2.764,20.091-8.312C498.17,254.586,498.17,236.619,487.083,225.514z"></path>{" "}
+              <path d="M257.561,131.836c-5.454-5.451-14.285-5.451-19.723,0L72.712,296.913c-2.607,2.606-4.085,6.164-4.085,9.877v120.401 c0,28.253,22.908,51.16,51.16,51.16h81.754v-126.61h92.299v126.61h81.755c28.251,0,51.159-22.907,51.159-51.159V306.79 c0-3.713-1.465-7.271-4.085-9.877L257.561,131.836z"></path>{" "}
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+const About: React.FC<IIcon> = ({ size = 25 }) => {
+  return (
+    <svg
+      viewBox="0 0 512 512"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      width={size}
+      height={size}
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <g
+          id="Page-1"
+          stroke="none"
+          strokeWidth="1"
+          fill="none"
+          fillRule="evenodd"
+        >
+          <g fill="currentColor" transform="translate(42.666667, 42.666667)">
+            <path
+              d="M213.333333,3.55271368e-14 C95.51296,3.55271368e-14 3.55271368e-14,95.51168 3.55271368e-14,213.333333 C3.55271368e-14,331.153707 95.51296,426.666667 213.333333,426.666667 C331.154987,426.666667 426.666667,331.153707 426.666667,213.333333 C426.666667,95.51168 331.154987,3.55271368e-14 213.333333,3.55271368e-14 Z M213.333333,384 C119.227947,384 42.6666667,307.43872 42.6666667,213.333333 C42.6666667,119.227947 119.227947,42.6666667 213.333333,42.6666667 C307.44,42.6666667 384,119.227947 384,213.333333 C384,307.43872 307.44,384 213.333333,384 Z M240.04672,128 C240.04672,143.46752 228.785067,154.666667 213.55008,154.666667 C197.698773,154.666667 186.713387,143.46752 186.713387,127.704107 C186.713387,112.5536 197.99616,101.333333 213.55008,101.333333 C228.785067,101.333333 240.04672,112.5536 240.04672,128 Z M192.04672,192 L234.713387,192 L234.713387,320 L192.04672,320 L192.04672,192 Z"
+              id="Shape"
+            ></path>
+          </g>
+        </g>
+      </g>
+    </svg>
+  );
+};
+
 export const Icons = {
   logo: Logo,
   menu: Menu,
+  home: Home,
+  about: About,
   download: Download,
   loading: Spinner,
-  darkMode: Moon,
-  lightMode: Sun,
   themeMode: Theme,
   github: Github,
 };

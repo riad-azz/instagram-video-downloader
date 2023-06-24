@@ -3,7 +3,7 @@ import { load } from "cheerio";
 import { IFetchPostFunction, VideoJson } from "@/types";
 import { PostVideo } from "@/types/instagramScraper";
 
-import { axiosFetch, getRandomUserAgent } from "@/lib/utils";
+import { axiosFetch, getHeaders, getRandomUserAgent } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
 
@@ -48,9 +48,7 @@ export const fetchFromPage = async ({
   postUrl,
   timeout,
 }: IFetchPostFunction) => {
-  const headers = {
-    "User-Agent": getRandomUserAgent(),
-  };
+  const headers = getHeaders();
 
   if (!enableScraper) {
     console.log("Instagram Scraper is disabled in @config/instagram");

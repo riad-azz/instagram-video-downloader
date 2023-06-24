@@ -72,6 +72,41 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
+## Instagram API
+
+Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the Session cookie, but to put it simply you just have to login to your Instagram account and open the developer tools of your browser then go to the networking tab and you should be able to find your Session cookie in the request headers.
+
+I do not recommend to host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from many different regions.
+
+To enable this simply follow these steps:
+
+1. Set `enableUserApi` to `true` in `src/configs/instagram.ts` .
+2. Create `.env.local` file in the root directory of the project.
+3. Get your Session Cookie from Instagram (I recommend using a dummy account for this).
+4. Copy the Cookie and paste it in the `.env.local` as `AUTH_COOKIE` file that you created.
+
+This is how your `.env.local` should look like:
+
+```env
+AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
+```
+
+If you are confused just check `.env.example` and copy whats there then replace with your Session cookie.
+
+**Note** : If your cookie contains `\054` which most likely it wil, this is known as an octal escape sequence you will have to escape all of them by adding backslash so it looks like this `\\054`. If you don't do this you will get an error and the app won't run.
+
+For example (this is not a real cookie just for demonstration) :
+
+```env
+AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb186535bb2715a59ec86d4"'
+```
+
+This will become :
+
+```env
+AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb186535bb2715a59ec86d4"'
+```
+
 ## Rate Limiter - Upstash
 
 In order to reduce the load on the API and ensure optimal performance, I have implemented rate limiting using Upstash. This integration allows me to restrict the number of requests made to the API within a specified time frame, preventing excessive traffic and potential service disruptions.
