@@ -76,7 +76,7 @@ npx jest -t "success-fetchPostJson"
 
 Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the Session cookie, but to put it simply you just have to login to your Instagram account and open the developer tools of your browser then go to the networking tab and you should be able to find your Session cookie in the request headers.
 
-I do not recommend to host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from many different regions.
+I do not recommend this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from many different regions.
 
 To enable this simply follow these steps:
 
@@ -93,18 +93,18 @@ AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
 
 If you are confused just check `.env.example` and copy whats there then replace with your Session cookie.
 
-**Note** : If your cookie contains `\054` which most likely it wil, this is known as an octal escape sequence you will have to escape all of them by adding backslash so it looks like this `\\054`. If you don't do this you will get an error and the app won't run.
+**Note** : If your cookie contains `\054` which most likely it will, this is known as an octal escape sequence and you will have to escape all of them by adding backslash `\\054`. If you don't do this you will get an error and the app won't run.
 
 For example (this is not a real cookie just for demonstration) :
 
 ```env
-AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb186535bb2715a59ec86d4"'
+AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb"'
 ```
 
 This will become :
 
 ```env
-AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb186535bb2715a59ec86d4"'
+AUTH_COOKIE='sessionid=665465&sd44d.....rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb"'
 ```
 
 ## Rate Limiter - Upstash
