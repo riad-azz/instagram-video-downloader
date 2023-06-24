@@ -55,8 +55,6 @@ npm run start
 
 I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
 
-> Run all tests
-
 ```bash
 # Run all tests
 npm run test
@@ -65,7 +63,7 @@ npm run test
 > Run a single test
 
 ```bash
-# Command
+# Run a single test
 npx jest -t "<test-name>"
 
 # Example
@@ -85,23 +83,23 @@ To enable this simply follow these steps:
 3. Get your Session Cookie from Instagram (I recommend using a dummy account for this).
 4. Copy the Session Cookie and paste it in the `.env.local` as `AUTH_COOKIE` file that you created.
 
+If you are confused just check `.env.example` and copy whats there then replace with your Session cookie.
+
 This is how your `.env.local` should look like:
 
 ```env
 AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
 ```
 
-If you are confused just check `.env.example` and copy whats there then replace with your Session cookie.
-
 **Note** : If your cookie contains `\054` which most likely it will, this is known as an octal escape sequence and you will have to escape all of them by adding backslash `\\054`. If you don't do this you will get an error and the app won't run.
 
-For example (this is not a real cookie just for demonstration) :
+Here is an example (this is not a real cookie it's just for demonstration) :
 
 ```env
 AUTH_COOKIE='...etc; rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb";'
 ```
 
-This will become :
+After adding the backslash to all the octal escape sequence it should look like this :
 
 ```env
 AUTH_COOKIE='..etc; rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb";'
