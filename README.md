@@ -53,7 +53,7 @@ npm run start
 
 4.Testing
 
-I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/tests`.
+I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/__tests__`.
 
 ```bash
 # Run all tests
