@@ -73,6 +73,7 @@ export const fetchFromPage = async ({
   const jsonElement = $("script[type='application/ld+json']");
 
   if (jsonElement.length === 0) {
+    console.log("LD+JSON not available for this post");
     return null;
   }
 
