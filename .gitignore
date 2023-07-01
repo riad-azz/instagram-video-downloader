@@ -16,6 +16,9 @@
 # production
 /build
 
+# Google Search console
+**/google*.html
+
 # misc
 .DS_Store
 *.pem
