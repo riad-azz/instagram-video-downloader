@@ -119,8 +119,8 @@ If you would like to change the identifier (default is IP) you can change it in 
 
 The API is disabled by default but you can enable it by :
 
-1. Go to `src/configs/instagram.ts` 
-2. Set `enableServerAPI` to `true`. 
+1. Go to `src/configs/instagram.ts`
+2. Set `enableServerAPI` to `true`.
 
 Now you can use `/api` from outside applications. Don't forget to configure the CORS settings in `next.config.js`.
 
