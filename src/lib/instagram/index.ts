@@ -1,6 +1,6 @@
-import { VideoJson, DownloadJson, IFetchPostFunction } from "@/types";
+import { VideoJson, DownloadJson, FetchPostProps } from "@/types";
 
-import { axiosFetch, getHeaders, getRandomUserAgent } from "@/lib/utils";
+import { axiosFetch, getHeaders } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
@@ -47,7 +47,7 @@ export const getPostId = (postUrl: string | null) => {
   return postId;
 };
 
-export const pageExist = async ({ postUrl, timeout }: IFetchPostFunction) => {
+export const pageExist = async ({ postUrl, timeout }: FetchPostProps) => {
   const headers = getHeaders();
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";

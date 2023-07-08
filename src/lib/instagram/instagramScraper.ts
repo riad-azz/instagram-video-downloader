@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 
-import { IFetchPostFunction, VideoJson } from "@/types";
+import { FetchPostProps, VideoJson } from "@/types";
 import { PostVideo } from "@/types/instagramScraper";
 
 import { axiosFetch, getHeaders, getRandomUserAgent } from "@/lib/utils";
@@ -44,10 +44,7 @@ const formatPageJson = (json: any) => {
   return videoJson;
 };
 
-export const fetchFromPage = async ({
-  postUrl,
-  timeout,
-}: IFetchPostFunction) => {
+export const fetchFromPage = async ({ postUrl, timeout }: FetchPostProps) => {
   const headers = getHeaders();
 
   if (!enableScraper) {

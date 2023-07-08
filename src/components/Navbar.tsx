@@ -10,25 +10,23 @@ import {
   MobileMenuLink,
 } from "./navigation";
 
-interface INavbarLink {
+type NavbarLinkProps = {
   id: number;
   title: string;
   href: string;
-  icon: React.ReactNode;
-}
+  icon?: React.ReactNode;
+};
 
-const navbarLinks: INavbarLink[] = [
+const navbarLinks: NavbarLinkProps[] = [
   {
     id: 0,
     title: "Home",
     href: "/",
-    icon: <Icons.home />,
   },
   {
-    id: 1,
-    title: "About",
-    href: "/about",
-    icon: <Icons.about />,
+    id: 0,
+    title: "Contact Us",
+    href: "https://github.com/riad-azz",
   },
 ];
 
@@ -52,7 +50,6 @@ const Navbar = () => {
           <ul className="mr-2 hidden shrink-0 gap-2 md:flex">
             {navbarLinks.map((link) => (
               <NavLink key={link.id} href={link.href}>
-                {link.icon}
                 <span>{link.title}</span>
               </NavLink>
             ))}
@@ -68,7 +65,6 @@ const Navbar = () => {
         >
           {navbarLinks.map((link) => (
             <MobileMenuLink key={link.id} href={link.href}>
-              {link.icon}
               <span>{link.title}</span>
             </MobileMenuLink>
           ))}

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TimeoutException } from "@/exceptions";
 import { NextRequest } from "next/server";
-import { IAxiosFetchFunction } from "@/types";
+import { AxiosFetchProps } from "@/types";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
@@ -39,7 +39,7 @@ export const axiosFetch = async ({
   headers,
   timeout,
   data,
-}: IAxiosFetchFunction) => {
+}: AxiosFetchProps) => {
   let response;
 
   try {

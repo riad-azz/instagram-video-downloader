@@ -1,4 +1,4 @@
-import { IFetchPostFunction, VideoJson } from "@/types";
+import { FetchPostProps, VideoJson } from "@/types";
 import {
   GuestResponse,
   GuestPostJson,
@@ -79,10 +79,7 @@ const formatUserJson = (json: IGUserPostJson) => {
   return videoJson;
 };
 
-export const fetchAsGuest = async ({
-  postUrl,
-  timeout,
-}: IFetchPostFunction) => {
+export const fetchAsGuest = async ({ postUrl, timeout }: FetchPostProps) => {
   if (!enableGuestApi) {
     console.log("Instagram Guest API is disabled in @config/instagram");
     return null;
@@ -119,7 +116,7 @@ export const fetchAsGuest = async ({
   return formattedJson;
 };
 
-export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
+export const fetchAsUser = async ({ postUrl, timeout }: FetchPostProps) => {
   if (!enableUserApi) {
     console.log("Instagram User API is disabled in @config/instagram");
     return null;
@@ -172,10 +169,7 @@ export const fetchAsUser = async ({ postUrl, timeout }: IFetchPostFunction) => {
   return formattedJson;
 };
 
-export const fetchFromAPI = async ({
-  postUrl,
-  timeout,
-}: IFetchPostFunction) => {
+export const fetchFromAPI = async ({ postUrl, timeout }: FetchPostProps) => {
   const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
   if (jsonAsGuest) return jsonAsGuest;
 

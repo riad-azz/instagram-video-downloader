@@ -1,8 +1,8 @@
-export interface IIcon {
+export interface IconProps {
   size?: number;
 }
 
-const Menu: React.FC<IIcon> = ({ size = 24 }) => {
+const Menu: React.FC<IconProps> = ({ size = 24 }) => {
   return (
     <svg
       width={size}
@@ -21,7 +21,7 @@ const Menu: React.FC<IIcon> = ({ size = 24 }) => {
   );
 };
 
-const Download: React.FC<IIcon> = ({ size = 16 }) => {
+const Download: React.FC<IconProps> = ({ size = 16 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -37,7 +37,7 @@ const Download: React.FC<IIcon> = ({ size = 16 }) => {
   );
 };
 
-const Spinner: React.FC<IIcon> = ({ size = 20 }) => {
+const Spinner: React.FC<IconProps> = ({ size = 20 }) => {
   return (
     <svg
       width={size}
@@ -61,7 +61,7 @@ const Spinner: React.FC<IIcon> = ({ size = 20 }) => {
   );
 };
 
-const Theme: React.FC<IIcon> = ({ size = 20 }) => {
+const Theme: React.FC<IconProps> = ({ size = 20 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -89,7 +89,7 @@ const Theme: React.FC<IIcon> = ({ size = 20 }) => {
   );
 };
 
-const Github: React.FC<IIcon> = ({ size = 24 }) => {
+const Github: React.FC<IconProps> = ({ size = 24 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -104,7 +104,7 @@ const Github: React.FC<IIcon> = ({ size = 24 }) => {
   );
 };
 
-const Logo: React.FC<IIcon> = ({ size = 20 }) => {
+const Logo: React.FC<IconProps> = ({ size = 20 }) => {
   return (
     <svg
       aria-hidden="true"
@@ -144,7 +144,7 @@ const Logo: React.FC<IIcon> = ({ size = 20 }) => {
   );
 };
 
-const Home: React.FC<IIcon> = ({ size = 20 }) => {
+const Home: React.FC<IconProps> = ({ size = 20 }) => {
   return (
     <svg
       fill="currentColor"
@@ -174,7 +174,7 @@ const Home: React.FC<IIcon> = ({ size = 20 }) => {
   );
 };
 
-const About: React.FC<IIcon> = ({ size = 25 }) => {
+const About: React.FC<IconProps> = ({ size = 25 }) => {
   return (
     <svg
       viewBox="0 0 512 512"

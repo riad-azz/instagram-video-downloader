@@ -72,9 +72,12 @@ npx jest -t "success-fetchPostJson"
 
 ## Authenticated Instagram API
 
+> **Warning**
+> Using this has a high chance of causing your account to be banned. I do not recommend using your main account and i advise using multiple accounts and switching between them for this.
+
 Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the **Session Cookie**, but to put it simply you have to login to your Instagram account and open the developer tools of your browser and go to the networking tab and you should be able to find your **Session Cookie** in the request headers.
 
-**I do not** recommend using this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from different regions.
+**NOTE:** I do not recommend using this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from different regions.
 
 To enable this simply follow these steps:
 
@@ -89,20 +92,6 @@ This is how your `.env.local` should look like:
 
 ```env
 AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
-```
-
-**Note** : If your cookie contains `\054` which most likely it will, this is known as an octal escape sequence and you will have to escape all of them by adding backslash `\\054`. If you don't do this you will get an error and the app won't run.
-
-Here is an example (this is not a real cookie it's just for demonstration) :
-
-```env
-AUTH_COOKIE='...etc; rur="CLN\05459230432636\0541719114429:01f7f46f618c340f4457ebb";'
-```
-
-After adding the backslash to all the octal escape sequence it should look like this :
-
-```env
-AUTH_COOKIE='..etc; rur="CLN\\05459230432636\\0541719114429:01f7f46f618c340f4457ebb";'
 ```
 
 ## Rate Limiter - Upstash
@@ -123,7 +112,9 @@ If you would like to change the identifier (default is IP) you can change it in 
 
 ## API Documentation
 
-The API is pretty simple and straightforward.
+The API is disabled by default but you can enable by going to `src/configs/instagram.ts` and setting `enableServerAPI` to `true`. Now you can use `/api` from outside applications.
+
+**NOTE:** Don't forget to configure the CORS settings in `next.config.js` by changing `Access-Control-Allow-Origin` value from `riad-insta.vercel.app` to your domain.
 
 ### Endpoint: /api?url={POST_URL}
 
@@ -134,7 +125,7 @@ Parameters :
 #### GET Request example
 
 ```bash
-curl -i "https://riad-insta.vercel.app/api?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "http://localhost:3000/api?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 #### API Response

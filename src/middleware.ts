@@ -11,7 +11,7 @@ const isStaticPath = (path: string) => {
     path.startsWith("/og.png") ||
     path.startsWith("/robot.txt") ||
     path.startsWith("/site.webmanifest") ||
-    path.startsWith("/google0888728b41583a8e.html")
+    path.startsWith("/google1f8f82246dfef594.html")
   );
 };
 

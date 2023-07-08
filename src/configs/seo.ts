@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const mainMetadata: Metadata = {
   metadataBase: new URL("https://riad-insta.vercel.app"),
-  title: "Insta Videos Downloader",
+  title: "Instagram Videos Downloader",
   description: siteConfig.description,
   keywords: [
     "Insta downloader",
@@ -69,16 +69,6 @@ export const mainMetadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
-  verification: {
-    google: "google",
-    yandex: "yandex",
-    yahoo: "yahoo",
   },
   icons: {
     icon: "/favicon.ico",

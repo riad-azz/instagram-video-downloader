@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Exception } from "@/exceptions";
-import { getPostId, fetchPostJson, formatDownloadJson } from "@/lib/instagram";
+import { getPostId, fetchPostJson } from "@/lib/instagram";
+import { enableServerAPI } from "@/configs/instagram";
 
 function handleError(error: any) {
   if (error instanceof Exception) {
@@ -15,6 +16,10 @@ function handleError(error: any) {
 }
 
 export async function GET(request: Request) {
+  if (!enableServerAPI) {
+    return NextResponse.json({ error: "Not Implemented" }, { status: 501 });
+  }
+
   const { searchParams } = new URL(request.url);
   const url: string | null = searchParams.get("url");
   let postId;
@@ -29,27 +34,6 @@ export async function GET(request: Request) {
     const postJson = await fetchPostJson(postId);
 
     return NextResponse.json(postJson);
-  } catch (error: any) {
-    return handleError(error);
-  }
-}
-
-export async function POST(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const url: string | null = searchParams.get("url");
-  let postId;
-
-  try {
-    postId = getPostId(url);
-  } catch (error: any) {
-    return handleError(error);
-  }
-
-  try {
-    const postJson = await fetchPostJson(postId);
-    const downloadJson = formatDownloadJson(postId, postJson);
-
-    return NextResponse.json(downloadJson);
   } catch (error: any) {
     return handleError(error);
   }

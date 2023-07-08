@@ -3,7 +3,8 @@
 import { useState, FormEvent } from "react";
 import { DownloadButton } from "./DownloadButton";
 import { Exception, ClientException } from "@/exceptions";
-import { apiBaseUrl } from "@/configs/instagram";
+import { downloadInstagramVideo } from "@/lib/instagram/actions";
+import { DownloadJson } from "@/types";
 
 const validateInput = (postUrl: string) => {
   if (!postUrl) {
@@ -58,26 +59,19 @@ const downloadVideo = async (filename: string, downloadUrl: any) => {
 };
 
 const fetchVideo = async (postUrl: string) => {
-  const response = await fetch(`${apiBaseUrl}?url=${postUrl}`, {
-    method: "POST",
-  });
+  const response: any = await downloadInstagramVideo(postUrl);
 
-  const contentType = response.headers.get("content-type");
-  if (!contentType || !contentType.includes("application/json")) {
-    throw new ClientException("Internal server error");
+  if (response.error) {
+    throw new ClientException(response.error);
   }
-  const data = await response.json();
-  if (data.error) {
-    throw new ClientException(data.error);
-  }
-  const filename = data.filename;
-  const downloadUrl = data.downloadUrl;
+
+  const { filename, downloadUrl } = response as DownloadJson;
   await downloadVideo(filename, downloadUrl);
 
   return true;
 };
 
-export const InstagramForm = () => {
+export default function InstagramForm() {
   const [postUrl, setPostUrl] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -142,4 +136,4 @@ export const InstagramForm = () => {
       </form>
     </>
   );
-};
+}
