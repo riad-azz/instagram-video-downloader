@@ -95,7 +95,7 @@ In order to reduce the load on the API and ensure optimal performance, I have im
 
 To enable this feature follow these steps:
 
-1. Create an account on  [upstash.com](https://upstash.com/).
+1. Create an account on [upstash.com](https://upstash.com/).
 2. Create a new Redis database.
 3. Click on the newly created database.
 4. Scroll down to REST API, click on `.env` and copy the two variables provided.
