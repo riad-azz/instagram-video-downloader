@@ -72,12 +72,7 @@ npx jest -t "success-fetchPostJson"
 
 ## Authenticated Instagram API
 
-> **Warning**
-> Using this has a high chance of causing your account to be banned. I do not recommend using your main account and i advise using multiple accounts and switching between them for this.
-
 Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the **Session Cookie**, but to put it simply you have to login to your Instagram account and open the developer tools of your browser and go to the networking tab and you should be able to find your **Session Cookie** in the request headers.
-
-**NOTE:** I do not recommend using this if you host your application on a serverless platform because your Instagram session is likely to expire due to the account being accessed from different regions.
 
 To enable this simply follow these steps:
 
@@ -98,12 +93,22 @@ AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
 
 In order to reduce the load on the API and ensure optimal performance, I have implemented rate limiting using Upstash. This integration allows me to restrict the number of requests made to the API within a specified time frame, preventing excessive traffic and potential service disruptions.
 
-To set up Upstash create `.env.local` file and insert your `URL` and `Token`:
+To enable this feature follow these steps:
+
+1. Create an account on  [upstash.com](https://upstash.com/).
+2. Create a new Redis database.
+3. Click on the newly created database.
+4. Scroll down to REST API, click on `.env` and copy the two variables provided.
+5. Create a new `.env.local` file in the root directory.
+6. Paste what you copied inside and add `USE_UPSTASH` and set it to `true`.
+
+Here is what your `.env.local` should look like:
 
 ```env
+# ...other variables
 USE_UPSTASH="true"
-UPSTASH_URL="YOUR-UPSTASH-URL"
-UPSTASH_TOKEN="YOUR-UPSTASH-TOKEN"
+UPSTASH_REDIS_REST_URL="YOUR-UPSTASH-URL"
+UPSTASH_REDIS_REST_TOKEN="YOUR-UPSTASH-TOKEN"
 ```
 
 All ratelimit configs can be found in `src/configs/upstash.ts`.

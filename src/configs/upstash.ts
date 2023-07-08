@@ -1,6 +1,6 @@
 // Upstash configs
-export const upstashUrl = process.env.UPSTASH_URL ?? "";
-export const upstashToken = process.env.UPSTASH_TOKEN ?? "";
+export const upstashUrl = process.env.UPSTASH_REDIS_REST_URL ?? "";
+export const upstashToken = process.env.UPSTASH_REDIS_REST_TOKEN ?? "";
 const isUsingUpstash = process.env.USE_UPSTASH ?? "";
 export const enableUpstash = isUsingUpstash === "true";
 // Ratelimit configs
