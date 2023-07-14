@@ -22,13 +22,13 @@ The frontend includes the following:
 
 ## Getting Started
 
-1.Cloning the repository
+**1.** Cloning the repository:
 
 ```bash
 git clone https://github.com/riad-azz/instagram-video-downloader.git
 ```
 
-2.Installing dependencies
+**2.** Installing dependencies:
 
 ```bash
 cd instagram-video-downloader
@@ -38,7 +38,7 @@ cd instagram-video-downloader
 npm install
 ```
 
-3.Starting the server
+**3.** Starting the server:
 
 ```bash
 # Development
@@ -51,18 +51,14 @@ npm run build
 npm run start
 ```
 
-4.Testing
+**4.** Running Tests:
 
-I am using [jest](https://jestjs.io/) for testing which is pretty simple and easy to use. You can find all the test files in `src/__tests__`.
+I am using [jest](https://jestjs.io/) for testing, you can find all the test files in `src/__tests__`.
 
 ```bash
 # Run all tests
 npm run test
-```
 
-> Run a single test
-
-```bash
 # Run a single test
 npx jest -t "<test-name>"
 
@@ -88,7 +84,7 @@ Parameters :
 #### GET Request example
 
 ```bash
-curl -i "http://localhost:3000/api?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "http://localhost:3000/api/post?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 #### API Response
