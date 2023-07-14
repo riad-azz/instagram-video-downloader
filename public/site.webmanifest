@@ -1,6 +1,6 @@
 {
-  "name": "Insta Videos Downloader",
-  "short_name": "Insta Videos Downloader",
+  "name": "Instagram Saver",
+  "short_name": "Instagram Saver",
   "icons": [
     {
       "src": "/images/android-chrome-192x192.png",
@@ -20,7 +20,7 @@
   "theme_color": "#ffffff",
   "display": "standalone",
   "orientation": "landscape-primary",
-  "description": "Download Instagram videos instantly with Insta Videos Downloader. Save and enjoy your favorite content offline with our easy-to-use tool.",
+  "description": "Download and save Instagram videos from reels and posts with Instagram Saver.",
   "categories": [
     "Entertainment",
     "Social",

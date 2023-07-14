@@ -46,7 +46,7 @@ describe("fail-getPostId", () => {
 describe("success-fetchPostJson", () => {
   it("should return a VideoJson object", async () => {
     const response = await fetchPostJson(postId);
-    expect(response?.username).toBeDefined();
+    expect(response?.videoUrl).toBeDefined();
   });
 });
 

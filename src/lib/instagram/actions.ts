@@ -1,19 +1,20 @@
 "use server";
+
 import { Exception } from "@/exceptions";
-import { getPostId, fetchPostJson, formatDownloadJson } from "@/lib/instagram";
+import { getPostId, fetchPostJson } from "@/lib/instagram";
+import { makeErrorResponse, makeSuccessResponse } from "../utils";
+import { VideoInfo } from "@/types";
 
 function handleError(error: any) {
   if (error instanceof Exception) {
-    return { error: error.message };
+    return makeErrorResponse(error.message);
   } else {
     console.error(error);
-    return {
-      error: "Internal Server Error",
-    };
+    return makeErrorResponse();
   }
 }
 
-export async function downloadInstagramVideo(postUrl: string) {
+export async function fetchVideoInfoAction(postUrl: string) {
   let postId;
 
   try {
@@ -23,10 +24,9 @@ export async function downloadInstagramVideo(postUrl: string) {
   }
 
   try {
-    const postJson = await fetchPostJson(postId);
-    const downloadJson = formatDownloadJson(postId, postJson);
-
-    return downloadJson;
+    const videoInfo = await fetchPostJson(postId);
+    const response = makeSuccessResponse<VideoInfo>(videoInfo);
+    return response;
   } catch (error: any) {
     return handleError(error);
   }

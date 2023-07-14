@@ -7,11 +7,10 @@ export default function HomePage() {
         <h1 className="mb-2 text-center text-3xl font-bold sm:text-4xl">
           Instagram Video Downloader
         </h1>
-        <p className="mb-4 text-center text-sm sm:text-base">
-          Instagram Video Downloader tool , designed to effortlessly download
-          high-quality Instagram content for free. No registration or account
-          required. You can save videos and reels by copying and pasting the
-          Instagram URL.
+        <p className="mx-auto mb-4 text-center text-sm sm:text-base">
+          Instagram Saver tool , designed to effortlessly download high-quality
+          Instagram content for free. No registration or account required. You
+          can save videos and reels by copying and pasting the Instagram URL.
         </p>
       </section>
       <section>

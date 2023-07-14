@@ -2,7 +2,7 @@ import { Icons } from "@/components/Icons";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-300 text-gray-900 shadow dark:border-0 dark:bg-gray-900 dark:text-slate-300 dark:shadow-lg">
+    <footer className="bg-gray-900/80 text-slate-300 shadow-lg dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl px-4 py-2 md:flex md:items-center md:justify-between">
         <span className="text-sm sm:text-center">
           © 2023
@@ -20,7 +20,7 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://github.com/riad-azz/instagram-video-downloader/"
-            className="block text-gray-700 hover:underline dark:text-gray-200"
+            className="block text-gray-200 hover:underline"
           >
             Open Source project
           </a>

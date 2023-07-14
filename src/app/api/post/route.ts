@@ -2,16 +2,17 @@ import { NextResponse } from "next/server";
 import { Exception } from "@/exceptions";
 import { getPostId, fetchPostJson } from "@/lib/instagram";
 import { enableServerAPI } from "@/configs/instagram";
+import { makeErrorResponse, makeSuccessResponse } from "@/lib/utils";
+import { VideoInfo } from "@/types";
 
 function handleError(error: any) {
   if (error instanceof Exception) {
-    return NextResponse.json({ error: error.message }, { status: error.code });
+    const response = makeErrorResponse(error.message);
+    return NextResponse.json(response, { status: error.code });
   } else {
     console.error(error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    const response = makeErrorResponse();
+    return NextResponse.json(response, { status: 500 });
   }
 }
 
@@ -32,8 +33,8 @@ export async function GET(request: Request) {
 
   try {
     const postJson = await fetchPostJson(postId);
-
-    return NextResponse.json(postJson);
+    const response = makeSuccessResponse<VideoInfo>(postJson);
+    return NextResponse.json(response, { status: 200 });
   } catch (error: any) {
     return handleError(error);
   }

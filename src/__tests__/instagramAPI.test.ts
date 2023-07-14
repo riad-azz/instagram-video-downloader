@@ -10,7 +10,7 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 describe("success-fetchFromAPI", () => {
   it("should return VideoJson object", async () => {
     const response = await fetchFromAPI({ postUrl });
-    expect(response?.username).toBeDefined();
+    expect(response?.videoUrl).toBeDefined();
   });
 });
 

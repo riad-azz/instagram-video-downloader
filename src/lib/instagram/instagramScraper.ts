@@ -1,14 +1,14 @@
 import { load } from "cheerio";
 
-import { FetchPostProps, VideoJson } from "@/types";
-import { PostVideo } from "@/types/instagramScraper";
+import { FetchPostArgs, VideoInfo } from "@/types";
+import { PostJson } from "@/types/instagramScraper";
 
-import { axiosFetch, getHeaders, getRandomUserAgent } from "@/lib/utils";
+import { axiosFetch, getHeaders, getTimedFilename } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
 
 const formatPageJson = (json: any) => {
-  let scrapedPost;
+  let scrapedPost: PostJson;
 
   if (Array.isArray(json)) {
     scrapedPost = json.find((item: any) => item.video);
@@ -30,21 +30,21 @@ const formatPageJson = (json: any) => {
     throw new BadRequest("This post does not contain a video");
   }
 
-  const video: PostVideo = videoList[0];
+  const video = videoList[0];
 
-  const videoJson: VideoJson = {
-    username: scrapedPost.author.identifier.value,
+  const filename = getTimedFilename("instagram-saver", "mp4");
+
+  const videoJson: VideoInfo = {
+    filename: filename,
     width: video.width,
     height: video.height,
-    caption: video.caption,
-    downloadUrl: video.contentUrl,
-    thumbnailUrl: video.thumbnailUrl,
+    videoUrl: video.contentUrl,
   };
 
   return videoJson;
 };
 
-export const fetchFromPage = async ({ postUrl, timeout }: FetchPostProps) => {
+export const fetchFromPage = async ({ postUrl, timeout }: FetchPostArgs) => {
   const headers = getHeaders();
 
   if (!enableScraper) {
@@ -75,7 +75,7 @@ export const fetchFromPage = async ({ postUrl, timeout }: FetchPostProps) => {
   }
 
   const jsonText: string = jsonElement.text();
-  const json = JSON.parse(jsonText);
+  const json: any = JSON.parse(jsonText);
   const formattedJson = formatPageJson(json);
   return formattedJson;
 };

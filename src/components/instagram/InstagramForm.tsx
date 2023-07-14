@@ -3,8 +3,8 @@
 import { useState, FormEvent } from "react";
 import { DownloadButton } from "./DownloadButton";
 import { Exception, ClientException } from "@/exceptions";
-import { downloadInstagramVideo } from "@/lib/instagram/actions";
-import { DownloadJson } from "@/types";
+import { fetchVideoInfoAction } from "@/lib/instagram/actions";
+import { APIResponse, VideoInfo } from "@/types";
 
 const validateInput = (postUrl: string) => {
   if (!postUrl) {
@@ -59,14 +59,14 @@ const downloadVideo = async (filename: string, downloadUrl: any) => {
 };
 
 const fetchVideo = async (postUrl: string) => {
-  const response: any = await downloadInstagramVideo(postUrl);
+  const response: APIResponse<VideoInfo> = await fetchVideoInfoAction(postUrl);
 
-  if (response.error) {
-    throw new ClientException(response.error);
+  if (response.status === "error") {
+    throw new ClientException(response.message);
   }
 
-  const { filename, downloadUrl } = response as DownloadJson;
-  await downloadVideo(filename, downloadUrl);
+  const { filename, videoUrl } = response.data;
+  await downloadVideo(filename, videoUrl);
 
   return true;
 };

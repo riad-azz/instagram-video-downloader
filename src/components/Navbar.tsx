@@ -9,6 +9,7 @@ import {
   NavLink,
   MobileMenuLink,
 } from "./navigation";
+import { siteConfig } from "@/configs/site";
 
 type NavbarLinkProps = {
   id: number;
@@ -42,7 +43,7 @@ const Navbar = () => {
         <div className="flex w-full items-center md:gap-2">
           {/* Logo */}
           <div className="mr-auto w-fit">
-            <LogoLink title="Insta Downloader" href="/" />
+            <LogoLink title={siteConfig.name} href="/" />
           </div>
           {/* Dropdown menu button */}
           <MenuButton onClick={() => setShowMenu(!showMenu)} />

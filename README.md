@@ -1,14 +1,14 @@
 # Instagram Videos Downloader
 
-Simple Website/API for downloading instagram videos made with Next.js 13 app directory
+Simple Website/API for downloading instagram videos made with Next.js 13.
 
 ## Description
 
 A website that lets you download Instagram videos easily and quickly. You can paste the URL of any public Instagram post and get the video file in MP4 format. there is also an API that you can use to integrate this functionality into your own applications. The API is simple, and it returns JSON responses with the video URL and other metadata.
 
-_PS: Instagram stories aren't supported._
+_Note: Instagram stories aren't supported._
 
-You can preview and try the website live in vercel here : [riad-insta.vercel.app](https://riad-insta.vercel.app/)
+You can preview and try the website live in Vercel here : [insta-video-saver.vercel.app](https://insta-video-saver.vercel.app/)
 
 ## Website Preview
 
@@ -70,24 +70,30 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
-## Authenticated Instagram API
+## Server API
 
-Incorporating this feature may be considered advanced and is not recommended if you don't know what you are doing. I will not go into details on how to obtain the **Session Cookie**, but to put it simply you have to login to your Instagram account and open the developer tools of your browser and go to the networking tab and you should be able to find your **Session Cookie** in the request headers.
+The Server API is disabled by default but you can enable it by :
 
-To enable this simply follow these steps:
+1. Go to `src/configs/instagram.ts`
+2. Set `enableServerAPI` to `true`.
 
-1. Set `enableUserApi` to `true` in `src/configs/instagram.ts` .
-2. Create `.env.local` file in the root directory of the project.
-3. Get your Session Cookie from Instagram (I recommend using a dummy account for this).
-4. Copy the Session Cookie and paste it in the `.env.local` as `AUTH_COOKIE` file that you created.
+Now you can use the API and integrate this functionality in your other applications.
 
-If you are confused just check `.env.example` and copy whats there then replace with your Session cookie.
+### Endpoint: /api/post?url={POST_URL}
 
-This is how your `.env.local` should look like:
+Parameters :
 
-```env
-AUTH_COOKIE="YOUR-IG-SESSION-COOKIE"
+- `url` : Instagram Post or Reel link **(required)**.
+
+#### GET Request example
+
+```bash
+curl -i "http://localhost:3000/api?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
+
+#### API Response
+
+![API response preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/api-response-preview.png?raw=true)
 
 ## Rate Limiter - Upstash
 
@@ -114,31 +120,6 @@ UPSTASH_REDIS_REST_TOKEN="YOUR-UPSTASH-TOKEN"
 All ratelimit configs can be found in `src/configs/upstash.ts`.
 
 If you would like to change the identifier (default is IP) you can change it in `src/middleware.ts`.
-
-## API Documentation
-
-The API is disabled by default but you can enable it by :
-
-1. Go to `src/configs/instagram.ts`
-2. Set `enableServerAPI` to `true`.
-
-Now you can use `/api` from other applications.
-
-### Endpoint: /api?url={POST_URL}
-
-Parameters :
-
-- `url` : Instagram Post or Reel link **(required)**.
-
-#### GET Request example
-
-```bash
-curl -i "http://localhost:3000/api?url=https://www.instagram.com/p/CGh4a0iASGS"
-```
-
-#### API Response
-
-![API response preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/api-response.png?raw=true)
 
 ## License
 

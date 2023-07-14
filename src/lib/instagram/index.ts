@@ -1,23 +1,10 @@
-import { VideoJson, DownloadJson, FetchPostProps } from "@/types";
+import { FetchPostArgs } from "@/types";
 
 import { axiosFetch, getHeaders } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
 import { fetchFromPage } from "./instagramScraper";
-
-export const formatDownloadJson = (postId: string, json: VideoJson) => {
-  const username = json.username;
-  const filename = `${username}-instagram-${postId}.mp4`;
-  const downloadUrl = json.downloadUrl;
-
-  const downloadJson: DownloadJson = {
-    filename: filename,
-    downloadUrl: downloadUrl,
-  };
-
-  return downloadJson;
-};
 
 export const getPostId = (postUrl: string | null) => {
   const postRegex =
@@ -47,10 +34,10 @@ export const getPostId = (postUrl: string | null) => {
   return postId;
 };
 
-export const pageExist = async ({ postUrl, timeout }: FetchPostProps) => {
+export const pageExist = async ({ postUrl, timeout }: FetchPostArgs) => {
   const headers = getHeaders();
 
-  const apiUrl = postUrl + "/?__a=1&__d=dis";
+  const apiUrl = postUrl;
   try {
     await axiosFetch({
       url: apiUrl,
