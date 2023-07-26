@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isRatelimited } from "./lib/rate-limiter";
-import { getClientIp } from "@/lib/utils";
+
 import { upstashBanDuration } from "./configs/upstash";
+import { enableServerAPI } from "./configs/instagram";
+
+import { getClientIp } from "@/lib/utils";
+import { isRatelimited } from "./lib/rate-limiter";
 
 const isStaticPath = (path: string) => {
   return (
@@ -10,8 +13,7 @@ const isStaticPath = (path: string) => {
     path.startsWith("/favicon.ico") ||
     path.startsWith("/og.png") ||
     path.startsWith("/robot.txt") ||
-    path.startsWith("/site.webmanifest") ||
-    path.startsWith("/google1f8f82246dfef594.html")
+    path.startsWith("/site.webmanifest")
   );
 };
 
@@ -23,7 +25,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (requestPath.startsWith("/api")) {
+  if (requestPath.startsWith("/api") && enableServerAPI) {
     const isLimited = await isRatelimited(request);
     if (isLimited) {
       const banDuration = Math.floor(upstashBanDuration / 60 / 60); // Ban duration in hours

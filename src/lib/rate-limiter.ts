@@ -29,7 +29,6 @@ export const redisClient = new Redis({
   token: upstashToken,
 });
 
-// Create a new ratelimiter, that allows 1 requests per 1 minute
 export const ratelimit = new Ratelimit({
   redis: redisClient,
   limiter: Ratelimit.slidingWindow(maxRequests, requestsWindow),
