@@ -9,7 +9,7 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 // Check if the page json scraper is working
 describe("success-fetchFromPage", () => {
   it("should return a VideoJson object", async () => {
-    const response = await fetchFromPage({ postUrl });
+    const response = await fetchFromPage(postUrl);
     expect(response?.videoUrl).toBeDefined();
   });
 });
@@ -17,7 +17,7 @@ describe("success-fetchFromPage", () => {
 describe("no-video-fetchFromPage", () => {
   it("should throw IGBadRequest error", async () => {
     try {
-      await fetchFromPage({ postUrl: imagePostUrl });
+      await fetchFromPage(imagePostUrl);
     } catch (error) {
       expect(error instanceof BadRequest).toBe(true);
     }

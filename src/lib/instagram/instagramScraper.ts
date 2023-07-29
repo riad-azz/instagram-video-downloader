@@ -1,9 +1,9 @@
 import { load } from "cheerio";
 
-import { FetchPostArgs, VideoInfo } from "@/types";
+import { VideoInfo } from "@/types";
 import { PostJson } from "@/types/instagramScraper";
 
-import { axiosFetch, getHeaders, getTimedFilename } from "@/lib/utils";
+import { makeHttpRequest, getHeaders, getTimedFilename } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
 
@@ -44,7 +44,7 @@ const formatPageJson = (json: any) => {
   return videoJson;
 };
 
-export const fetchFromPage = async ({ postUrl, timeout }: FetchPostArgs) => {
+export const fetchFromPage = async (postUrl: string, timeout: number = 0) => {
   const headers = getHeaders();
 
   if (!enableScraper) {
@@ -52,17 +52,20 @@ export const fetchFromPage = async ({ postUrl, timeout }: FetchPostArgs) => {
     return null;
   }
 
-  const response = await axiosFetch({
+  const response = await makeHttpRequest<string>({
     url: postUrl,
+    method: "GET",
     headers,
     timeout,
   });
 
-  if (!response) {
-    return null;
-  }
-
-  if (response.statusText !== "OK") {
+  if (response.status === "error") {
+    console.log(response.message);
+    if (response.message.includes("status code 404")) {
+      throw new BadRequest(
+        "This post does not exist, make sure the URL is correct"
+      );
+    }
     return null;
   }
 

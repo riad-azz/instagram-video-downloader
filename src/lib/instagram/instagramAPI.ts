@@ -1,7 +1,7 @@
-import { FetchPostArgs, VideoInfo } from "@/types";
+import { VideoInfo } from "@/types";
 import { InstaAPIResponse } from "@/types/instagramAPI";
 
-import { axiosFetch, getHeaders, getTimedFilename } from "@/lib/utils";
+import { makeHttpRequest, getHeaders, getTimedFilename } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 
 import { enableGuestApi } from "@/configs/instagram";
@@ -25,34 +25,43 @@ const formatGuestJson = (json: InstaAPIResponse) => {
   return videoJson;
 };
 
-export const fetchAsGuest = async ({ postUrl, timeout }: FetchPostArgs) => {
+export const fetchAsGuest = async (postUrl: string, timeout: number = 0) => {
   if (!enableGuestApi) {
     console.log("Instagram Guest API is disabled in @config/instagram");
     return null;
   }
 
+  if (!postUrl) return null;
+
   const headers = getHeaders();
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
-  const response = await axiosFetch({ url: apiUrl, headers, timeout });
-  if (!response) {
-    return null;
-  }
+  const response = await makeHttpRequest<InstaAPIResponse>({
+    url: apiUrl,
+    method: "GET",
+    headers,
+    timeout,
+  });
 
-  if (response.statusText !== "OK") {
-    console.error("Bad response from API Guest");
+  if (response.status === "error") {
+    console.log(response.message);
+    if (response.message.includes("status code 404")) {
+      throw new BadRequest(
+        "This post does not exist, make sure the URL is correct"
+      );
+    }
     return null;
   }
 
   const json: InstaAPIResponse = response.data;
 
   if (json.require_login) {
-    console.error("Guest graphql got rate limited by Instagram API");
+    console.log("Guest graphql got rate limited by Instagram API");
     return null;
   }
 
   if (!json.graphql) {
-    console.error("Instagram Guest API response has been modified");
+    console.log("Instagram Guest API response has been modified");
     return null;
   }
 
@@ -60,8 +69,8 @@ export const fetchAsGuest = async ({ postUrl, timeout }: FetchPostArgs) => {
   return formattedJson;
 };
 
-export const fetchFromAPI = async ({ postUrl, timeout }: FetchPostArgs) => {
-  const jsonAsGuest = await fetchAsGuest({ postUrl, timeout });
+export const fetchFromAPI = async (postUrl: string, timeout: number = 0) => {
+  const jsonAsGuest = await fetchAsGuest(postUrl, timeout);
   if (jsonAsGuest) return jsonAsGuest;
 
   return null;

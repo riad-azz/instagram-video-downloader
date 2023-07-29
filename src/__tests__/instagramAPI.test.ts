@@ -9,15 +9,13 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 // Check if the Instagram API is working
 describe("success-fetchFromAPI", () => {
   it("should return VideoJson object", async () => {
-    const response = await fetchFromAPI({ postUrl });
+    const response = await fetchFromAPI(postUrl);
     expect(response?.videoUrl).toBeDefined();
   });
 });
 
 describe("no-video-fetchFromAPI", () => {
   it("should throw BadRequest error", async () => {
-    await expect(fetchFromAPI({ postUrl: imagePostUrl })).rejects.toThrow(
-      BadRequest
-    );
+    await expect(fetchFromAPI(imagePostUrl)).rejects.toThrow(BadRequest);
   });
 });

@@ -1,29 +1,9 @@
 import { BadRequest, TimeoutException } from "@/exceptions";
-import { pageExist, fetchPostJson, getPostId } from "@/lib/instagram";
+import { fetchPostJson, getPostId } from "@/lib/instagram";
 
 // URL for post page with ld+json included
 const postUrl = "https://www.instagram.com/p/CGh4a0iASGS";
 const postId = "CGh4a0iASGS";
-
-// Check if pageExist function is working
-describe("success-pageExist", () => {
-  it("should return true if the post exists", async () => {
-    const apiUrl = postUrl + "/?__a=1&__d=dis";
-    const result = await pageExist({ postUrl: apiUrl });
-    expect(result).toBe(true);
-  });
-});
-
-describe("fail-pageExist", () => {
-  it("should throw BadRequest error", async () => {
-    const apiUrl = postUrl + "this-post-doesnt-exist" + "/?__a=1&__d=dis";
-    try {
-      await pageExist({ postUrl: apiUrl });
-    } catch (error) {
-      expect(error instanceof BadRequest).toBe(true);
-    }
-  });
-});
 
 // Check if getPostId function is working
 describe("success-getPostId", () => {

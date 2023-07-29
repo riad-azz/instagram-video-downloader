@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Icons } from "@/components/Icons";
 import {
   LogoLink,
   MenuButton,
@@ -38,7 +37,7 @@ const Navbar = () => {
     <header className="mb-4 w-full">
       <nav
         role="navigation"
-        className="flex w-full flex-col items-center justify-between gap-2 border-b border-gray-300 px-2 py-1 shadow-md dark:border-gray-600 dark:shadow-black/25 md:flex-row md:px-8"
+        className="flex w-full flex-col items-center justify-between gap-2 border-b border-gray-300 px-2 py-1 dark:border-gray-600 md:flex-row md:px-8"
       >
         <div className="flex w-full items-center md:gap-2">
           {/* Logo */}

@@ -27,8 +27,3 @@ export type VideoInfo = {
   height: string;
   videoUrl: string;
 };
-
-export type FetchPostArgs = {
-  postUrl: string;
-  timeout?: number;
-};

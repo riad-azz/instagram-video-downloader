@@ -1,6 +1,3 @@
-import { FetchPostArgs } from "@/types";
-
-import { axiosFetch, getHeaders } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 
 import { fetchFromAPI } from "./instagramAPI";
@@ -34,39 +31,13 @@ export const getPostId = (postUrl: string | null) => {
   return postId;
 };
 
-export const pageExist = async ({ postUrl, timeout }: FetchPostArgs) => {
-  const headers = getHeaders();
-
-  const apiUrl = postUrl;
-  try {
-    await axiosFetch({
-      url: apiUrl,
-      method: "HEAD",
-      throwError: true,
-      headers,
-      timeout,
-    });
-  } catch (error: any) {
-    if (error.message.includes("404")) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
 export const fetchPostJson = async (postID: string, timeout?: number) => {
   const postUrl = "https://www.instagram.com/p/" + postID;
 
-  const isPageExist = await pageExist({ postUrl, timeout });
-  if (!isPageExist) {
-    throw new BadRequest("This post page isn't available.", 404);
-  }
-
-  const pageJson = await fetchFromPage({ postUrl, timeout });
+  const pageJson = await fetchFromPage(postUrl, timeout);
   if (pageJson) return pageJson;
 
-  const apiJson = await fetchFromAPI({ postUrl, timeout });
+  const apiJson = await fetchFromAPI(postUrl, timeout);
   if (apiJson) return apiJson;
 
   throw new BadRequest(

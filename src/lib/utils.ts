@@ -1,7 +1,7 @@
-import axios from "axios";
-import { TimeoutException } from "@/exceptions";
-import { NextRequest, NextResponse } from "next/server";
-import { ErrorResponse, SuccessResponse } from "@/types";
+import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
+import { NextRequest } from "next/server";
+import { APIResponse, ErrorResponse, SuccessResponse } from "@/types";
+import { BadRequest } from "@/exceptions";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36",
@@ -39,59 +39,37 @@ export const getClientIp = (request: NextRequest) => {
   return ip;
 };
 
-export const getHeaders = (cookie?: string) => {
-  const HEADERS = {
-    "User-Agent": getRandomUserAgent(),
-    Cookie: cookie ?? "",
-    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+export const getHeaders = () => {
+  const headers = {
+    Accept: "*/*",
     "Accept-Language": "en-us,en;q=0.5",
     "Sec-Fetch-Mode": "navigate",
     Referer: "https://www.instagram.com/",
+    Origin: "https://www.instagram.com",
+    "User-Agent": getRandomUserAgent(),
   };
 
-  return HEADERS;
+  return headers;
 };
 
-export type AxiosFetchArgs = {
-  credentials?: boolean;
-  url: string;
-  headers?: object;
-  timeout?: number;
-  method?: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "HEAD";
-  data?: any;
-  throwError?: boolean;
-};
-
-export const axiosFetch = async ({
-  credentials = false,
-  url,
-  method = "GET",
-  throwError = false,
-  headers,
-  timeout,
-  data,
-}: AxiosFetchArgs) => {
-  let response;
-
+export const makeHttpRequest = async <T>({
+  ...args
+}: AxiosRequestConfig): Promise<APIResponse<T>> => {
   try {
-    response = await axios({
-      withCredentials: credentials,
-      url,
-      method,
-      headers,
-      timeout,
-      data,
-    });
-    return response;
+    const response: AxiosResponse = await axios(args);
+
+    const successResponse = makeSuccessResponse<T>(response.data);
+    return successResponse;
   } catch (error: any) {
-    if (error.message.includes("timeout")) {
-      throw new TimeoutException();
-    }
-    if (throwError) {
-      throw error;
+    const axiosError: AxiosError = error;
+    if (axiosError.response) {
+      return makeErrorResponse(axiosError.message);
+    } else if (axiosError.request) {
+      console.log("Request Error:", axiosError.request);
+      return makeErrorResponse("Request timeout, please try again.");
     } else {
-      console.error(error.message);
-      return null;
+      console.log("Error:", axiosError.message);
+      return makeErrorResponse("Something went wrong, please try again.");
     }
   }
 };

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "prepare": "husky install",
+    "pre-commit": "npm run prettier && npm run lint",
     "test": "jest && del-cli --force ./.swc"
   },
   "dependencies": {
@@ -34,7 +34,6 @@
     "@types/jest": "^29.5.3",
     "del-cli": "^5.0.0",
     "dotenv": "^16.3.1",
-    "husky": "^8.0.3",
     "jest-config": "^29.6.1",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",

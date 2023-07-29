@@ -2,7 +2,7 @@ import { Icons } from "@/components/Icons";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900/80 text-slate-300 shadow-lg dark:bg-gray-900">
+    <footer className="bg-zinc-800 text-slate-300 shadow-lg dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl px-4 py-2 md:flex md:items-center md:justify-between">
         <span className="text-sm sm:text-center">
           © 2023
