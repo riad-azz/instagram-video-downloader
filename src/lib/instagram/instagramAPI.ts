@@ -1,12 +1,16 @@
 import { VideoInfo } from "@/types";
-import { InstaAPIResponse } from "@/types/instagramAPI";
+import { InstagramAPIResponse } from "@/types/instagramAPI";
 
-import { makeHttpRequest, getHeaders, getTimedFilename } from "@/lib/utils";
+import {
+  makeHttpRequest,
+  getInstagramHeaders,
+  getTimedFilename,
+} from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 
 import { enableGuestApi } from "@/configs/instagram";
 
-const formatGuestJson = (json: InstaAPIResponse) => {
+const formatGuestJson = (json: InstagramAPIResponse) => {
   const postJson = json.graphql.shortcode_media;
 
   if (!postJson.is_video) {
@@ -33,10 +37,10 @@ export const fetchAsGuest = async (postUrl: string, timeout: number = 0) => {
 
   if (!postUrl) return null;
 
-  const headers = getHeaders();
+  const headers = getInstagramHeaders(postUrl);
 
   const apiUrl = postUrl + "/?__a=1&__d=dis";
-  const response = await makeHttpRequest<InstaAPIResponse>({
+  const response = await makeHttpRequest<InstagramAPIResponse>({
     url: apiUrl,
     method: "GET",
     headers,
@@ -53,7 +57,7 @@ export const fetchAsGuest = async (postUrl: string, timeout: number = 0) => {
     return null;
   }
 
-  const json: InstaAPIResponse = response.data;
+  const json: InstagramAPIResponse = response.data;
 
   if (json.require_login) {
     console.log("Guest graphql got rate limited by Instagram API");

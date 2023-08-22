@@ -1,4 +1,4 @@
-export type InstaAPIResponse = {
+export type InstagramAPIResponse = {
   require_login?: boolean;
   graphql: {
     shortcode_media: {

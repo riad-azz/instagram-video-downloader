@@ -1,51 +1,45 @@
-import { load } from "cheerio";
+import { CheerioAPI, load } from "cheerio";
 
 import { VideoInfo } from "@/types";
-import { PostJson } from "@/types/instagramScraper";
 
-import { makeHttpRequest, getHeaders, getTimedFilename } from "@/lib/utils";
+import {
+  makeHttpRequest,
+  getInstagramHeaders,
+  getTimedFilename,
+} from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
 
-const formatPageJson = (json: any) => {
-  let scrapedPost: PostJson;
+const formatPageJson = (postHtml: CheerioAPI) => {
+  const videoElement = postHtml("meta[property='og:video']");
 
-  if (Array.isArray(json)) {
-    scrapedPost = json.find((item: any) => item.video);
-  } else {
-    scrapedPost = json;
-  }
-
-  if (!scrapedPost) {
+  if (videoElement.length === 0) {
     return null;
   }
 
-  const videoList = scrapedPost.video;
+  const videoUrl = videoElement.attr("content");
 
-  if (!videoList) {
-    throw new BadRequest("This post does not contain a video");
+  if (!videoUrl) {
+    throw new BadRequest("This post video URL is not public");
   }
 
-  if (videoList.length === 0) {
-    throw new BadRequest("This post does not contain a video");
-  }
-
-  const video = videoList[0];
+  const width = postHtml("meta[property='og:video:width']").attr("content");
+  const height = postHtml("meta[property='og:video:height']").attr("content");
 
   const filename = getTimedFilename("instagram-saver", "mp4");
 
   const videoJson: VideoInfo = {
     filename: filename,
-    width: video.width,
-    height: video.height,
-    videoUrl: video.contentUrl,
+    width: width ?? "",
+    height: height ?? "",
+    videoUrl: videoUrl,
   };
 
   return videoJson;
 };
 
 export const fetchFromPage = async (postUrl: string, timeout: number = 0) => {
-  const headers = getHeaders();
+  const headers = getInstagramHeaders();
 
   if (!enableScraper) {
     console.log("Instagram Scraper is disabled in @config/instagram");
@@ -69,16 +63,14 @@ export const fetchFromPage = async (postUrl: string, timeout: number = 0) => {
     return null;
   }
 
-  const $ = load(response.data);
-  const jsonElement = $("script[type='application/ld+json']");
+  const postHtml = load(response.data);
+  const videoElement = postHtml("meta[property='og:video']");
 
-  if (jsonElement.length === 0) {
-    console.log("LD+JSON not available for this post");
+  if (videoElement.length === 0) {
+    console.log("Video URL is not public for this post");
     return null;
   }
 
-  const jsonText: string = jsonElement.text();
-  const json: any = JSON.parse(jsonText);
-  const formattedJson = formatPageJson(json);
+  const formattedJson = formatPageJson(postHtml);
   return formattedJson;
 };

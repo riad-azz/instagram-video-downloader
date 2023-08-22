@@ -30,21 +30,26 @@ export const isJsonResponse = (response: Response) => {
 };
 
 export const getClientIp = (request: NextRequest) => {
-  let ip = request.ip ?? request.headers.get("x-real-ip");
+  let ip: string | null;
+
+  ip = request.ip ?? request.headers.get("x-real-ip");
   const forwardedFor = request.headers.get("x-forwarded-for");
+
   if (!ip && forwardedFor) {
     ip = forwardedFor.split(",").at(0) ?? null;
-    return ip;
   }
+
   return ip;
 };
 
-export const getHeaders = () => {
+export const getInstagramHeaders = (
+  referer: string = "https://www.instagram.com/"
+) => {
   const headers = {
     Accept: "*/*",
     "Accept-Language": "en-us,en;q=0.5",
     "Sec-Fetch-Mode": "navigate",
-    Referer: "https://www.instagram.com/",
+    Referer: referer,
     Origin: "https://www.instagram.com",
     "User-Agent": getRandomUserAgent(),
   };
