@@ -12,13 +12,13 @@ You can preview and try the website live in Vercel here : [insta-video-saver.ver
 
 ## Website Preview
 
-The frontend includes the following:
-
-- Dark/Light themes supported.
-- Responsive UI on mobile.
 - Easy and User friendly UI (Interactions feedback and error messages).
 
-![Website preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/website-preview.png?raw=true)
+![Desktop preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/preview-desktop.gif?raw=true)
+
+- Responsive UI on mobile.
+
+![Mobile preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/preview-mobile.gif?raw=true)
 
 ## Getting Started
 

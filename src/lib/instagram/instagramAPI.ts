@@ -1,14 +1,9 @@
 import { VideoInfo } from "@/types";
 import { InstagramAPIResponse } from "@/types/instagramAPI";
-
-import {
-  makeHttpRequest,
-  getInstagramHeaders,
-  getTimedFilename,
-} from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
-
 import { enableGuestApi } from "@/configs/instagram";
+import { makeHttpRequest, getInstagramHeaders } from "@/lib/http";
+import { getTimedFilename } from "@/lib/utils";
 
 const formatGuestJson = (json: InstagramAPIResponse) => {
   const postJson = json.graphql.shortcode_media;
@@ -56,6 +51,8 @@ export const fetchAsGuest = async (postUrl: string, timeout: number = 0) => {
     }
     return null;
   }
+
+  if (!response.data) return null;
 
   const json: InstagramAPIResponse = response.data;
 

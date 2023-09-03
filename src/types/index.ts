@@ -1,7 +1,7 @@
 export type SuccessResponse<T> = {
   status: "success";
   message?: string;
-  data: T;
+  data?: T;
 };
 
 export type ErrorResponse = {

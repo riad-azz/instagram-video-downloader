@@ -2,7 +2,7 @@
 
 import { Exception } from "@/exceptions";
 import { getPostId, fetchPostJson } from "@/lib/instagram";
-import { makeErrorResponse, makeSuccessResponse } from "../utils";
+import { makeErrorResponse, makeSuccessResponse } from "@/lib/http";
 import { VideoInfo } from "@/types";
 
 function handleError(error: any) {

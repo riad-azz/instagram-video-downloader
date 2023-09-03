@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Exception } from "@/exceptions";
 import { getPostId, fetchPostJson } from "@/lib/instagram";
 import { enableServerAPI } from "@/configs/instagram";
-import { makeErrorResponse, makeSuccessResponse } from "@/lib/utils";
+import { makeErrorResponse, makeSuccessResponse } from "@/lib/http";
 import { VideoInfo } from "@/types";
 
 function handleError(error: any) {

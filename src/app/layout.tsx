@@ -1,10 +1,11 @@
-import { DM_Sans as MainFont } from "next/font/google";
-import Provider from "@/components/Provider";
-import { mainMetadata } from "@/configs/seo";
+import { Inter as MainFont } from "next/font/google";
+
 import "@/styles/globals.css";
+import { cn } from "@/lib/utils";
+import { mainMetadata } from "@/configs/seo";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const mainFont = MainFont({
-  weight: "400",
   subsets: ["latin"],
 });
 
@@ -18,9 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`overflow-x-hidden bg-white text-gray-900 dark:bg-gray-800 dark:text-slate-100 ${mainFont.className}`}
+        className={cn(
+          "overflow-x-hidden bg-zinc-950 text-slate-100",
+          mainFont.className
+        )}
       >
-        <Provider>{children}</Provider>
+        <AnimatedBackground />
+        {children}
       </body>
     </html>
   );

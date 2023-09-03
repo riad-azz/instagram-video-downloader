@@ -2,11 +2,8 @@ import { CheerioAPI, load } from "cheerio";
 
 import { VideoInfo } from "@/types";
 
-import {
-  makeHttpRequest,
-  getInstagramHeaders,
-  getTimedFilename,
-} from "@/lib/utils";
+import { makeHttpRequest, getInstagramHeaders } from "@/lib/http";
+import { getTimedFilename } from "@/lib/utils";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
 
@@ -62,6 +59,8 @@ export const fetchFromPage = async (postUrl: string, timeout: number = 0) => {
     }
     return null;
   }
+
+  if (!response.data) return null;
 
   const postHtml = load(response.data);
   const videoElement = postHtml("meta[property='og:video']");

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { upstashBanDuration } from "./configs/upstash";
 import { enableServerAPI } from "./configs/instagram";
 
-import { getClientIp } from "@/lib/utils";
+import { getClientIp } from "@/lib/http";
 import { isRatelimited } from "./lib/rate-limiter";
 
 const isStaticPath = (path: string) => {
