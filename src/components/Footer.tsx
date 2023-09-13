@@ -3,7 +3,7 @@ import { TbBrandNextjs } from "react-icons/tb";
 
 const Footer = () => {
   return (
-    <footer className="mx-auto w-full max-w-screen-xl px-4 py-2 text-center text-slate-300">
+    <footer className="mx-auto w-full max-w-screen-xl px-4 py-2 text-center text-secondary">
       <div className="flex flex-col items-center gap-2 text-center text-xs">
         <div className="flex items-center gap-1">
           <div className="flex items-center gap-1">
@@ -23,7 +23,7 @@ const Footer = () => {
             <a
               target="_blank"
               href="https://github.com/riad-azz"
-              className="text-white hover:underline"
+              className="text-primary hover:underline"
             >
               @riad-azz
             </a>
@@ -34,7 +34,7 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://github.com/riad-azz/instagram-video-downloader/"
-            className="flex items-center gap-1 text-white hover:underline"
+            className="flex items-center gap-1 text-primary hover:underline"
           >
             <AiFillGithub className="text-sm" />
             <span>Github</span>

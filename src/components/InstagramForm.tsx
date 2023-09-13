@@ -8,7 +8,6 @@ import { fetchVideoInfoAction } from "@/lib/instagram/actions";
 
 import AlertError from "@/components/AlertError";
 import DownloadButton from "@/components/ui/DownloadButton";
-
 const downloadVideo = async (filename: string, downloadUrl: any) => {
   try {
     await fetch(downloadUrl)
@@ -33,23 +32,6 @@ const downloadVideo = async (filename: string, downloadUrl: any) => {
     a.remove();
     console.log(error);
   }
-};
-
-const fetchVideo = async (postUrl: string) => {
-  const response: APIResponse<VideoInfo> = await fetchVideoInfoAction(postUrl);
-
-  if (response.status === "error") {
-    throw new ClientException(response.message);
-  }
-
-  if (!response.data) {
-    throw new ClientException();
-  }
-
-  const { filename, videoUrl } = response.data;
-  await downloadVideo(filename, videoUrl);
-
-  return true;
 };
 
 export default function InstagramForm() {
@@ -87,11 +69,22 @@ export default function InstagramForm() {
     }
 
     try {
-      const isSuccess = await fetchVideo(postUrl);
-      if (isSuccess) {
-        errorCount.current = 0;
-        setErrorMsg("");
+      const response: APIResponse<VideoInfo> =
+        await fetchVideoInfoAction(postUrl);
+
+      if (response.status === "error") {
+        throw new ClientException(response.message);
       }
+
+      if (!response.data) {
+        throw new ClientException();
+      }
+
+      const { filename, videoUrl } = response.data;
+      await downloadVideo(filename, videoUrl);
+
+      errorCount.current = 0;
+      setErrorMsg("");
     } catch (error: any) {
       return handleError(error);
     }
@@ -100,7 +93,10 @@ export default function InstagramForm() {
   }
 
   return (
-    <div className="w-full">
+    <div className="mx-auto w-full max-w-3xl rounded-xl bg-white p-8 shadow-md">
+      <h2 className="mb-4 text-center text-lg font-semibold text-primary sm:text-2xl">
+        Download Instagram Videos For Free
+      </h2>
       <AlertError errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
       <form
         className="flex flex-col items-center gap-4 md:flex-row md:gap-2"
@@ -118,7 +114,7 @@ export default function InstagramForm() {
           placeholder="Paste the Instagram URL here..."
           aria-label="Instagram video download URL input"
           title="Instagram video download URL input"
-          className="py-30 px- h-[50px] w-full rounded border-gray-700 bg-[#09090b]"
+          className="h-[50px] w-full rounded border-gray-400"
         />
         <DownloadButton
           type="submit"
@@ -127,6 +123,10 @@ export default function InstagramForm() {
           isLoading={isLoading}
         />
       </form>
+      <p className="my-4 text-center text-sm text-secondary motion-safe:animate-[animate-late-fade-in_2s_ease-in-out_1]">
+        If the download opens a new page, just right click the video and then
+        click `Save as video`
+      </p>
     </div>
   );
 }

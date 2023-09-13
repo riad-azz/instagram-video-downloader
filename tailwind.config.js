@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "#2d3748",
+        secondary: "#6b7280",
+      },
       animation: {
         text: "text 4s ease infinite",
       },

@@ -3,25 +3,22 @@ import { Metadata } from "next";
 
 export const mainMetadata: Metadata = {
   metadataBase: new URL("https://insta-video-saver.vercel.app"),
-  title: siteConfig.name,
+  title: "Instagram Video Downloader - Download Instagram Videos Online",
   description: siteConfig.description,
   keywords: [
     "Instagram downloader",
     "Reels downloader",
-    "Instagram video downloader",
-    "Download Instagram videos",
-    "Save Instagram videos",
-    "Instagram reels downloader",
-    "Download Instagram reels",
-    "Save Instagram reels",
-    "Video downloader for Instagram",
-    "Instagram video saver",
     "Instagram reel saver",
     "Instagram reel video downloader",
     "Reels video saver",
     "Free Instagram saver",
     "Instagram video download app",
     "Free Instagram downloader",
+    "Instagram video downloader",
+    "download Instagram videos",
+    "Instagram download tool",
+    "Instagram video saver",
+    "online video downloader",
   ],
   authors: [
     {
@@ -32,7 +29,7 @@ export const mainMetadata: Metadata = {
   creator: "riad-azz",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "#1f2937" },
+    { media: "(prefers-color-scheme: dark)", color: "white" },
   ],
   openGraph: {
     type: "website",
@@ -44,8 +41,8 @@ export const mainMetadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImageUrl,
-        width: 1240,
-        height: 620,
+        width: 1250,
+        height: 945,
         alt: siteConfig.name,
       },
     ],
@@ -75,5 +72,5 @@ export const mainMetadata: Metadata = {
     shortcut: "/images/favicon-32x32.png",
     apple: "/images/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  manifest: "/webmanifest.json",
 };
