@@ -8,6 +8,7 @@ import { fetchVideoInfoAction } from "@/lib/instagram/actions";
 
 import AlertError from "@/components/AlertError";
 import DownloadButton from "@/components/ui/DownloadButton";
+
 const downloadVideo = async (filename: string, downloadUrl: any) => {
   try {
     await fetch(downloadUrl)
@@ -94,7 +95,7 @@ export default function InstagramForm() {
 
   return (
     <div className="mx-auto w-full max-w-3xl rounded-xl bg-white p-8 shadow-md">
-      <h2 className="mb-4 text-center text-lg font-semibold text-primary sm:text-2xl">
+      <h2 className="mb-4 text-center font-semibold text-primary sm:text-2xl">
         Download Instagram Videos For Free
       </h2>
       <AlertError errorMsg={errorMsg} setErrorMsg={setErrorMsg} />

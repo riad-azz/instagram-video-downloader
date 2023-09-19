@@ -1,8 +1,10 @@
 import { siteConfig } from "@/configs/site";
 import { Metadata } from "next";
 
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION ?? "";
+
 export const mainMetadata: Metadata = {
-  metadataBase: new URL("https://insta-video-saver.vercel.app"),
+  metadataBase: new URL("https://download-ig-videos.vercel.app"),
   title: "Instagram Video Downloader - Download Instagram Videos Online",
   description: siteConfig.description,
   keywords: [
@@ -73,4 +75,7 @@ export const mainMetadata: Metadata = {
     apple: "/images/apple-touch-icon.png",
   },
   manifest: "/webmanifest.json",
+  other: {
+    "google-site-verification": googleSiteVerification,
+  },
 };

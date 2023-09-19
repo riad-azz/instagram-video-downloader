@@ -3,6 +3,8 @@ import { Inter as MainFont } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
 import { mainMetadata } from "@/configs/seo";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const mainFont = MainFont({
   subsets: ["latin"],
@@ -20,10 +22,14 @@ export default function RootLayout({
       <body
         className={cn(
           "overflow-x-hidden bg-stone-100 text-black",
+          "flex min-h-screen w-full flex-col justify-between",
+          "pt-20", // Spacing For Navbar
           mainFont.className
         )}
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -18,6 +18,7 @@
 
 # Google Search console
 **/google*.html
+ads.txt
 
 # misc
 .DS_Store
