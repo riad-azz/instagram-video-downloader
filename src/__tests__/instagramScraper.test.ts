@@ -1,4 +1,4 @@
-import { BadRequest } from "@/exceptions";
+import { BadRequest } from "@/lib/exceptions";
 import { fetchFromPage } from "@/lib/instagram/instagramScraper";
 
 // Url for post page with ld+json include
@@ -8,7 +8,7 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 
 // Check if the page json scraper is working
 describe("success-fetchFromPage", () => {
-  it("should return a VideoJson object", async () => {
+  it("should return a VideoInfo object", async () => {
     const response = await fetchFromPage(postUrl);
     expect(response?.videoUrl).toBeDefined();
   });

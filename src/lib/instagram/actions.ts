@@ -1,9 +1,10 @@
 "use server";
 
-import { Exception } from "@/exceptions";
-import { getPostId, fetchPostJson } from "@/lib/instagram";
-import { makeErrorResponse, makeSuccessResponse } from "@/lib/http";
 import { VideoInfo } from "@/types";
+import { Exception } from "@/lib/exceptions";
+import { fetchPostJson } from "@/lib/instagram";
+import { getPostId } from "@/lib/instagram/helpers";
+import { makeErrorResponse, makeSuccessResponse } from "@/utils";
 
 function handleError(error: any) {
   if (error instanceof Exception) {
@@ -15,15 +16,8 @@ function handleError(error: any) {
 }
 
 export async function fetchVideoInfoAction(postUrl: string) {
-  let postId;
-
   try {
-    postId = getPostId(postUrl);
-  } catch (error: any) {
-    return handleError(error);
-  }
-
-  try {
+    const postId = getPostId(postUrl);
     const videoInfo = await fetchPostJson(postId);
     const response = makeSuccessResponse<VideoInfo>(videoInfo);
     return response;

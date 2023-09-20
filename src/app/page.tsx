@@ -1,6 +1,6 @@
-import InstagramForm from "@/components/InstagramForm";
+import InstagramForm from "@/components/instagram/InstagramForm";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
 
 export default function HomePage() {
   return (

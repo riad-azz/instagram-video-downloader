@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { Exception } from "@/exceptions";
-import { getPostId, fetchPostJson } from "@/lib/instagram";
-import { enableServerAPI } from "@/configs/instagram";
-import { makeErrorResponse, makeSuccessResponse } from "@/lib/http";
+
 import { VideoInfo } from "@/types";
+import { Exception } from "@/lib/exceptions";
+import { fetchPostJson } from "@/lib/instagram";
+import { getPostId } from "@/lib/instagram/helpers";
+import { makeErrorResponse, makeSuccessResponse } from "@/utils";
+
+import { enableServerAPI } from "@/configs/instagram";
 
 function handleError(error: any) {
   if (error instanceof Exception) {
@@ -23,15 +26,9 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const url: string | null = searchParams.get("url");
-  let postId;
 
   try {
-    postId = getPostId(url);
-  } catch (error: any) {
-    return handleError(error);
-  }
-
-  try {
+    const postId = getPostId(url);
     const postJson = await fetchPostJson(postId);
     const response = makeSuccessResponse<VideoInfo>(postJson);
     return NextResponse.json(response, { status: 200 });

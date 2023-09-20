@@ -1,13 +1,13 @@
 import { load } from "cheerio";
 
 import { InstagramAPIResponse } from "@/types/instagramAPI";
-import { BadRequest } from "@/exceptions";
+import { BadRequest } from "@/lib/exceptions";
 import {
   enableGuestApi,
   enableUserApi,
   instagramCookie,
 } from "@/configs/instagram";
-import { makeHttpRequest, getRandomUserAgent } from "@/lib/http";
+import { makeHttpRequest, getRandomUserAgent } from "@/utils";
 import { formatGuestJson, formatUserJson } from "./helpers";
 
 export const fetchAsGuest = async (postUrl: string, timeout: number = 0) => {

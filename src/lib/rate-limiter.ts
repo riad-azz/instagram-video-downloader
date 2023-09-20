@@ -1,6 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { getClientIp } from "@/lib/http";
+import { getClientIp } from "@/utils";
 import { NextRequest } from "next/server";
 import {
   upstashToken,

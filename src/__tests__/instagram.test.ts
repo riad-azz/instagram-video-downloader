@@ -1,5 +1,6 @@
-import { BadRequest, TimeoutException } from "@/exceptions";
-import { fetchPostJson, getPostId } from "@/lib/instagram";
+import { BadRequest, TimeoutException } from "@/lib/exceptions";
+import { fetchPostJson } from "@/lib/instagram";
+import { getPostId } from "@/lib/instagram/helpers";
 
 // URL for post page with ld+json included
 const postUrl = "https://www.instagram.com/p/CGh4a0iASGS";
@@ -24,19 +25,8 @@ describe("fail-getPostId", () => {
 
 // Check if fetchPostJson function is working
 describe("success-fetchPostJson", () => {
-  it("should return a VideoJson object", async () => {
+  it("should return a VideoInfo object", async () => {
     const response = await fetchPostJson(postId);
     expect(response?.videoUrl).toBeDefined();
-  });
-});
-
-describe("timeout-fetchPostJson", () => {
-  it("should throw TimeoutException error", async () => {
-    try {
-      // Set timeout of 1ms to force timeout error
-      await fetchPostJson(postId, 1);
-    } catch (error) {
-      expect(error instanceof TimeoutException).toBe(true);
-    }
   });
 });

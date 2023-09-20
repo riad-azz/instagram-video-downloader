@@ -1,34 +1,36 @@
 import { CheerioAPI } from "cheerio";
 
-import { VideoInfo, VideoVersion } from "@/types";
-import { getTimedFilename } from "@/lib/utils";
-import { BadRequest, ClientException } from "@/exceptions";
-import { InstagramAPIResponse } from "@/types/instagramAPI";
+import { VideoInfo } from "@/types";
+import { InstagramAPIResponse, VideoVersion } from "@/types/instagramAPI";
+import { BadRequest } from "@/lib/exceptions";
+import { getTimedFilename } from "@/utils";
 
-export const validateFormInput = (postUrl: string) => {
-  if (!postUrl) {
-    throw new ClientException("Instagram URL was not provided");
-  }
-
-  if (!postUrl.includes("instagram.com/")) {
-    throw new ClientException("Invalid URL does not contain Instagram domain");
-  }
-
-  if (!postUrl.startsWith("https://")) {
-    throw new ClientException(
-      'Invalid URL it should start with "https://www.instagram.com..."'
-    );
-  }
-
+export const getPostId = (postUrl: string | null) => {
   const postRegex =
     /^https:\/\/(?:www\.)?instagram\.com\/p\/([a-zA-Z0-9_-]+)\/?/;
-
   const reelRegex =
     /^https:\/\/(?:www\.)?instagram\.com\/reels?\/([a-zA-Z0-9_-]+)\/?/;
+  let postId;
 
-  if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
-    throw new ClientException("URL does not match Instagram post or reel");
+  if (!postUrl) {
+    throw new BadRequest("Instagram URL was not provided");
   }
+
+  const postCheck = postUrl.match(postRegex);
+  if (postCheck) {
+    postId = postCheck.at(-1);
+  }
+
+  const reelCheck = postUrl.match(reelRegex);
+  if (reelCheck) {
+    postId = reelCheck.at(-1);
+  }
+
+  if (!postId) {
+    throw new BadRequest("Instagram post/reel ID was not found");
+  }
+
+  return postId;
 };
 
 export const formatGuestJson = (json: InstagramAPIResponse) => {

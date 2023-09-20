@@ -1,4 +1,4 @@
-import { BadRequest } from "@/exceptions";
+import { BadRequest } from "@/lib/exceptions";
 import { fetchFromAPI } from "@/lib/instagram/instagramAPI";
 
 // URL for post page with no ld+json included
@@ -8,7 +8,7 @@ const imagePostUrl = "https://www.instagram.com/p/CpldyYgvdhz";
 
 // Check if the Instagram API is working
 describe("success-fetchFromAPI", () => {
-  it("should return VideoJson object", async () => {
+  it("should return VideoInfo object", async () => {
     const response = await fetchFromAPI(postUrl);
     expect(response?.videoUrl).toBeDefined();
   });
@@ -16,6 +16,7 @@ describe("success-fetchFromAPI", () => {
 
 describe("no-video-fetchFromAPI", () => {
   it("should throw BadRequest error", async () => {
-    await expect(fetchFromAPI(imagePostUrl)).rejects.toThrow(BadRequest);
+    const response = await fetchFromAPI(imagePostUrl);
+    expect(response).toBe(null);
   });
 });

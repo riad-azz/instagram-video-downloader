@@ -1,6 +1,6 @@
 import { load } from "cheerio";
-import { makeHttpRequest, getRandomUserAgent } from "@/lib/http";
-import { BadRequest } from "@/exceptions";
+import { makeHttpRequest, getRandomUserAgent } from "@/utils";
+import { BadRequest } from "@/lib/exceptions";
 import { enableScraper } from "@/configs/instagram";
 import { formatPageJson } from "./helpers";
 

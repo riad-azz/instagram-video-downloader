@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { upstashBanDuration } from "./configs/upstash";
-import { enableServerAPI } from "./configs/instagram";
+import { upstashBanDuration } from "@/configs/upstash";
+import { enableServerAPI } from "@/configs/instagram";
 
-import { getClientIp } from "@/lib/http";
-import { isRatelimited } from "./lib/rate-limiter";
+import { getClientIp } from "@/utils";
+import { isRatelimited } from "@/lib/rate-limiter";
 
 const isStaticPath = (path: string) => {
   return (

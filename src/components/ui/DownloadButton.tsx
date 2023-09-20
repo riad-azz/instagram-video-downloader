@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import { AiOutlineLoading3Quarters, AiOutlineDownload } from "react-icons/ai";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
 
 export interface DownloadButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,13 +23,16 @@ const DownloadButton = (props: DownloadButtonProps) => {
       >
         {isLoading ? (
           <>
-            <AiOutlineLoading3Quarters className="animate-spin text-xl" />
-            <span>Fetching</span>
+            <AiOutlineLoading3Quarters
+              className="animate-spin text-xl"
+              aria-hidden="true"
+            />
+            <span aria-hidden="true">Fetching</span>
           </>
         ) : (
           <>
-            <AiOutlineDownload className="text-xl" />
-            <span>Download</span>
+            <AiOutlineDownload className="text-xl" aria-hidden="true" />
+            <span aria-hidden="true">Download</span>
           </>
         )}
       </button>

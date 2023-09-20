@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 
 const Navbar = () => {
   return (
@@ -7,6 +6,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link
         href="/"
+        aria-label="Logo"
         className="w-fit animate-text bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text py-2 text-base font-extrabold text-transparent"
       >
         <span className="hidden text-xl md:block">IG Downloader</span>

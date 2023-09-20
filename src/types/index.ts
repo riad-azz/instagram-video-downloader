@@ -28,10 +28,3 @@ export type VideoInfo = {
   height: string;
   videoUrl: string;
 };
-
-export type VideoVersion = {
-  url?: string;
-  width: number;
-  height: number;
-  type: number;
-};

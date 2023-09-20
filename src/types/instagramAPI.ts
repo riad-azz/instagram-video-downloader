@@ -221,3 +221,10 @@ export type InstagramAPIResponse = {
   };
   showQRModal: boolean;
 };
+
+export type VideoVersion = {
+  url?: string;
+  width: number;
+  height: number;
+  type: number;
+};

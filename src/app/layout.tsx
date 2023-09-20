@@ -1,7 +1,7 @@
 import { Inter as MainFont } from "next/font/google";
 
 import "@/styles/globals.css";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
 import { mainMetadata } from "@/configs/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -19,6 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4566256673310688"
+        crossOrigin="anonymous"
+      ></script>
       <body
         className={cn(
           "overflow-x-hidden bg-stone-100 text-black",

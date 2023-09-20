@@ -6,4 +6,4 @@ export const instagramCookie = process.env.INSTAGRAM_COOKIE ?? "";
 export const enableUserApi = !!instagramCookie && true;
 
 // API endpoints
-export const enableServerAPI = true;
+export const enableServerAPI = false;
