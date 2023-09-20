@@ -3,7 +3,7 @@
 import { useState, useRef, FormEvent } from "react";
 import { APIResponse, VideoInfo } from "@/types";
 import { Exception, ClientException } from "@/exceptions";
-import { validateFormInput } from "@/lib/instagram/validators";
+import { validateFormInput } from "@/lib/instagram/helpers";
 import { fetchVideoInfoAction } from "@/lib/instagram/actions";
 
 import AlertError from "@/components/AlertError";

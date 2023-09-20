@@ -1,47 +1,26 @@
-import { CheerioAPI, load } from "cheerio";
-
-import { VideoInfo } from "@/types";
-
-import { makeHttpRequest, getInstagramHeaders } from "@/lib/http";
-import { getTimedFilename } from "@/lib/utils";
+import { load } from "cheerio";
+import { makeHttpRequest, getRandomUserAgent } from "@/lib/http";
 import { BadRequest } from "@/exceptions";
 import { enableScraper } from "@/configs/instagram";
-
-const formatPageJson = (postHtml: CheerioAPI) => {
-  const videoElement = postHtml("meta[property='og:video']");
-
-  if (videoElement.length === 0) {
-    return null;
-  }
-
-  const videoUrl = videoElement.attr("content");
-
-  if (!videoUrl) {
-    throw new BadRequest("This post video URL is not public");
-  }
-
-  const width = postHtml("meta[property='og:video:width']").attr("content");
-  const height = postHtml("meta[property='og:video:height']").attr("content");
-
-  const filename = getTimedFilename("instagram-saver", "mp4");
-
-  const videoJson: VideoInfo = {
-    filename: filename,
-    width: width ?? "",
-    height: height ?? "",
-    videoUrl: videoUrl,
-  };
-
-  return videoJson;
-};
+import { formatPageJson } from "./helpers";
 
 export const fetchFromPage = async (postUrl: string, timeout: number = 0) => {
-  const headers = getInstagramHeaders();
-
   if (!enableScraper) {
     console.log("Instagram Scraper is disabled in @config/instagram");
     return null;
   }
+
+  const headers = {
+    accept:
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    host: "www.instagram.com",
+    referer: "https://www.instagram.com/",
+    DNT: "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "User-Agent": getRandomUserAgent(),
+  };
 
   const response = await makeHttpRequest<string>({
     url: postUrl,

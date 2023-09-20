@@ -35,21 +35,6 @@ export const getClientIp = (request: NextRequest) => {
   return ip;
 };
 
-export const getInstagramHeaders = (
-  referer: string = "https://www.instagram.com/"
-) => {
-  const headers = {
-    Accept: "*/*",
-    "Accept-Language": "en-us,en;q=0.5",
-    "Sec-Fetch-Mode": "navigate",
-    Referer: referer,
-    Origin: "https://www.instagram.com",
-    "User-Agent": getRandomUserAgent(),
-  };
-
-  return headers;
-};
-
 export const makeHttpRequest = async <T>({
   ...args
 }: AxiosRequestConfig): Promise<APIResponse<T>> => {

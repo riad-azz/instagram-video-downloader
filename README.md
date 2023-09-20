@@ -71,6 +71,26 @@ The Server API is disabled by default but you can enable it by :
 
 Now you can use the API and integrate this functionality in your other applications.
 
+You can use a session cookie to authenticate your requests by setting the `INSTAGRAM_COOKIE` environment variable:
+
+```env
+# INSTAGRAM - API
+INSTAGRAM_COOKIE="YOUR-INSTAGRAM-COOKIE"
+
+# ...other variables
+```
+
+Next go to the `src/configs/instagram.ts` file and make sure that `enableUserAPI` is set to `true`:
+
+```js
+// Instagram API
+export const instagramCookie = process.env.INSTAGRAM_COOKIE ?? "";
+export const enableUserApi = !!instagramCookie && true; // <---- Here make sure its true
+// ... Other vars
+```
+
+**DISCLAIMER**: The account might be permanently suspended by Instagram. Use at your own risk.
+
 ### Endpoint: /api/instagram?url={POST_URL}
 
 Parameters :
