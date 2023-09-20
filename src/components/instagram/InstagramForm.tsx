@@ -109,15 +109,9 @@ export default function InstagramForm() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-3xl rounded-xl bg-white p-8 shadow-md">
-      <h2 className="mb-4 text-center font-semibold text-primary sm:text-2xl">
-        Download Instagram Videos For Free
-      </h2>
+    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
       <AlertError errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
-      <form
-        className="flex flex-col items-center gap-4 md:flex-row md:gap-2"
-        onSubmit={handleSubmit}
-      >
+      <div className="flex w-full flex-col items-center gap-2 md:flex-row">
         <InstagramInput
           postUrl={postUrl}
           setPostUrl={setPostUrl}
@@ -129,11 +123,7 @@ export default function InstagramForm() {
           aria-label="Download Instagram video button"
           isLoading={isLoading}
         />
-      </form>
-      <p className="my-4 text-center text-sm text-secondary motion-safe:animate-[animate-late-fade-in_2s_ease-in-out_1]">
-        If the download opens a new page, just right click the video and then
-        click `Save as video`
-      </p>
-    </div>
+      </div>
+    </form>
   );
 }

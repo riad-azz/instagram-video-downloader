@@ -37,6 +37,7 @@ const PrivacyPolicyPage = () => {
           type, internet service provider, referring/exit pages, and date/time
           stamp. For more information, please visit
           <a
+            target="_blank"
             href="https://www.privacypolicies.com/blog/privacy-policy-google-adsense/"
             className="text-blue-500 hover:underline"
           >
@@ -45,6 +46,7 @@ const PrivacyPolicyPage = () => {
           </a>
           and
           <a
+            target="_blank"
             href="https://www.termsfeed.com/blog/privacy-policy-google-adsense/"
             className="text-blue-500 hover:underline"
           >
@@ -57,6 +59,7 @@ const PrivacyPolicyPage = () => {
           <span className="font-semibold">2.2.</span> You may opt-out of
           personalized advertising by visiting
           <a
+            target="_blank"
             href="https://adssettings.google.com/authenticated"
             className="text-blue-500 hover:underline"
           >
@@ -65,6 +68,7 @@ const PrivacyPolicyPage = () => {
           </a>
           or by visiting
           <a
+            target="_blank"
             href="https://www.aboutads.info/"
             className="text-blue-500 hover:underline"
           >

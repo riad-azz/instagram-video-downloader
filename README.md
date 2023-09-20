@@ -62,14 +62,7 @@ npx jest -t "<test-name>"
 npx jest -t "success-fetchPostJson"
 ```
 
-## Server API
-
-The Server API is disabled by default but you can enable it by :
-
-1. Go to `src/configs/instagram.ts`
-2. Set `enableServerAPI` to `true`.
-
-Now you can use the API and integrate this functionality in your other applications.
+## Authenticated API
 
 You can use a session cookie to authenticate your requests by setting the `INSTAGRAM_COOKIE` environment variable:
 
@@ -91,7 +84,16 @@ export const enableUserApi = !!instagramCookie && true; // <---- Here make sure 
 
 **DISCLAIMER**: The account might be permanently suspended by Instagram. Use at your own risk.
 
-### Endpoint: /api/instagram?url={POST_URL}
+## Server API
+
+The Server API is disabled by default but you can enable it by :
+
+1. Go to `src/configs/instagram.ts`
+2. Set `enableServerAPI` to `true`.
+
+Now you can use the API and integrate this functionality in your other applications.
+
+### Endpoint: /api/video?url={POST_URL}
 
 Parameters :
 
@@ -100,7 +102,7 @@ Parameters :
 #### GET Request example
 
 ```bash
-curl -i "http://localhost:3000/api/instagram?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "http://localhost:3000/api/video?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 #### API Response

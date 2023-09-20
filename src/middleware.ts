@@ -7,14 +7,20 @@ import { getClientIp } from "@/utils";
 import { isRatelimited } from "@/lib/rate-limiter";
 
 const isStaticPath = (path: string) => {
-  return (
-    path.startsWith("/_next") ||
-    path.startsWith("/images") ||
-    path.startsWith("/favicon.ico") ||
-    path.startsWith("/og.png") ||
-    path.startsWith("/robot.txt") ||
-    path.startsWith("/site.webmanifest")
-  );
+  const staticPaths = [
+    "/_next",
+    "/images",
+    "/favicon.ico",
+    "/robots.txt",
+    "/webmanifest.json",
+  ];
+  for (const staticPath of staticPaths) {
+    if (path.startsWith(staticPath)) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 export async function middleware(request: NextRequest) {
@@ -27,15 +33,16 @@ export async function middleware(request: NextRequest) {
 
   if (requestPath.startsWith("/api") && enableServerAPI) {
     const isLimited = await isRatelimited(request);
-    if (isLimited) {
-      const banDuration = Math.floor(upstashBanDuration / 60 / 60); // Ban duration in hours
-      return NextResponse.json(
-        {
-          error: `Too many requests, you have been banned for ${banDuration} hours.`,
-        },
-        { status: 429 }
-      );
-    }
+    if (!isLimited) return;
+
+    // Ban duration in hours (4 hours)
+    const banDuration = Math.floor(upstashBanDuration / 60 / 60);
+    return NextResponse.json(
+      {
+        error: `Too many requests, you have been banned for ${banDuration} hours.`,
+      },
+      { status: 429 }
+    );
   }
 
   const clientIp = getClientIp(request);
