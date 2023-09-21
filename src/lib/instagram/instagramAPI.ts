@@ -73,14 +73,17 @@ export const fetchAsUser = async (postUrl: string, timeout: number = 0) => {
 
   const headers = {
     accept:
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    host: "www.instagram.com",
-    DNT: "1",
+      "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "accept-language": "en-US,en;q=0.9",
+    authority: "www.instagram.com",
+    Dpr: "1",
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Site": "none",
     "User-Agent": getRandomUserAgent(),
+    "Viewport-Width": 935,
     "Upgrade-Insecure-Requests": "1",
+    "Sec-Ch-Prefers-Color-Scheme": "dark",
     Cookie: instagramCookie,
   };
 
