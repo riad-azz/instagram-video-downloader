@@ -53,12 +53,23 @@ export const formatGuestJson = (json: InstagramAPIResponse) => {
 };
 
 export const formatUserJson = (htmlString: string) => {
-  const videosString = htmlString
-    .split("xdt_api__v1__media__shortcode__web_info")[1]
-    .split('video_versions":')[1]
-    .split(',"is_dash_eligible"')[0];
+  const firstPart = htmlString.split(
+    "xdt_api__v1__media__shortcode__web_info"
+  )[1];
+  if (!firstPart) {
+    console.log("xdt_api__v1__media__shortcode__web_info not found");
+    return null;
+  }
 
+  const secondPart = firstPart.split('video_versions":')[1];
+  if (!secondPart) {
+    console.log("video_versions not found");
+    return null;
+  }
+
+  const videosString = secondPart.split(',"is_dash_eligible"')[0];
   if (!videosString) {
+    console.log("is_dash_eligible not found");
     return null;
   }
 
