@@ -72,21 +72,13 @@ export const fetchAsUser = async (postUrl: string, timeout: number = 0) => {
   if (!postUrl) return null;
 
   const headers = {
-    accept:
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "accept-language": "en-US,en;q=0.9",
-    "accept-encoding": "gzip, deflate, br",
-    "Cache-Control": "no-cache",
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    Host: "www.instagram.com",
+    Origin: "https://www.instagram.com",
+    Referer: "https://www.instagram.com/",
     Connection: "keep-alive",
-    host: "www.instagram.com",
-    DNT: "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
+    DNT: 1,
     "User-Agent": getRandomUserAgent(),
-    "Viewport-Width": 935,
-    "Upgrade-Insecure-Requests": "1",
-    "Sec-Ch-Prefers-Color-Scheme": "dark",
     Cookie: instagramCookie,
   };
 
