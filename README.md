@@ -78,7 +78,7 @@ The Server API is disabled by default but you can enable it by :
 
 Now you can use the API and integrate this functionality in your other applications.
 
-### Endpoint: /api/video?url={POST_URL}
+### Endpoint: /api/?url={POST_URL}
 
 Parameters :
 
@@ -87,7 +87,7 @@ Parameters :
 #### GET Request example
 
 ```bash
-curl -i "http://localhost:3000/api/video?url=https://www.instagram.com/p/CGh4a0iASGS"
+curl -i "http://localhost:3000/api/?url=https://www.instagram.com/p/CGh4a0iASGS"
 ```
 
 #### API Response
