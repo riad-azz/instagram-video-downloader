@@ -7,7 +7,7 @@ import { BadRequest } from "@/lib/exceptions";
 import { enableWebpage } from "@/configs/instagram";
 
 import { getTimedFilename } from "@/utils";
-import { makeHttpRequest, getRandomUserAgent } from "@/utils";
+import { makeHttpRequest } from "@/utils";
 
 import { handleScraperError } from "./helpers";
 
@@ -50,7 +50,8 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
     "Sec-Fetch-Dest": "document",
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Site": "same-origin",
-    "User-Agent": getRandomUserAgent(),
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/18.17763",
   };
 
   let response;

@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
 
-import { userAgents } from "./constants";
 import {
   ClientException,
   ServerException,
@@ -15,19 +14,9 @@ export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
 
-export const getStrTimestamp = () => Math.floor(Date.now() / 1000).toString();
-
 export const getTimedFilename = (name: string, ext: string) => {
-  return `${name}-${getStrTimestamp()}.${ext}`;
-};
-
-export const getRandomUserAgent = () => {
-  return userAgents[Math.floor(Math.random() * userAgents.length)];
-};
-
-export const isJsonResponse = (response: Response) => {
-  const contentType = response.headers.get("content-type");
-  return contentType && contentType.includes("application/json");
+  const timeStamp = Math.floor(Date.now() / 1000).toString();
+  return `${name}-${timeStamp}.${ext}`;
 };
 
 export const getClientIp = (request: NextRequest) => {
