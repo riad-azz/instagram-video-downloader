@@ -1,6 +1,6 @@
 const PrivacyPolicyPage = () => {
   return (
-    <div className="mx-auto max-w-6xl rounded-lg bg-white p-4 shadow-lg">
+    <div className="mx-auto max-w-4xl bg-white p-4 shadow-sm md:rounded-lg">
       <h1 className="mb-4 text-2xl font-bold">Privacy Policy</h1>
 
       <section className="text-sm">
@@ -39,7 +39,7 @@ const PrivacyPolicyPage = () => {
           <a
             target="_blank"
             href="https://www.privacypolicies.com/blog/privacy-policy-google-adsense/"
-            className="text-blue-500 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {" "}
             privacypolicies.com{" "}
@@ -48,7 +48,7 @@ const PrivacyPolicyPage = () => {
           <a
             target="_blank"
             href="https://www.termsfeed.com/blog/privacy-policy-google-adsense/"
-            className="text-blue-500 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {" "}
             termsfeed.com{" "}
@@ -61,7 +61,7 @@ const PrivacyPolicyPage = () => {
           <a
             target="_blank"
             href="https://adssettings.google.com/authenticated"
-            className="text-blue-500 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {" "}
             Ads Settings{" "}
@@ -70,7 +70,7 @@ const PrivacyPolicyPage = () => {
           <a
             target="_blank"
             href="https://www.aboutads.info/"
-            className="text-blue-500 hover:underline"
+            className="text-blue-600 hover:underline"
           >
             {" "}
             www.aboutads.info

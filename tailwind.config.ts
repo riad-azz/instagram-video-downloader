@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+
+const config: Config = {
   darkMode: "class",
   content: [
     "./src/components/**/*.{js,ts,jsx,tsx}",
@@ -12,10 +13,10 @@ module.exports = {
         secondary: "#6b7280",
       },
       animation: {
-        text: "text 4s ease infinite",
+        rgb: "rgb 4s ease infinite",
       },
       keyframes: {
-        text: {
+        rgb: {
           "0%, 100%": {
             "background-size": "200% 200%",
             "background-position": "left center",
@@ -30,3 +31,5 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/forms")],
 };
+
+export default config;

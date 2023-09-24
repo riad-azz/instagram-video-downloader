@@ -3,7 +3,6 @@
 import { VideoInfo } from "@/types";
 import { Exception } from "@/lib/exceptions";
 import { fetchPostJson } from "@/lib/instagram";
-import { getPostId } from "@/lib/instagram/helpers";
 import { makeErrorResponse, makeSuccessResponse } from "@/utils";
 
 function handleError(error: any) {
@@ -17,8 +16,7 @@ function handleError(error: any) {
 
 export async function fetchVideoInfoAction(postUrl: string) {
   try {
-    const postId = getPostId(postUrl);
-    const videoInfo = await fetchPostJson(postId);
+    const videoInfo = await fetchPostJson(postUrl);
     const response = makeSuccessResponse<VideoInfo>(videoInfo);
     return response;
   } catch (error: any) {

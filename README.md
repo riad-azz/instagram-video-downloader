@@ -47,21 +47,6 @@ npm run build
 npm run start
 ```
 
-**4.** Running Tests:
-
-I am using [jest](https://jestjs.io/) for testing, you can find all the test files in `src/__tests__`.
-
-```bash
-# Run all tests
-npm run test
-
-# Run a single test
-npx jest -t "<test-name>"
-
-# Example
-npx jest -t "success-fetchPostJson"
-```
-
 ## Authenticated API
 
 You can use a session cookie to authenticate your requests by setting the `INSTAGRAM_COOKIE` environment variable:

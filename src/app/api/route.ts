@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import { VideoInfo } from "@/types";
 import { Exception } from "@/lib/exceptions";
 import { fetchPostJson } from "@/lib/instagram";
-import { getPostId } from "@/lib/instagram/helpers";
 import { makeErrorResponse, makeSuccessResponse } from "@/utils";
 
 import { enableServerAPI } from "@/configs/instagram";
@@ -25,11 +24,10 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
-  const url: string | null = searchParams.get("url");
+  const postUrl: string | null = searchParams.get("url");
 
   try {
-    const postId = getPostId(url);
-    const postJson = await fetchPostJson(postId);
+    const postJson = await fetchPostJson(postUrl);
     const response = makeSuccessResponse<VideoInfo>(postJson);
     return NextResponse.json(response, { status: 200 });
   } catch (error: any) {

@@ -3,9 +3,9 @@ import { Inter as MainFont } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/utils";
 import { mainMetadata } from "@/configs/seo";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import GoogleAdsense from "@/components/GoogleAdsense";
 
 const mainFont = MainFont({
   subsets: ["latin"],
@@ -20,7 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleAdsense />
       <body
         className={cn(
           "overflow-x-hidden bg-stone-100 text-black",

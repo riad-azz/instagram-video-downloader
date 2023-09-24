@@ -1,5 +1,5 @@
 // Instagram Configurations
-export const enableScraper = true;
+export const enableWebpage = true;
 export const enableGuestApi = true;
 // Instagram API
 export const instagramCookie = process.env.INSTAGRAM_COOKIE ?? "";

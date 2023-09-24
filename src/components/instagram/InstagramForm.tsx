@@ -3,25 +3,23 @@ import { useState, FormEvent } from "react";
 
 import { APIResponse, VideoInfo } from "@/types";
 import { Exception, ClientException } from "@/lib/exceptions";
-import { fetchVideoInfoAction } from "@/lib/instagram/actions";
+import { fetchVideoInfoAction } from "@/lib/instagram/actions/fetchVideoInfo";
 
-import AlertError from "@/components/AlertError";
+import AlertError from "@/components/ui/AlertError";
 import DownloadButton from "@/components/ui/DownloadButton";
-import InstagramInput from "@/components/instagram/InstagramInput";
+import InputField from "@/components/ui/InputField";
 
-const validateFormInput = (postUrl: string) => {
+const isValidFormInput = (postUrl: string) => {
   if (!postUrl) {
-    throw new ClientException("Instagram URL was not provided");
+    return "Instagram URL was not provided";
   }
 
   if (!postUrl.includes("instagram.com/")) {
-    throw new ClientException("Invalid URL does not contain Instagram domain");
+    return "Invalid URL does not contain Instagram domain";
   }
 
   if (!postUrl.startsWith("https://")) {
-    throw new ClientException(
-      'Invalid URL it should start with "https://www.instagram.com..."'
-    );
+    return 'Invalid URL it should start with "https://www.instagram.com..."';
   }
 
   const postRegex =
@@ -31,8 +29,10 @@ const validateFormInput = (postUrl: string) => {
     /^https:\/\/(?:www\.)?instagram\.com\/reels?\/([a-zA-Z0-9_-]+)\/?/;
 
   if (!postRegex.test(postUrl) && !reelRegex.test(postUrl)) {
-    throw new ClientException("URL does not match Instagram post or reel");
+    return "URL does not match Instagram post or reel";
   }
+
+  return "";
 };
 
 const downloadFile = async (filename: string, downloadUrl: string) => {
@@ -62,6 +62,11 @@ const downloadFile = async (filename: string, downloadUrl: string) => {
 };
 
 const downloadPostVideo = async (postUrl: string) => {
+  const inputError = isValidFormInput(postUrl);
+  if (inputError) {
+    throw new ClientException(inputError);
+  }
+
   const response: APIResponse<VideoInfo> = await fetchVideoInfoAction(postUrl);
 
   if (response.status === "error") {
@@ -88,7 +93,11 @@ export default function InstagramForm() {
       console.error(error);
       setErrorMsg("Something went wrong, please try again.");
     }
-    setIsLoading(false);
+  }
+
+  function handleClear() {
+    setPostUrl("");
+    setErrorMsg("");
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -97,12 +106,9 @@ export default function InstagramForm() {
     setErrorMsg("");
 
     try {
-      // Check user input
-      validateFormInput(postUrl);
-      // Attempt to download
       await downloadPostVideo(postUrl);
     } catch (error: any) {
-      return handleError(error);
+      handleError(error);
     }
 
     setIsLoading(false);
@@ -110,12 +116,22 @@ export default function InstagramForm() {
 
   return (
     <form className="flex flex-col items-center" onSubmit={handleSubmit}>
-      <AlertError errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
+      <AlertError errorMsg={errorMsg} handleReset={() => setErrorMsg("")} />
       <div className="flex w-full flex-col items-center gap-2 md:flex-row">
-        <InstagramInput
-          postUrl={postUrl}
-          setPostUrl={setPostUrl}
+        <InputField
+          id="url-input"
+          type="url"
+          placeholder="Paste the Instagram URL here..."
+          aria-label="Instagram video download URL input"
+          title="Instagram video download URL input"
+          value={postUrl}
+          onChange={(e) => setPostUrl(e.target.value)}
           isLoading={isLoading}
+          handleClear={handleClear}
+          className="h-[50px] w-full rounded border-gray-400 text-sm md:text-base"
+          autoComplete="on"
+          autoFocus
+          required
         />
         <DownloadButton
           type="submit"

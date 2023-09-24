@@ -4,7 +4,7 @@ export class Exception extends Error {
    * @param message
    * @param code
    */
-  constructor(message = "Instagram Exception", code = 500) {
+  constructor(message = "Default Exception", code = 500) {
     super(message);
     this.code = code;
   }

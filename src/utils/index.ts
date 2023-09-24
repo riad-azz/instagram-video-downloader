@@ -1,17 +1,18 @@
 import { NextRequest } from "next/server";
-import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-
+import { type ClassValue, clsx } from "clsx";
 import axios, { AxiosError, AxiosResponse, AxiosRequestConfig } from "axios";
-import { APIResponse, ErrorResponse, SuccessResponse } from "@/types";
+
 import { userAgents } from "./constants";
+import {
+  ClientException,
+  ServerException,
+  TimeoutException,
+} from "@/lib/exceptions";
+import { ErrorResponse, SuccessResponse } from "@/types";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
-};
-
-export const fakeDelay = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
 export const getStrTimestamp = () => Math.floor(Date.now() / 1000).toString();
@@ -60,24 +61,23 @@ export const makeErrorResponse = (
   return response;
 };
 
-export const makeHttpRequest = async <T>({
+export const makeHttpRequest = async ({
   ...args
-}: AxiosRequestConfig): Promise<APIResponse<T>> => {
+}: AxiosRequestConfig): Promise<AxiosResponse> => {
   try {
     const response: AxiosResponse = await axios(args);
-
-    const successResponse = makeSuccessResponse<T>(response.data);
-    return successResponse;
+    return response;
   } catch (error: any) {
     const axiosError: AxiosError = error;
     if (axiosError.response) {
-      return makeErrorResponse(axiosError.message);
+      console.log("Axios Error:", axiosError.message);
+      throw new ClientException(axiosError.message);
     } else if (axiosError.request) {
       console.log("Request Error:", axiosError.request);
-      return makeErrorResponse("Request timeout, please try again.");
+      throw new TimeoutException();
     } else {
-      console.log("Error:", axiosError.message);
-      return makeErrorResponse("Something went wrong, please try again.");
+      console.log("Server Error:", axiosError.message);
+      throw new ServerException("Something went wrong, please try again");
     }
   }
 };

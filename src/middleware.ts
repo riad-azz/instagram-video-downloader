@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
     const isLimited = await isRatelimited(request);
     if (!isLimited) return;
 
-    // Ban duration in hours (4 hours)
+    // Ban duration in hours (4 hours is the default in src/configs/upstash.ts)
     const banDuration = Math.floor(upstashBanDuration / 60 / 60);
     return NextResponse.json(
       {
