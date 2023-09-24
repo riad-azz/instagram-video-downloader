@@ -6,10 +6,9 @@ import { VideoInfo } from "@/types";
 import { BadRequest } from "@/lib/exceptions";
 import { enableWebpage } from "@/configs/instagram";
 
-import { getTimedFilename } from "@/utils";
 import { makeHttpRequest } from "@/utils";
 
-import { handleScraperError } from "./helpers";
+import { handleScraperError, getIGVideoFileName } from "./helpers";
 
 export const formatPageJson = (postHtml: CheerioAPI) => {
   const videoElement = postHtml("meta[property='og:video']");
@@ -21,7 +20,7 @@ export const formatPageJson = (postHtml: CheerioAPI) => {
   const width = postHtml("meta[property='og:video:width']").attr("content");
   const height = postHtml("meta[property='og:video:height']").attr("content");
 
-  const filename = getTimedFilename("instagram-saver", "mp4");
+  const filename = getIGVideoFileName();
 
   const videoJson: VideoInfo = {
     filename: filename,
@@ -73,7 +72,7 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
 
   if (!response.data) return null;
 
-  if (!response.data.includes("instapp:owner_user_id")) {
+  if (!response.data.includes('hreflang="x-default"')) {
     throw new BadRequest("This post is private or does not exist");
   }
 

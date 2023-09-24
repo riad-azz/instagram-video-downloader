@@ -9,9 +9,9 @@ import {
   instagramCookie,
 } from "@/configs/instagram";
 
-import { makeHttpRequest, getTimedFilename } from "@/utils";
+import { makeHttpRequest } from "@/utils";
 
-import { handleScraperError } from "./helpers";
+import { handleScraperError, getIGVideoFileName } from "./helpers";
 
 export const formatGuestJson = (json: InstagramAPIResponse) => {
   const postJson = json.graphql.shortcode_media;
@@ -20,7 +20,7 @@ export const formatGuestJson = (json: InstagramAPIResponse) => {
     throw new BadRequest("This post does not contain a video", 400);
   }
 
-  const filename = getTimedFilename("instagram-saver", "mp4");
+  const filename = getIGVideoFileName();
 
   const videoJson: VideoInfo = {
     filename: filename,
@@ -122,7 +122,7 @@ export const formatUserJson = (htmlString: string) => {
     return null;
   }
 
-  const filename = getTimedFilename("instagram-saver", "mp4");
+  const filename = getIGVideoFileName();
 
   const videoJson: VideoInfo = {
     filename: filename,
