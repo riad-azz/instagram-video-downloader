@@ -115,7 +115,10 @@ export default function InstagramForm() {
   }
 
   return (
-    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+    <form
+      className="flex w-full max-w-3xl flex-col items-center"
+      onSubmit={handleSubmit}
+    >
       <AlertError errorMsg={errorMsg} handleReset={() => setErrorMsg("")} />
       <div className="flex w-full flex-col items-center gap-2 md:flex-row">
         <InputField
@@ -128,7 +131,7 @@ export default function InstagramForm() {
           onChange={(e) => setPostUrl(e.target.value)}
           isLoading={isLoading}
           handleClear={handleClear}
-          className="h-[50px] w-full rounded border-gray-400 text-sm md:text-base"
+          className="h-[50px] w-full rounded border-gray-400 text-sm focus:ring-white md:text-base"
           autoComplete="on"
           autoFocus
           required

@@ -49,9 +49,9 @@ const Navbar = () => {
     <nav
       ref={navbarRef}
       className={cn(
-        "fixed left-0 right-0 top-0 w-full items-center justify-between bg-white",
+        "z-50 w-full items-center justify-between bg-white",
         "flex flex-col md:flex-row md:px-4",
-        openNav ? "rounded-none shadow-none" : "rounded-b-lg shadow-sm"
+        openNav ? "shadow-none" : "shadow-sm"
       )}
     >
       <div className="flex w-full items-center justify-between px-2">

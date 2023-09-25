@@ -13,9 +13,11 @@ const DownloadButton = (props: DownloadButtonProps) => {
       disabled={isLoading}
       {...buttonProps}
       className={cn(
-        "flex items-center justify-center gap-2 rounded p-3",
+        "flex items-center justify-center gap-2 rounded p-3 font-bold shadow-md",
         "h-[50px] w-full md:w-[250px]",
+        "border border-blue-300",
         "bg-blue-500 text-white hover:bg-blue-600",
+        "transition-colors duration-200 ease-in-out",
         className
       )}
     >

@@ -32,8 +32,11 @@ const InputField = (props: InputFieldProps) => {
             type="button"
             aria-label="Clear URL input"
             onClick={handleClear}
-            className="flex items-center rounded bg-gray-500 p-2 text-white"
             {...clearBtnProps}
+            className={cn(
+              "flex items-center rounded bg-gray-500/80 p-2 text-white",
+              clearBtnProps?.className
+            )}
           >
             <MdClear className="text-xl" />
             <span className="text-sm font-light">Clear</span>

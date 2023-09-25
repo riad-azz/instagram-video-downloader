@@ -22,9 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "overflow-x-hidden bg-stone-100 text-black",
+          "overflow-x-hidden bg-stone-50 text-black",
           "flex min-h-screen w-full flex-col justify-between",
-          "pt-20", // Spacing For Navbar
           mainFont.className
         )}
       >
