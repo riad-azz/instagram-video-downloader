@@ -1,8 +1,7 @@
 const PrivacyPolicyPage = () => {
   return (
-    <div className="mx-auto max-w-4xl bg-white p-4 shadow-sm md:rounded-lg">
+    <div className="mx-auto my-8 max-w-4xl bg-white p-4 shadow-sm md:rounded-lg">
       <h1 className="mb-4 text-2xl font-bold">Privacy Policy</h1>
-
       <section className="text-sm">
         <h2 className="mb-2 text-xl font-semibold">1. Introduction</h2>
         <p className="mb-2">
@@ -93,17 +92,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       <section className="mb-2 text-sm">
-        <h2 className="mb-2 text-xl font-semibold">4. Governing Law</h2>
-        <p className="mb-2">
-          <span className="font-semibold">4.1.</span> This Policy shall be
-          governed by and construed in accordance with the laws of{" "}
-          <span className="italic">Algeria</span>, without regard to its
-          conflict of law provisions.
-        </p>
-      </section>
-
-      <section className="mb-2 text-sm">
-        <h2 className="mb-2 text-xl font-semibold">5. Contact Information</h2>
+        <h2 className="mb-2 text-xl font-semibold">4. Contact Information</h2>
         <p className="mb-2">
           <span className="font-semibold">5.1.</span> If you have any questions
           or concerns about this Policy, please contact the Website owner at{" "}
@@ -113,7 +102,7 @@ const PrivacyPolicyPage = () => {
 
       <section className="mb-2 text-sm">
         <h2 className="mb-2 text-xl font-semibold">
-          6. Acceptance of Privacy Policy
+          5. Acceptance of Privacy Policy
         </h2>
         <p>
           By accessing or using the Website or Service, you acknowledge that you

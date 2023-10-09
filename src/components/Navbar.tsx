@@ -46,72 +46,74 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      ref={navbarRef}
-      className={cn(
-        "z-50 w-full items-center justify-between bg-white",
-        "flex flex-col md:flex-row md:px-4",
-        openNav ? "shadow-none" : "shadow-sm"
-      )}
-    >
-      <div className="flex w-full items-center justify-between px-2">
-        {/* Logo */}
-        <div
-          aria-label="Logo"
-          className={cn(
-            "select-none py-2 font-extrabold",
-            "animate-rgb bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text text-transparent"
-          )}
-        >
-          <span className="text-xl">IG Downloader</span>
-        </div>
-        {/* Mobile Nav Button */}
-        <IconButton
-          onClick={() => setOpenNav(!openNav)}
-          className="p-1 md:hidden"
-        >
-          <span className="text-2xl">
-            {openNav ? <IoCloseSharp /> : <RxHamburgerMenu />}
-          </span>
-        </IconButton>
-      </div>
-      {/* Desktop */}
-      <div className="hidden items-center gap-8 pr-4 text-lg font-light md:flex">
-        {navbarLinks.map((link) => (
-          <Link
-            key={link.name}
-            href={link.href}
-            target={link.target}
-            className="hover:text-purple-600 hover:underline"
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div>
-      {/* Mobile Nav */}
-      {openNav && (
-        <div className="relative h-fit w-full md:hidden">
+    <header className="h-fit w-full">
+      <nav
+        ref={navbarRef}
+        className={cn(
+          "z-50 w-full items-center justify-between bg-white",
+          "flex flex-col md:flex-row md:px-4",
+          openNav ? "shadow-none" : "shadow-sm"
+        )}
+      >
+        <div className="flex w-full items-center justify-between px-2">
+          {/* Logo */}
           <div
+            aria-label="Logo"
             className={cn(
-              "full-top absolute flex w-full flex-col items-start gap-1 rounded-b-lg p-2 shadow-md",
-              "animate-[fade-in_0.6s_ease-in-out_1] bg-white"
+              "select-none py-2 font-extrabold",
+              "animate-rgb bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text text-transparent"
             )}
           >
-            {navbarLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                target={link.target}
-                onClick={() => setOpenNav(false)}
-                className="py-1 text-lg font-light text-primary hover:text-purple-600 hover:underline"
-              >
-                {link.name}
-              </Link>
-            ))}
+            <span className="text-xl">IG Downloader</span>
           </div>
+          {/* Mobile Nav Button */}
+          <IconButton
+            onClick={() => setOpenNav(!openNav)}
+            className="p-1 md:hidden"
+          >
+            <span className="text-2xl">
+              {openNav ? <IoCloseSharp /> : <RxHamburgerMenu />}
+            </span>
+          </IconButton>
         </div>
-      )}
-    </nav>
+        {/* Desktop */}
+        <div className="hidden items-center gap-8 pr-4 text-lg font-light md:flex">
+          {navbarLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              target={link.target}
+              className="hover:text-purple-600 hover:underline"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+        {/* Mobile Nav */}
+        {openNav && (
+          <div className="relative h-fit w-full md:hidden">
+            <div
+              className={cn(
+                "full-top absolute flex w-full flex-col items-start gap-1 rounded-b p-2 shadow-md",
+                "animate-[fade-in_0.2s_ease-in-out_1] bg-white"
+              )}
+            >
+              {navbarLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  target={link.target}
+                  onClick={() => setOpenNav(false)}
+                  className="py-1 text-lg font-light text-primary hover:text-purple-600 hover:underline"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 

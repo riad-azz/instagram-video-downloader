@@ -6,6 +6,7 @@ import { mainMetadata } from "@/configs/seo";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollUpButton from "@/components/ScrollUpButton";
 
 const mainFont = MainFont({
   subsets: ["latin"],
@@ -24,10 +25,12 @@ export default function RootLayout({
         className={cn(
           "overflow-x-hidden bg-stone-50 text-black",
           "flex min-h-screen w-full flex-col justify-between",
+          "scroll-smooth",
           mainFont.className
         )}
       >
         <Navbar />
+        <ScrollUpButton />
         {children}
         <Footer />
       </body>

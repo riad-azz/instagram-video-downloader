@@ -1,6 +1,11 @@
 {
-  "name": "Instagram Video Downloader",
-  "short_name": "Instagram Video Downloader",
+  "name": "Instagram Videos Downloader",
+  "short_name": "InstaDownloader",
+  "description": "Download Instagram videos easily with our free online video downloader.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
   "icons": [
     {
       "src": "/images/android-chrome-192x192.png",
@@ -13,21 +18,21 @@
       "type": "image/png"
     }
   ],
-  "lang": "en-us",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "orientation": "portrait",
+  "lang": "en-US",
   "dir": "ltr",
-  "start_url": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
-  "display": "standalone",
-  "orientation": "landscape-primary",
-  "description": "Unlock the power to download Instagram videos effortlessly with our Instagram Video Downloader. Get high-quality video downloads in seconds. Try it now!",
-  "categories": [
-    "Social Media Tools",
-    "Online Video Utilities",
-    "Content Downloader",
-    "Digital Marketing",
-    "Technology and Software",
-    "Social Media Marketing",
-    "Web Development Tools"
-  ]
+  "categories": ["Internet"],
+  "keywords": [
+    "Instagram video downloader",
+    "download IG videos",
+    "Instagram video saver"
+  ],
+  "author": "riad-azz",
+  "copyright": "© 2023 riad-azz. All rights reserved.",
+  "rating": "General",
+  "apple-mobile-web-app-title": "InstaDownloader",
+  "apple-mobile-web-app-status-bar-style": "black-translucent"
 }

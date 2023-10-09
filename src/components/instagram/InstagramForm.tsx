@@ -1,5 +1,5 @@
 "use client";
-import { useState, FormEvent } from "react";
+import React from "react";
 
 import { APIResponse, VideoInfo } from "@/types";
 import { Exception, ClientException } from "@/lib/exceptions";
@@ -35,28 +35,28 @@ const isValidFormInput = (postUrl: string) => {
   return "";
 };
 
+const startFileDownload = (
+  url: string,
+  filename: string,
+  target: string = "_self"
+) => {
+  const a = document.createElement("a");
+  a.target = target;
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+};
+
 const downloadFile = async (filename: string, downloadUrl: string) => {
   try {
-    await fetch(downloadUrl)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.target = "_blank";
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
+    const response = await fetch(downloadUrl);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    startFileDownload(blobUrl, filename);
   } catch (error) {
-    const a = document.createElement("a");
-    a.target = "_blank";
-    a.href = downloadUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    startFileDownload(downloadUrl, filename, "_blank");
     console.log(error);
   }
 };
@@ -82,9 +82,9 @@ const downloadPostVideo = async (postUrl: string) => {
 };
 
 export default function InstagramForm() {
-  const [postUrl, setPostUrl] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [postUrl, setPostUrl] = React.useState("");
+  const [errorMsg, setErrorMsg] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   function handleError(error: any) {
     if (error instanceof Exception) {
@@ -100,7 +100,7 @@ export default function InstagramForm() {
     setErrorMsg("");
   }
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsLoading(true);
     setErrorMsg("");

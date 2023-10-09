@@ -1,6 +1,6 @@
 const TermsOfServicePage = () => {
   return (
-    <div className="mx-auto h-fit max-w-4xl flex-1 bg-white p-4 shadow-sm md:rounded-lg">
+    <div className="mx-auto my-8 h-fit max-w-4xl flex-1 bg-white p-4 shadow-sm md:rounded-lg">
       <h1 className="mb-4 text-2xl font-bold">Terms of Service</h1>
       <section className="mb-2 text-sm">
         <h2 className="mb-2 text-xl font-semibold">1. Introduction</h2>
