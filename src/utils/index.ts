@@ -59,14 +59,14 @@ export const makeHttpRequest = async ({
   } catch (error: any) {
     const axiosError: AxiosError = error;
     if (axiosError.response) {
-      console.log("Axios Error:", axiosError.message);
+      console.error("Axios Error:", axiosError.message);
       throw new ClientException(axiosError.message);
     } else if (axiosError.request) {
-      console.log("Request Error:", axiosError.request);
+      console.error("Request Error:", axiosError.request);
       throw new TimeoutException();
     } else {
-      console.log("Server Error:", axiosError.message);
-      throw new ServerException("Something went wrong, please try again");
+      console.error("Server Error:", axiosError.message);
+      throw new ServerException("Something went wrong, please try again.");
     }
   }
 };

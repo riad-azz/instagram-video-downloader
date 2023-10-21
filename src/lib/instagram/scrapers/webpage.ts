@@ -7,12 +7,14 @@ import { BadRequest } from "@/lib/exceptions";
 import { enableWebpage } from "@/configs/instagram";
 
 import { makeHttpRequest } from "@/utils";
-
 import { handleScraperError, getIGVideoFileName } from "./helpers";
 
 export const formatPageJson = (postHtml: CheerioAPI) => {
   const videoElement = postHtml("meta[property='og:video']");
-  if (videoElement.length === 0) return null;
+
+  if (videoElement.length === 0) {
+    return null;
+  }
 
   const videoUrl = videoElement.attr("content");
   if (!videoUrl) return null;
@@ -41,8 +43,7 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
   const postUrl = "https://www.instagram.com/p/" + postId;
 
   const headers = {
-    accept:
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    accept: "*/*",
     host: "www.instagram.com",
     referer: "https://www.instagram.com/",
     DNT: "1",
@@ -50,7 +51,7 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Site": "same-origin",
     "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/18.17763",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0",
   };
 
   let response;
@@ -80,7 +81,6 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
   const videoElement = postHtml("meta[property='og:video']");
 
   if (videoElement.length === 0) {
-    console.log("Video URL is not public for this post");
     return null;
   }
 

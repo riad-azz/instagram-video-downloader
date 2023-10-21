@@ -1,6 +1,6 @@
 import { BadRequest } from "@/lib/exceptions";
 
-import { fetchFromAPI } from "./scrapers/api";
+import { fetchFromGraphQL } from "./scrapers/graphql";
 import { fetchFromPage } from "./scrapers/webpage";
 
 export const getPostId = (postUrl: string | null) => {
@@ -40,7 +40,7 @@ export const fetchPostJson = async (
   const pageJson = await fetchFromPage(postId, timeout);
   if (pageJson) return pageJson;
 
-  const apiJson = await fetchFromAPI(postId, timeout);
+  const apiJson = await fetchFromGraphQL(postId, timeout);
   if (apiJson) return apiJson;
 
   throw new BadRequest("Video link for this post is not public.", 401);

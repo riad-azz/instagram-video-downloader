@@ -1,6 +1,6 @@
 # Instagram Videos Downloader
 
-Simple Website/API for downloading instagram videos made with Next.js 13.
+Simple Website/API for downloading instagram videos made with Next.js that actually works with no problem.
 
 ## Description
 
@@ -15,6 +15,10 @@ You can preview and try the website live in Vercel here : [instagram-videos.verc
 Easy and User friendly UI (Interactions feedback and error messages).
 
 ![Desktop preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/desktop-preview.gif?raw=true)
+
+Responsive on mobile and small devices.
+
+![Mobile preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/mobile-preview.gif?raw=true)
 
 ## Getting Started
 
@@ -46,28 +50,6 @@ npm run build
 # Start
 npm run start
 ```
-
-## Authenticated API
-
-You can use a session cookie to authenticate your requests by setting the `INSTAGRAM_COOKIE` environment variable:
-
-```env
-# INSTAGRAM - API
-INSTAGRAM_COOKIE="YOUR-INSTAGRAM-COOKIE"
-
-# ...other variables
-```
-
-Next go to the `src/configs/instagram.ts` file and make sure that `enableUserAPI` is set to `true`:
-
-```js
-// Instagram API
-export const instagramCookie = process.env.INSTAGRAM_COOKIE ?? "";
-export const enableUserApi = !!instagramCookie && true; // <---- Here make sure its true
-// ... Other vars
-```
-
-**DISCLAIMER**: The account might be permanently suspended by Instagram. Use at your own risk.
 
 ## Server API
 

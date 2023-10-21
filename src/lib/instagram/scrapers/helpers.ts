@@ -6,7 +6,7 @@ export const getIGVideoFileName = () =>
 
 export const handleScraperError = (error: any) => {
   if (error.message.includes("status code 404")) {
-    throw new BadRequest("This post is private or does not exist", 400);
+    throw new BadRequest("This post is private or does not exist", 404);
   } else if (error instanceof TimeoutException) {
     throw new TimeoutException();
   }

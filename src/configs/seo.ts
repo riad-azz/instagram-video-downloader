@@ -2,8 +2,7 @@ import { siteConfig } from "@/configs/site";
 import { Metadata } from "next";
 
 export const mainMetadata: Metadata = {
-  metadataBase: new URL("https://download-ig-videos.vercel.app"),
-  title: "Free Instagram Video Downloader - Save IG Videos Easily",
+  title: siteConfig.name,
   description: siteConfig.description,
   keywords: [
     "Instagram video download",
@@ -29,7 +28,7 @@ export const mainMetadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: "Instagram Video Downloader - Download Instagram Videos Online",
+    title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [

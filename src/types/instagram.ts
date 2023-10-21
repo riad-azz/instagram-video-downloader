@@ -1,10 +1,11 @@
-export type InstagramAPIResponse = {
-  require_login?: boolean;
-  graphql: {
-    shortcode_media: {
+export type GraphQLResponse = {
+  data: {
+    xdt_shortcode_media: {
       __typename: string;
+      __isXDTGraphMediaInterface: string;
       id: string;
       shortcode: string;
+      thumbnail_src: string;
       dimensions: {
         height: number;
         width: number;
@@ -35,17 +36,53 @@ export type InstagramAPIResponse = {
       video_url: string;
       video_view_count: number;
       video_play_count: number;
+      encoding_status: any;
+      is_published: boolean;
+      product_type: string;
+      title: string;
+      video_duration: number;
+      clips_music_attribution_info: {
+        artist_name: string;
+        song_name: string;
+        uses_original_audio: boolean;
+        should_mute_audio: boolean;
+        should_mute_audio_reason: string;
+        audio_id: string;
+      };
       is_video: boolean;
       tracking_token: string;
       upcoming_event: any;
       edge_media_to_tagged_user: {
         edges: Array<any>;
       };
+      owner: {
+        id: string;
+        username: string;
+        is_verified: boolean;
+        profile_pic_url: string;
+        blocked_by_viewer: boolean;
+        restricted_by_viewer: any;
+        followed_by_viewer: boolean;
+        full_name: string;
+        has_blocked_viewer: boolean;
+        is_embeds_disabled: boolean;
+        is_private: boolean;
+        is_unpublished: boolean;
+        requested_by_viewer: boolean;
+        pass_tiering_recommendation: boolean;
+        edge_owner_to_timeline_media: {
+          count: number;
+        };
+        edge_followed_by: {
+          count: number;
+        };
+      };
       edge_media_to_caption: {
         edges: Array<{
           node: {
             created_at: string;
             text: string;
+            id: string;
           };
         }>;
       };
@@ -53,64 +90,13 @@ export type InstagramAPIResponse = {
       caption_is_edited: boolean;
       has_ranked_comments: boolean;
       like_and_view_counts_disabled: boolean;
-      edge_media_to_parent_comment: {
+      edge_media_to_comment: {
         count: number;
         page_info: {
           has_next_page: boolean;
           end_cursor: string;
         };
-        edges: Array<{
-          node: {
-            id: string;
-            text: string;
-            created_at: number;
-            did_report_as_spam: boolean;
-            owner: {
-              id: string;
-              is_verified: boolean;
-              profile_pic_url: string;
-              username: string;
-            };
-            viewer_has_liked: boolean;
-            edge_liked_by: {
-              count: number;
-            };
-            is_restricted_pending: boolean;
-            edge_threaded_comments: {
-              count: number;
-              page_info: {
-                has_next_page: boolean;
-                end_cursor: any;
-              };
-              edges: Array<any>;
-            };
-          };
-        }>;
-      };
-      edge_media_to_hoisted_comment: {
         edges: Array<any>;
-      };
-      edge_media_preview_comment: {
-        count: number;
-        edges: Array<{
-          node: {
-            id: string;
-            text: string;
-            created_at: number;
-            did_report_as_spam: boolean;
-            owner: {
-              id: string;
-              is_verified: boolean;
-              profile_pic_url: string;
-              username: string;
-            };
-            viewer_has_liked: boolean;
-            edge_liked_by: {
-              count: number;
-            };
-            is_restricted_pending: boolean;
-          };
-        }>;
       };
       comments_disabled: boolean;
       commenting_disabled_for_viewer: boolean;
@@ -131,48 +117,12 @@ export type InstagramAPIResponse = {
       viewer_has_saved_to_collection: boolean;
       viewer_in_photo_of_you: boolean;
       viewer_can_reshare: boolean;
-      owner: {
-        id: string;
-        is_verified: boolean;
-        profile_pic_url: string;
-        username: string;
-        blocked_by_viewer: boolean;
-        restricted_by_viewer: any;
-        followed_by_viewer: boolean;
-        full_name: string;
-        has_blocked_viewer: boolean;
-        is_embeds_disabled: boolean;
-        is_private: boolean;
-        is_unpublished: boolean;
-        requested_by_viewer: boolean;
-        pass_tiering_recommendation: boolean;
-        edge_owner_to_timeline_media: {
-          count: number;
-        };
-        edge_followed_by: {
-          count: number;
-        };
-      };
       is_ad: boolean;
       edge_web_media_to_related_media: {
         edges: Array<any>;
       };
       coauthor_producers: Array<any>;
       pinned_for_users: Array<any>;
-      encoding_status: any;
-      is_published: boolean;
-      product_type: string;
-      title: string;
-      video_duration: number;
-      thumbnail_src: string;
-      clips_music_attribution_info: {
-        artist_name: string;
-        song_name: string;
-        uses_original_audio: boolean;
-        should_mute_audio: boolean;
-        should_mute_audio_reason: string;
-        audio_id: string;
-      };
       edge_related_profiles: {
         edges: Array<{
           node: {
@@ -187,44 +137,14 @@ export type InstagramAPIResponse = {
             };
             edge_owner_to_timeline_media: {
               count: number;
-              edges: Array<{
-                node: {
-                  __typename: string;
-                  id: string;
-                  shortcode: string;
-                  edge_media_preview_like: {
-                    count: number;
-                  };
-                  edge_media_preview_comment: {
-                    count: number;
-                  };
-                  thumbnail_src: string;
-                  owner: {
-                    id: string;
-                    username: string;
-                  };
-                  gating_info: any;
-                  sharing_friction_info: {
-                    should_have_sharing_friction: boolean;
-                    bloks_app_url: any;
-                  };
-                  media_overlay_info: any;
-                  is_video: boolean;
-                  accessibility_caption: any;
-                };
-              }>;
+              edges: Array<any>;
             };
           };
         }>;
       };
     };
   };
-  showQRModal: boolean;
-};
-
-export type VideoVersion = {
-  url?: string;
-  width: number;
-  height: number;
-  type: number;
+  extensions: {
+    is_final: boolean;
+  };
 };
