@@ -115,7 +115,6 @@ export const fetchFromGraphQL = async (postId: string, timeout: number = 0) => {
       data: encodedData,
       timeout,
     });
-
     if (response.statusText === "error") {
       return null;
     }
@@ -131,7 +130,6 @@ export const fetchFromGraphQL = async (postId: string, timeout: number = 0) => {
   if (contentType !== "text/javascript; charset=utf-8") return null;
 
   const responseJson: GraphQLResponse = response.data;
-
   if (!responseJson.data) return null;
 
   const formattedJson = formatGraphqlJson(responseJson);

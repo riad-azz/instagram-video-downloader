@@ -73,10 +73,6 @@ export const fetchFromPage = async (postId: string, timeout: number = 0) => {
 
   if (!response.data) return null;
 
-  if (!response.data.includes('hreflang="x-default"')) {
-    throw new BadRequest("This post is private or does not exist");
-  }
-
   const postHtml = load(response.data);
   const videoElement = postHtml("meta[property='og:video']");
 
