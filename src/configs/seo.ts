@@ -20,10 +20,6 @@ export const mainMetadata: Metadata = {
     },
   ],
   creator: "riad-azz",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#ffffff" },
-  ],
   openGraph: {
     type: "website",
     locale: "en_US",
