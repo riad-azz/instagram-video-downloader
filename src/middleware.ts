@@ -1,55 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { upstashBanDuration } from "@/configs/upstash";
-import { enableServerAPI } from "@/configs/instagram";
+import { getIpFromRequest } from "@/lib/http";
 
-import { getClientIp } from "@/utils";
-import { isRatelimited } from "@/lib/rate-limiter";
-
-const isStaticPath = (path: string) => {
-  const staticPaths = [
-    "/_next",
-    "/images",
-    "/favicon.ico",
-    "/robots.txt",
-    "/webmanifest.json",
-  ];
-  for (const staticPath of staticPaths) {
-    if (path.startsWith(staticPath)) {
-      return true;
-    }
-  }
-
-  return false;
-};
+import { isRatelimited } from "@/features/rate-limiter/utils";
+import { UPSTASH_CONFIGS } from "@/features/rate-limiter/constants";
 
 export async function middleware(request: NextRequest) {
   const requestPath = request.nextUrl.pathname;
   const country = request.geo?.country ?? "Country";
 
-  if (isStaticPath(requestPath)) {
-    return NextResponse.next();
-  }
+  const clientIp = getIpFromRequest(request);
 
-  if (requestPath.startsWith("/api") && enableServerAPI) {
-    const isLimited = await isRatelimited(request);
-    if (!isLimited) return;
-
-    // Ban duration in hours (4 hours is the default in src/configs/upstash.ts)
-    const banDuration = Math.floor(upstashBanDuration / 60 / 60);
-    return NextResponse.json(
-      {
-        error: `Too many requests, you have been banned for ${banDuration} hours.`,
-      },
-      { status: 429 }
-    );
-  }
-
-  const clientIp = getClientIp(request);
+  // Log request info
   console.log(`${request.method} ${clientIp} (${country}) -> ${requestPath}`);
+
+  // If there IP is not provided we skip rate limiting because its what we are using as an identifier
+  // typically you would use the user ID but we don't have authentication implemented
+  if (!clientIp) return NextResponse.next();
+
+  // Check if ratelimit is successful
+  const isLimited = await isRatelimited(clientIp);
+  if (!isLimited) return NextResponse.next();
+
+  // Ban duration in hours (4 hours is the default)
+  const banDuration = Math.floor(UPSTASH_CONFIGS.banDuration / 60 / 60);
+  return NextResponse.json(
+    {
+      error: `Too many requests, you have been banned for ${banDuration} hours.`,
+    },
+    { status: 429 }
+  );
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/:path*"],
+  matcher: ["/api/:path*"],
 };

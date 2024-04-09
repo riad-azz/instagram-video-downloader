@@ -1,18 +1,28 @@
-export class Exception extends Error {
-  code: number;
-  /**
-   * @param message
-   * @param code
-   */
-  constructor(message = "Default Exception", code = 500) {
+// Client Errors
+
+export class CustomError extends Error {
+  constructor(message: string) {
     super(message);
-    this.code = code;
+  }
+}
+
+export class NetworkError extends CustomError {
+  constructor(message: string) {
+    super(message);
+  }
+}
+
+export class HTTPError extends CustomError {
+  status: number;
+  constructor(message: string, status: number = 500) {
+    super(message);
+    this.status = status;
   }
 }
 
 /* Server Exceptions */
 
-export class BadRequest extends Exception {
+export class BadRequest extends HTTPError {
   /**
    * @param message
    * @param code
@@ -22,7 +32,7 @@ export class BadRequest extends Exception {
   }
 }
 
-export class ServerException extends Exception {
+export class ServerException extends HTTPError {
   /**
    * @param message
    * @param code
@@ -32,7 +42,7 @@ export class ServerException extends Exception {
   }
 }
 
-export class TimeoutException extends Exception {
+export class TimeoutException extends HTTPError {
   /**
    * @param message
    * @param code
@@ -42,24 +52,12 @@ export class TimeoutException extends Exception {
   }
 }
 
-export class RatelimitException extends Exception {
+export class RatelimitException extends HTTPError {
   /**
    * @param message
    * @param code
    */
   constructor(message = "Too many requests, try again later.", code = 429) {
-    super(message, code);
-  }
-}
-
-/* Client Exceptions */
-
-export class ClientException extends Exception {
-  /**
-   * @param message
-   * @param code
-   */
-  constructor(message = "Instagram Client Exception", code = 400) {
     super(message, code);
   }
 }

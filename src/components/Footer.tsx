@@ -1,33 +1,24 @@
 import Link from "next/link";
 
-const Footer = () => {
+export function Footer() {
   return (
-    <footer className="mx-auto w-full max-w-screen-xl px-4 py-2 text-center text-secondary">
-      <div className="flex flex-col items-center gap-2 text-center text-xs">
-        <div
-          aria-label="Disclaimer"
-          className="text-sm font-semibold text-black"
-        >
+    <footer className="text-secondary-foreground bg-background/50 h-8 w-full text-center">
+      <div className="border-input flex items-center justify-between border-t px-4 py-2">
+        <div aria-label="Disclaimer" className="text-sm font-semibold">
           We are not affiliated with Instagram or Meta
         </div>
-        <div className="flex items-center gap-1">
-          <Link
-            href="/terms-of-service"
-            className="text-sm text-primary hover:underline"
-          >
+        <div className="flex items-center gap-1 text-sm">
+          <Link href="/terms-of-service" className="hover:underline">
             Terms of Service
           </Link>
-          <span aria-hidden="true">|</span>
-          <Link
-            href="/privacy-policy"
-            className="text-sm text-primary hover:underline"
-          >
+          <span aria-hidden="true" className="mx-2 select-none">
+            |
+          </span>
+          <Link href="/privacy-policy" className="hover:underline">
             Privacy Policy
           </Link>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

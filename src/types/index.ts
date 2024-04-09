@@ -9,6 +9,9 @@ export type SiteConfig = {
   };
 };
 
+export type Unit = "ms" | "s" | "m" | "h" | "d";
+export type Duration = `${number} ${Unit}` | `${number}${Unit}`;
+
 export type VideoInfo = {
   filename: string;
   width: string;
@@ -19,7 +22,7 @@ export type VideoInfo = {
 export type SuccessResponse<T> = {
   status: "success";
   message?: string;
-  data?: T;
+  data: T;
 };
 
 export type ErrorResponse = {
@@ -28,3 +31,9 @@ export type ErrorResponse = {
 };
 
 export type APIResponse<T> = SuccessResponse<T> | ErrorResponse;
+
+export type AsyncReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => Promise<infer R>
+  ? R
+  : never;

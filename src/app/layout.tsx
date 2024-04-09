@@ -1,18 +1,25 @@
-import { Inter as MainFont } from "next/font/google";
+import { Metadata } from "next";
+import { DM_Sans as FontSans } from "next/font/google";
 
 import "@/styles/globals.css";
-import { cn } from "@/utils";
-import { mainMetadata } from "@/configs/seo";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ScrollUpButton from "@/components/ScrollUpButton";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
-const mainFont = MainFont({
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ReactQueryProvider } from "@/components/providers/react-query-provider";
+
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
-export const metadata = mainMetadata;
+export const metadata: Metadata = {
+  title: "Instagram Video Downloader",
+  description: "Download Instagram Videos",
+};
 
 export default function RootLayout({
   children,
@@ -20,19 +27,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "overflow-x-hidden bg-stone-50 text-black",
-          "flex min-h-screen w-full flex-col justify-between",
-          "scroll-smooth",
-          mainFont.className
+          fontSans.variable,
+          "bg-background overflow-x-hidden font-sans antialiased"
         )}
       >
-        <Navbar />
-        <ScrollUpButton />
-        {children}
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryProvider>
+            <Navbar />
+            <main className="relative h-[calc(100vh-6rem)] overflow-y-auto px-2 sm:px-4">
+              {children}
+            </main>
+            <Footer />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
