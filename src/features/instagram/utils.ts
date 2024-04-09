@@ -1,11 +1,10 @@
 import { CheerioAPI } from "cheerio";
 import querystring from "querystring";
 
-import { HTTPError } from "@/lib/errors";
 import { getTimedFilename } from "@/lib/utils";
 
 import { VideoInfo } from "@/types";
-import { GraphQLResponse, MediaData } from "./types";
+import { MediaData } from "./types";
 
 export const getIGVideoFileName = () =>
   getTimedFilename("ig-downloader", "mp4");

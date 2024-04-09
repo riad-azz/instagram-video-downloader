@@ -1,6 +1,6 @@
 import { apiClient } from "@/lib/api-client";
 
-import { GraphQLResponse } from "@/types/instagram";
+import { GraphQLResponse } from "@//features/instagram/types";
 import { encodeGraphqlRequestData } from "@/features/instagram/utils";
 
 import { InstagramEndpoints } from "./constants";
