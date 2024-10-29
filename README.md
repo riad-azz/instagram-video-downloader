@@ -3,7 +3,7 @@
 Simple Website/API for downloading instagram videos made with Next.js that actually works with no problem.
 
 > [!NOTE]  
-> The website preview has been shut down due to exceeding the free usage limit on Vercel with more than 2 million visits for the past week. Since I don't make any money from this website, I had to close it.
+> The website preview has been shut down due to exceeding the free usage limit on Vercel with more than **2,000,000** visits for the past week. Since I don't make any money from this website, I had to close it.
 
 ## Description
 
