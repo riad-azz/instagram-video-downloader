@@ -26,7 +26,27 @@ Responsive on mobile and small devices.
 
 ![Mobile preview](https://github.com/riad-azz/readme-storage/blob/main/instagram-videos-downloader/mobile-preview.gif?raw=true)
 
-## Getting Started
+## Running using docker
+
+**1.** Clone the repository:
+
+```bash
+git clone https://github.com/riad-azz/instagram-video-downloader.git
+```
+
+**2.** Build the Docker image:
+
+```bash
+docker build -t instagram-video-downloader .
+```
+
+**3.** Run the Docker container:
+
+```bash
+docker run -p 3000:3000 instagram-video-downloader
+```
+
+## Running using node
 
 **1.** Cloning the repository:
 
