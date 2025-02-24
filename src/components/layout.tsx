@@ -21,27 +21,7 @@ export function Navbar() {
         <div className="hidden select-none text-xl font-extrabold uppercase md:block">
           Downloader
         </div>
-        <MobileNav className="md:hidden" />
         <div className="ml-auto flex items-center gap-4">
-          <div className="hidden items-center gap-4 text-lg sm:gap-8 sm:pr-8 md:flex">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>
-            <Link
-              target="_blank"
-              href="https://github.com/riad-azz/instagram-video-downloader"
-              className="hover:underline"
-            >
-              Github
-            </Link>{" "}
-            <Link
-              target="_blank"
-              href="https://github.com/riad-azz"
-              className="hover:underline"
-            >
-              Creator
-            </Link>
-          </div>
           <ThemeToggle />
         </div>
       </nav>
@@ -52,7 +32,7 @@ export function Navbar() {
 export function Footer() {
   return (
     <footer className="h-8 w-full bg-background/50 text-center text-secondary-foreground">
-      <div className="flex items-center justify-between border-t border-input px-4 py-2">
+      {/* <div className="flex items-center justify-between border-t border-input px-4 py-2">
         <div aria-label="Disclaimer" className="text-sm font-semibold">
           We are not affiliated with Instagram or Meta
         </div>
@@ -67,7 +47,7 @@ export function Footer() {
             Privacy Policy
           </Link>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }
