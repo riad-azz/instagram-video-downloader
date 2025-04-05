@@ -24,6 +24,8 @@ Website Preview: [gram-grabberz.vercel.app](https://gram-grabberz.vercel.app)
 - **Modern Frontend Stack:** Built with the latest Next.js (App Router).
 - **Clean UI:** User interface crafted using [Shadcn/ui](https://ui.shadcn.com/)
   components and styled with Tailwind CSS v4.
+- **Responsive Layout:** Ensures a consistent and user-friendly experience
+  across different screen sizes.
 - **Type-Safe:** Written entirely in TypeScript.
 - **Form Handling & Validation:** Robust input handling using React Hook Form
   and Zod for schema validation.
