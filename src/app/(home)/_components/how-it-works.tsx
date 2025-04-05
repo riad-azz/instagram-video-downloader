@@ -37,7 +37,7 @@ export function HowItWorks() {
                 <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-xl font-bold text-white shadow-lg">
                   1
                 </div>
-                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                   <div className="mb-4 flex justify-center">
                     <Copy className="h-8 w-8 text-teal-500" />
                   </div>
@@ -54,7 +54,7 @@ export function HowItWorks() {
                 <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-xl font-bold text-white shadow-lg">
                   2
                 </div>
-                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                   <div className="mb-4 flex justify-center">
                     <Clipboard className="h-8 w-8 text-teal-500" />
                   </div>
@@ -71,7 +71,7 @@ export function HowItWorks() {
                 <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full bg-teal-500 text-xl font-bold text-white shadow-lg">
                   3
                 </div>
-                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800">
+                <div className="h-full rounded-xl border border-gray-100 bg-white p-6 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                   <div className="mb-4 flex justify-center">
                     <Download className="h-8 w-8 text-teal-500" />
                   </div>
@@ -95,7 +95,7 @@ export function HowItWorks() {
               <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-500 font-bold text-white">
                 1
               </div>
-              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800">
+              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <div className="mb-2 flex items-center">
                   <Copy className="mr-2 h-5 w-5 text-teal-500" />
                   <h3 className="text-lg font-bold">{t("steps.copy.title")}</h3>
@@ -110,7 +110,7 @@ export function HowItWorks() {
               <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-500 font-bold text-white">
                 2
               </div>
-              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800">
+              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <div className="mb-2 flex items-center">
                   <Clipboard className="mr-2 h-5 w-5 text-teal-500" />
                   <h3 className="text-lg font-bold">
@@ -127,7 +127,7 @@ export function HowItWorks() {
               <div className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal-500 font-bold text-white">
                 3
               </div>
-              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md dark:border-gray-700 dark:bg-gray-800">
+              <div className="flex-1 rounded-lg border border-gray-100 bg-white p-4 shadow-md transition-all duration-200 hover:-translate-y-1 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
                 <div className="mb-2 flex items-center">
                   <Download className="mr-2 h-5 w-5 text-teal-500" />
                   <h3 className="text-lg font-bold">
