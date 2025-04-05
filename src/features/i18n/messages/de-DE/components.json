@@ -1,0 +1,26 @@
+{
+  "instagramForm": {
+    "inputs": {
+      "url": {
+        "label": "Video-URL",
+        "placeholder": "Instagram-Video-URL hier einfügen...",
+        "validation": {
+          "required": "Die Instagram-Post-URL ist erforderlich",
+          "invalid": "Bitte geben Sie eine gültige Instagram-Post-URL ein"
+        }
+      }
+    },
+    "serverErrors": {
+      "notFound": "Der gesuchte Beitrag wurde nicht gefunden",
+      "notVideo": "Dieser Beitrag enthält kein Video",
+      "tooManyRequests": "Zu viele Anfragen, bitte versuchen Sie es später noch einmal",
+      "serverError": "Der Server ist nicht verfügbar, bitte versuchen Sie es später noch einmal"
+    },
+    "toasts": {
+      "success": "Der Video-Download startet...",
+      "error": "Etwas ist schiefgelaufen, bitte versuchen Sie es erneut."
+    },
+    "hint": "Funktioniert mit Instagram-Posts und Reels",
+    "submit": "Herunterladen"
+  }
+}

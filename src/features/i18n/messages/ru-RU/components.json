@@ -1,0 +1,26 @@
+{
+  "instagramForm": {
+    "inputs": {
+      "url": {
+        "label": "URL видео",
+        "placeholder": "Вставьте URL видео из Instagram сюда...",
+        "validation": {
+          "required": "URL поста Instagram обязателен",
+          "invalid": "Пожалуйста, введите действительный URL поста Instagram"
+        }
+      }
+    },
+    "serverErrors": {
+      "notFound": "Запрашиваемый пост не найден",
+      "notVideo": "Этот пост не содержит видео",
+      "tooManyRequests": "Слишком много запросов, пожалуйста, попробуйте позже",
+      "serverError": "Сервер недоступен, пожалуйста, попробуйте позже"
+    },
+    "toasts": {
+      "success": "Начинается загрузка видео...",
+      "error": "Что-то пошло не так, попробуйте еще раз."
+    },
+    "hint": "Работает с постами и Reels в Instagram",
+    "submit": "Скачать"
+  }
+}

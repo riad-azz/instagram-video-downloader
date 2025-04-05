@@ -1,0 +1,19 @@
+{
+  "header": {
+    "themeLabel": "Thème",
+    "localeLabel": "Langue",
+    "links": {
+      "features": "Fonctionnalités",
+      "howItWorks": "Comment ça marche",
+      "frequentlyAsked": "FAQ"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Application. Tous droits réservés.",
+    "links": {
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "contact": "Contact"
+    }
+  }
+}

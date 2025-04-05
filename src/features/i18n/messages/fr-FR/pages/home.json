@@ -1,0 +1,106 @@
+{
+  "title": "Gram Grabberz",
+  "description": "Rapide, gratuit et sans inscription requise. Collez simplement l'URL et téléchargez.",
+  "hero": {
+    "title": "Téléchargez des vidéos Instagram en quelques secondes",
+    "description": "Rapide, gratuit et sans inscription requise. Collez simplement l'URL et téléchargez.",
+    "form": {
+      "placeholder": "Collez l'URL de la vidéo Instagram ici...",
+      "button": "Télécharger"
+    },
+    "formHint": "Fonctionne avec les publications, Reels et Stories Instagram",
+    "learnMore": "Apprendre comment ça marche"
+  },
+  "features": {
+    "badge": "Pourquoi nous choisir",
+    "title": "Fonctionnalités puissantes",
+    "description": "Tout ce dont vous avez besoin pour télécharger des vidéos Instagram rapidement et facilement",
+    "cards": {
+      "free": {
+        "title": "100% Gratuit",
+        "description": "Pas de frais cachés, d'abonnements ou de limites. Téléchargez un nombre illimité de vidéos sans payer un centime."
+      },
+      "noRegistration": {
+        "title": "Pas d'inscription",
+        "description": "Évitez les tracas de la création de comptes ou de la connexion. Accès instantané sans aucune donnée personnelle requise."
+      },
+      "fast": {
+        "title": "Ultra rapide",
+        "description": "Nos serveurs optimisés traitent vos demandes instantanément, livrant les vidéos en quelques secondes, pas en minutes."
+      },
+      "hdQuality": {
+        "title": "Qualité HD",
+        "description": "Téléchargez des vidéos dans la plus haute qualité disponible, en conservant la résolution et la clarté d'origine."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Processus simple",
+    "title": "Comment ça marche",
+    "description": "Téléchargez des vidéos Instagram en trois étapes simples",
+    "steps": {
+      "copy": {
+        "title": "Copier l'URL",
+        "descriptionDesktop": "Trouvez la vidéo Instagram que vous souhaitez et copiez son URL depuis la barre d'adresse ou le menu de partage",
+        "descriptionMobile": "Trouvez la vidéo Instagram que vous souhaitez et copiez son URL"
+      },
+      "paste": {
+        "title": "Coller l'URL",
+        "descriptionDesktop": "Collez l'URL copiée dans le champ de saisie de notre téléchargeur en haut de cette page",
+        "descriptionMobile": "Collez l'URL dans le champ de saisie de notre téléchargeur"
+      },
+      "download": {
+        "title": "Télécharger",
+        "descriptionDesktop": "Cliquez sur le bouton de téléchargement et votre vidéo sera enregistrée directement sur votre appareil",
+        "descriptionMobile": "Cliquez sur télécharger et enregistrez la vidéo sur votre appareil"
+      }
+    },
+    "ctaButton": "Essayez maintenant"
+  },
+  "testimonials": {
+    "title": "La confiance de milliers d'utilisateurs",
+    "description": "Rejoignez des milliers d'utilisateurs satisfaits qui téléchargent des vidéos Instagram chaque jour",
+    "stats": {
+      "downloads": "Téléchargements quotidiens",
+      "users": "Utilisateurs satisfaits",
+      "rating": "Évaluation des utilisateurs"
+    }
+  },
+  "frequentlyAsked": {
+    "badge": "Vous avez des questions ?",
+    "title": "Foire Aux Questions",
+    "description": "Trouvez des réponses aux questions courantes concernant notre téléchargeur de vidéos Instagram",
+    "sections": {
+      "general": {
+        "title": "Questions Générales",
+        "q1": {
+          "trigger": "Ce service est-il entièrement gratuit ?",
+          "content": "Oui, notre téléchargeur de vidéos Instagram est entièrement gratuit et sans frais cachés ni frais d'abonnement. Nous ne demandons aucune information de paiement."
+        },
+        "q2": {
+          "trigger": "Dois-je créer un compte ?",
+          "content": "Non, vous n'avez pas besoin de créer un compte ou de vous connecter pour utiliser notre service. Collez simplement l'URL et téléchargez sans aucune inscription."
+        },
+        "q3": {
+          "trigger": "Est-il légal de télécharger des vidéos Instagram ?",
+          "content": "Notre service est conçu pour un usage personnel uniquement. Veuillez respecter les lois sur le droit d'auteur et ne télécharger que les vidéos que vous avez l'autorisation d'utiliser ou qui relèvent de l'usage loyal."
+        }
+      },
+      "technical": {
+        "title": "Questions Techniques",
+        "q1": {
+          "trigger": "Quels types de contenu Instagram puis-je télécharger ?",
+          "content": "Vous pouvez télécharger les publications, Reels et Stories contenant des vidéos. Notre service fonctionne avec les comptes Instagram publics et la plupart des comptes privés auxquels vous avez accès."
+        },
+        "q2": {
+          "trigger": "Quelle est la qualité de la vidéo ?",
+          "content": "Nous fournissons la version de la plus haute qualité de la vidéo mise à disposition par Instagram, généralement en qualité HD (1080p) lorsque disponible à partir de la source."
+        },
+        "q3": {
+          "trigger": "Fonctionne-t-il sur les appareils mobiles ?",
+          "content": "Oui, notre téléchargeur fonctionne sur tous les appareils, y compris les smartphones et les tablettes. Le processus est le même : copiez l'URL depuis Instagram et collez-la dans notre outil."
+        }
+      }
+    }
+  }
+}

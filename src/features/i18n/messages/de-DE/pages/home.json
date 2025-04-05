@@ -1,0 +1,106 @@
+{
+  "title": "Gram Grabberz",
+  "description": "Schnell, kostenlos und keine Anmeldung erforderlich. Einfach die URL einfügen und herunterladen.",
+  "hero": {
+    "title": "Instagram-Videos in Sekunden herunterladen",
+    "description": "Schnell, kostenlos und keine Anmeldung erforderlich. Einfach die URL einfügen und herunterladen.",
+    "form": {
+      "placeholder": "Instagram-Video-URL hier einfügen...",
+      "button": "Herunterladen"
+    },
+    "formHint": "Funktioniert mit Instagram-Posts, Reels und Stories",
+    "learnMore": "Erfahren Sie, wie es funktioniert"
+  },
+  "features": {
+    "badge": "Warum Sie uns wählen sollten",
+    "title": "Leistungsstarke Funktionen",
+    "description": "Alles, was Sie zum schnellen und einfachen Herunterladen von Instagram-Videos benötigen",
+    "cards": {
+      "free": {
+        "title": "100% kostenlos",
+        "description": "Keine versteckten Gebühren, Abonnements oder Beschränkungen. Laden Sie unbegrenzt Videos herunter, ohne einen Cent zu bezahlen."
+      },
+      "noRegistration": {
+        "title": "Keine Registrierung",
+        "description": "Überspringen Sie den Aufwand, Konten zu erstellen oder sich anzumelden. Sofortiger Zugriff ohne Angabe persönlicher Daten erforderlich."
+      },
+      "fast": {
+        "title": "Blitzschnell",
+        "description": "Unsere optimierten Server verarbeiten Ihre Anfragen sofort und liefern Videos in Sekunden, nicht in Minuten."
+      },
+      "hdQuality": {
+        "title": "HD-Qualität",
+        "description": "Laden Sie Videos in der höchstmöglichen Qualität herunter und bewahren Sie die ursprüngliche Auflösung und Klarheit."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Einfacher Prozess",
+    "title": "So funktioniert's",
+    "description": "Laden Sie Instagram-Videos in drei einfachen Schritten herunter",
+    "steps": {
+      "copy": {
+        "title": "URL kopieren",
+        "descriptionDesktop": "Finden Sie das gewünschte Instagram-Video und kopieren Sie dessen URL aus der Adressleiste oder dem Freigabemenü",
+        "descriptionMobile": "Finden Sie das gewünschte Instagram-Video und kopieren Sie dessen URL"
+      },
+      "paste": {
+        "title": "URL einfügen",
+        "descriptionDesktop": "Fügen Sie die kopierte URL in das Eingabefeld unseres Downloaders oben auf dieser Seite ein",
+        "descriptionMobile": "Fügen Sie die URL in das Eingabefeld unseres Downloaders ein"
+      },
+      "download": {
+        "title": "Herunterladen",
+        "descriptionDesktop": "Klicken Sie auf die Schaltfläche „Herunterladen“, und Ihr Video wird direkt auf Ihrem Gerät gespeichert",
+        "descriptionMobile": "Klicken Sie auf „Herunterladen“ und speichern Sie das Video auf Ihrem Gerät"
+      }
+    },
+    "ctaButton": "Jetzt ausprobieren"
+  },
+  "testimonials": {
+    "title": "Tausenden vertraut",
+    "description": "Schließen Sie sich Tausenden zufriedener Benutzer an, die täglich Instagram-Videos herunterladen",
+    "stats": {
+      "downloads": "Tägliche Downloads",
+      "users": "Zufriedene Benutzer",
+      "rating": "Benutzerbewertung"
+    }
+  },
+  "frequentlyAsked": {
+    "badge": "Haben Sie Fragen?",
+    "title": "Häufig gestellte Fragen",
+    "description": "Finden Sie Antworten auf häufige Fragen zu unserem Instagram-Video-Downloader",
+    "sections": {
+      "general": {
+        "title": "Allgemeine Fragen",
+        "q1": {
+          "trigger": "Ist dieser Service völlig kostenlos?",
+          "content": "Ja, unser Instagram-Video-Downloader ist völlig kostenlos und es fallen keine versteckten Gebühren oder Abonnementkosten an. Wir benötigen keine Zahlungsinformationen."
+        },
+        "q2": {
+          "trigger": "Muss ich ein Konto erstellen?",
+          "content": "Nein, Sie müssen kein Konto erstellen oder sich anmelden, um unseren Service zu nutzen. Fügen Sie einfach die URL ein und laden Sie sie ohne Registrierung herunter."
+        },
+        "q3": {
+          "trigger": "Ist es legal, Instagram-Videos herunterzuladen?",
+          "content": "Unser Service ist nur für den persönlichen Gebrauch bestimmt. Bitte respektieren Sie die Urheberrechtsgesetze und laden Sie nur Videos herunter, die Sie verwenden dürfen oder die unter die Fair Use fallen."
+        }
+      },
+      "technical": {
+        "title": "Technische Fragen",
+        "q1": {
+          "trigger": "Welche Arten von Instagram-Inhalten kann ich herunterladen?",
+          "content": "Sie können normale Posts, Reels und Stories herunterladen, die Videos enthalten. Unser Service funktioniert mit öffentlichen Instagram-Konten und den meisten privaten Konten, auf die Sie Zugriff haben."
+        },
+        "q2": {
+          "trigger": "Wie ist die Videoqualität?",
+          "content": "Wir bieten die hochwertigste Version des Videos an, die Instagram zur Verfügung stellt, in der Regel in HD-Qualität (1080p), wenn sie von der Quelle verfügbar ist."
+        },
+        "q3": {
+          "trigger": "Funktioniert es auf Mobilgeräten?",
+          "content": "Ja, unser Downloader funktioniert auf allen Geräten, einschließlich Smartphones und Tablets. Der Vorgang ist derselbe: Kopieren Sie die URL von Instagram und fügen Sie sie in unser Tool ein."
+        }
+      }
+    }
+  }
+}

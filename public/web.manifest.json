@@ -1,0 +1,32 @@
+{
+  "name": "Gram Grabberz",
+  "short_name": "GramGrabberz",
+  "description": "Fast, free, and no login required. Just paste the URL and download.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4285f4",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "orientation": "portrait",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["Internet"],
+  "keywords": [
+    "Instagram video downloader",
+    "download IG videos",
+    "Instagram video saver",
+    "Instagram video grabber",
+    "Instagram video saver free",
+    "Instagram video downloader free",
+    "Instagram video grabber free",
+    "Instagram video saver app",
+    "Instagram video grabber app"
+  ],
+  "author": "riad-azz",
+  "copyright": "© 2025 riad-azz. All rights reserved.",
+  "rating": "General",
+  "apple-mobile-web-app-title": "Gram Grabberz",
+  "apple-mobile-web-app-status-bar-style": "black-translucent"
+}

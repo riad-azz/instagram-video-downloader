@@ -1,0 +1,157 @@
+{
+  "components": {
+    "instagramForm": {
+      "inputs": {
+        "url": {
+          "label": "URL del video",
+          "placeholder": "Pega la URL del video de Instagram aquí...",
+          "validation": {
+            "required": "Se requiere la URL de la publicación de Instagram",
+            "invalid": "Por favor, introduce una URL de publicación de Instagram válida"
+          }
+        }
+      },
+      "serverErrors": {
+        "notFound": "No se encontró la publicación que estás buscando",
+        "notVideo": "Esta publicación no contiene un video",
+        "tooManyRequests": "Demasiadas solicitudes, por favor intenta de nuevo más tarde",
+        "serverError": "El servidor no está disponible, por favor intenta de nuevo más tarde"
+      },
+      "toasts": {
+        "success": "La descarga del video está comenzando...",
+        "error": "Algo salió mal, por favor intenta de nuevo."
+      },
+      "hint": "Funciona con publicaciones y Reels de Instagram",
+      "submit": "Descargar"
+    }
+  },
+  "layouts": {
+    "home": {
+      "header": {
+        "themeLabel": "Tema",
+        "localeLabel": "Idioma",
+        "links": {
+          "features": "Características",
+          "howItWorks": "Cómo funciona",
+          "frequentlyAsked": "FAQ"
+        }
+      },
+      "footer": {
+        "copyright": "© {year} Aplicación. Todos los derechos reservados.",
+        "links": {
+          "terms": "Términos de Servicio",
+          "privacy": "Política de Privacidad",
+          "contact": "Contacto"
+        }
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Gram Grabberz",
+      "description": "Rápido, gratuito y sin necesidad de iniciar sesión. Simplemente pega la URL y descarga.",
+      "hero": {
+        "title": "Descarga videos de Instagram en segundos",
+        "description": "Rápido, gratis y sin necesidad de iniciar sesión. Simplemente pega la URL y descarga.",
+        "form": {
+          "placeholder": "Pega la URL del video de Instagram aquí...",
+          "button": "Descargar"
+        },
+        "formHint": "Funciona con publicaciones, Reels e historias de Instagram",
+        "learnMore": "Aprende cómo funciona"
+      },
+      "features": {
+        "badge": "Por qué elegirnos",
+        "title": "Funciones poderosas",
+        "description": "Todo lo que necesitas para descargar videos de Instagram de forma rápida y sencilla",
+        "cards": {
+          "free": {
+            "title": "100% Gratis",
+            "description": "Sin cargos ocultos, suscripciones ni límites. Descarga videos ilimitados sin pagar un centavo."
+          },
+          "noRegistration": {
+            "title": "Sin registro",
+            "description": "Evita la molestia de crear cuentas o iniciar sesión. Acceso instantáneo sin necesidad de datos personales."
+          },
+          "fast": {
+            "title": "Ultra rápido",
+            "description": "Nuestros servidores optimizados procesan tus solicitudes al instante, entregando videos en segundos, no en minutos."
+          },
+          "hdQuality": {
+            "title": "Calidad HD",
+            "description": "Descarga videos en la más alta calidad disponible, conservando la resolución y claridad originales."
+          }
+        }
+      },
+      "howItWorks": {
+        "badge": "Proceso simple",
+        "title": "Cómo funciona",
+        "description": "Descarga videos de Instagram en tres sencillos pasos",
+        "steps": {
+          "copy": {
+            "title": "Copiar URL",
+            "descriptionDesktop": "Encuentra el video de Instagram que deseas y copia su URL desde la barra de direcciones o el menú para compartir",
+            "descriptionMobile": "Encuentra el video de Instagram que deseas y copia su URL"
+          },
+          "paste": {
+            "title": "Pegar URL",
+            "descriptionDesktop": "Pega la URL copiada en el campo de entrada de nuestro descargador en la parte superior de esta página",
+            "descriptionMobile": "Pega la URL en el campo de entrada de nuestro descargador"
+          },
+          "download": {
+            "title": "Descargar",
+            "descriptionDesktop": "Haz clic en el botón de descarga y tu video se guardará directamente en tu dispositivo",
+            "descriptionMobile": "Haz clic en descargar y guarda el video en tu dispositivo"
+          }
+        },
+        "ctaButton": "Pruébalo ahora"
+      },
+      "testimonials": {
+        "title": "Con la confianza de miles",
+        "description": "Únete a miles de usuarios satisfechos que descargan videos de Instagram todos los días",
+        "stats": {
+          "downloads": "Descargas diarias",
+          "users": "Usuarios felices",
+          "rating": "Calificación de los usuarios"
+        }
+      },
+      "frequentlyAsked": {
+        "badge": "¿Tienes preguntas?",
+        "title": "Preguntas Frecuentes",
+        "description": "Encuentra respuestas a preguntas comunes sobre nuestro descargador de videos de Instagram",
+        "sections": {
+          "general": {
+            "title": "Preguntas Generales",
+            "q1": {
+              "trigger": "¿Este servicio es completamente gratuito?",
+              "content": "Sí, nuestro descargador de videos de Instagram es completamente gratuito y no tiene cargos ocultos ni tarifas de suscripción. No requerimos ninguna información de pago."
+            },
+            "q2": {
+              "trigger": "¿Necesito crear una cuenta?",
+              "content": "No, no necesitas crear una cuenta ni iniciar sesión para usar nuestro servicio. Simplemente pega la URL y descarga sin ningún registro."
+            },
+            "q3": {
+              "trigger": "¿Es legal descargar videos de Instagram?",
+              "content": "Nuestro servicio está diseñado solo para uso personal. Por favor, respeta las leyes de derechos de autor y descarga solo los videos que tengas permiso para usar o que estén dentro del uso justo."
+            }
+          },
+          "technical": {
+            "title": "Preguntas Técnicas",
+            "q1": {
+              "trigger": "¿Qué tipos de contenido de Instagram puedo descargar?",
+              "content": "Puedes descargar publicaciones regulares, Reels e historias que contengan videos. Nuestro servicio funciona con cuentas públicas de Instagram y la mayoría de las cuentas privadas a las que tienes acceso."
+            },
+            "q2": {
+              "trigger": "¿Cuál es la calidad del video?",
+              "content": "Proporcionamos la versión de la más alta calidad del video que Instagram pone a disposición, generalmente en calidad HD (1080p) cuando está disponible desde la fuente."
+            },
+            "q3": {
+              "trigger": "¿Funciona en dispositivos móviles?",
+              "content": "Sí, nuestro descargador funciona en todos los dispositivos, incluidos teléfonos inteligentes y tabletas. El proceso es el mismo: copia la URL de Instagram y pégala en nuestra herramienta."
+            }
+          }
+        }
+      }
+    }
+  }
+}

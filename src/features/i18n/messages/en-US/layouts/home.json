@@ -1,0 +1,19 @@
+{
+  "header": {
+    "themeLabel": "Theme",
+    "localeLabel": "Language",
+    "links": {
+      "features": "Features",
+      "howItWorks": "How It Works",
+      "frequentlyAsked": "FAQ"
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Application. All rights reserved.",
+    "links": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "contact": "Contact"
+    }
+  }
+}

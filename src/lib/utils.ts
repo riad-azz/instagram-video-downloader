@@ -1,29 +1,29 @@
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { type ClassValue, clsx } from "clsx";
 
-export const cn = (...inputs: ClassValue[]) => {
+export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-};
+}
 
-export const getTimedFilename = (name: string, ext: string) => {
-  const timeStamp = Math.floor(Date.now() / 1000).toString();
-  return `${name}-${timeStamp}.${ext}`;
-};
+export function isShortcodePresent(url: string) {
+  const regex = /\/(p|reel)\/([a-zA-Z0-9_-]+)\/?/;
+  const match = url.match(regex);
 
-export function downloadFile(
-  url: string,
-  options: { filename?: string; target?: string }
-) {
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = options.filename || "file";
-  if (options.target) {
-    a.target = options.target;
+  if (match && match[2]) {
+    return true;
   }
-  a.style.display = "none";
-  document.body.appendChild(a);
-  a.click();
 
-  window.URL.revokeObjectURL(url);
-  document.body.removeChild(a);
+  return false;
+}
+
+export function getPostShortcode(url: string): string | null {
+  const regex = /\/(p|reel)\/([a-zA-Z0-9_-]+)\/?/;
+  const match = url.match(regex);
+
+  if (match && match[2]) {
+    const shortcode = match[2];
+    return shortcode;
+  } else {
+    return null;
+  }
 }

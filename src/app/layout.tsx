@@ -1,52 +1,43 @@
-import { Metadata } from "next";
-import { DM_Sans as FontSans } from "next/font/google";
+import type { Metadata } from "next";
+import { DM_Sans as RootFont } from "next/font/google";
 
-import { Navbar, Footer } from "@/components/layout";
-
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { ReactQueryProvider } from "@/components/providers/react-query-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/features/theme/theme-provider";
+import { LocaleProvider } from "@/features/i18n/locale-provider";
+import { ReactQueryProvider } from "@/features/react-query/react-query-provider";
 
 import { cn } from "@/lib/utils";
+import { siteMetadata } from "@/lib/site";
+import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
 
-const fontSans = FontSans({
+const geistSans = RootFont({
+  variable: "--font-root-sans",
   subsets: ["latin"],
-  variable: "--font-sans",
 });
 
-export const metadata: Metadata = {
-  title: "Instagram Video Downloader",
-  description: "Download Instagram Videos",
-};
+export const metadata: Metadata = siteMetadata;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          fontSans.variable,
-          "overflow-x-hidden bg-background font-sans antialiased"
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReactQueryProvider>
-            <Navbar />
-            <main className="relative h-[calc(100vh-6rem)] overflow-y-auto px-2 sm:px-4">
+    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
+      <body className={cn("antialiased", geistSans.className)}>
+        <LocaleProvider locale={locale} messages={messages}>
+          <ThemeProvider>
+            <ReactQueryProvider>
               {children}
-            </main>
-            <Footer />
-          </ReactQueryProvider>
-        </ThemeProvider>
+              <Toaster closeButton />
+            </ReactQueryProvider>
+          </ThemeProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

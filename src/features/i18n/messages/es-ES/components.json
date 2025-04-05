@@ -1,0 +1,26 @@
+{
+  "instagramForm": {
+    "inputs": {
+      "url": {
+        "label": "URL del video",
+        "placeholder": "Pega la URL del video de Instagram aquí...",
+        "validation": {
+          "required": "Se requiere la URL de la publicación de Instagram",
+          "invalid": "Por favor, introduce una URL de publicación de Instagram válida"
+        }
+      }
+    },
+    "serverErrors": {
+      "notFound": "No se encontró la publicación que estás buscando",
+      "notVideo": "Esta publicación no contiene un video",
+      "tooManyRequests": "Demasiadas solicitudes, por favor intenta de nuevo más tarde",
+      "serverError": "El servidor no está disponible, por favor intenta de nuevo más tarde"
+    },
+    "toasts": {
+      "success": "La descarga del video está comenzando...",
+      "error": "Algo salió mal, por favor intenta de nuevo."
+    },
+    "hint": "Funciona con publicaciones y Reels de Instagram",
+    "submit": "Descargar"
+  }
+}
