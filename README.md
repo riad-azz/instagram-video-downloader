@@ -15,6 +15,9 @@ for content you have the right to download.
 
 Website Preview: [gram-grabberz.vercel.app](https://gram-grabberz.vercel.app)
 
+![website preview](https://github.com/user-attachments/assets/e4f1da1e-3654-46cd-852a-041c0fb0a8ed)
+
+
 ## ✨ Features
 
 - **Download Instagram Videos:** Input an Instagram video URL to fetch and
