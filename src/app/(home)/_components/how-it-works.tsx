@@ -142,7 +142,10 @@ export function HowItWorks() {
           </div>
 
           <div className="pt-8">
-            <Button className="bg-teal-500 hover:bg-teal-600" asChild>
+            <Button
+              className="bg-teal-500 text-white hover:bg-teal-600 dark:bg-teal-700 dark:hover:bg-teal-600"
+              asChild
+            >
               <a href={homeLinks.hero}>{t("ctaButton")}</a>
             </Button>
           </div>
