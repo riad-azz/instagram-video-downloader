@@ -15,7 +15,7 @@ for content you have the right to download.
 
 Website Preview: [gram-grabberz.vercel.app](https://gram-grabberz.vercel.app)
 
-![website preview](https://github.com/user-attachments/assets/2742c214-de0c-4d96-a34f-6ee424041389)
+![website preview](https://github.com/user-attachments/assets/74e5db68-b5b5-425b-8734-81bbaedeb3c4)
 
 ## ✨ Features
 
