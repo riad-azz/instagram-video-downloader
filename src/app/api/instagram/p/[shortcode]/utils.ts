@@ -2,6 +2,9 @@ import { RequestConfigType } from "@/types/request-config";
 import { IG_GraphQLResponseDto } from "@/features/api/_dto/instagram";
 
 import querystring from "querystring";
+// If 'process' is globally available, this import might not be strictly needed
+// but ensures type safety if using TypeScript with @types/node
+import process from "process";
 
 function generateRequestBody(shortcode: string) {
   return querystring.stringify({
@@ -52,28 +55,51 @@ export function getInstagramPostGraphQL(
 ) {
   const requestUrl = new URL("https://www.instagram.com/graphql/query");
 
+  const sessionId = process.env.INSTAGRAM_SESSION_ID;
+  const csrfToken = process.env.INSTAGRAM_CSRF_TOKEN;
+  const dsUserId = process.env.INSTAGRAM_DS_USER_ID;
+  const igDid = process.env.INSTAGRAM_IG_DID;
+  const rur = process.env.INSTAGRAM_RUR;
+  const mid = process.env.INSTAGRAM_MID;
+
+  const cookies: string[] = [];
+  if (sessionId) cookies.push(`sessionid=${sessionId}`);
+  if (csrfToken) cookies.push(`csrftoken=${csrfToken}`);
+  if (dsUserId) cookies.push(`ds_user_id=${dsUserId}`);
+  if (igDid) cookies.push(`ig_did=${igDid}`);
+  if (rur) cookies.push(`rur=${rur}`);
+  if (mid) cookies.push(`mid=${mid}`);
+
+  const cookieHeader = cookies.join("; ");
+
+  const headers: HeadersInit = {
+    "User-Agent":
+      "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36",
+    Accept: "*/*",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-FB-Friendly-Name": "PolarisPostActionLoadPostQueryQuery",
+    "X-BLOKS-VERSION-ID":
+      "0d99de0d13662a50e0958bcb112dd651f70dea02e1859073ab25f8f2a477de96",
+    "X-CSRFToken": csrfToken || "uy8OpI1kndx4oUHjlHaUfu",
+    "X-IG-App-ID": "1217981644879628",
+    "X-FB-LSD": "AVrqPT0gJDo",
+    "X-ASBD-ID": "359341",
+    "Sec-GPC": "1",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    Pragma: "no-cache",
+    "Cache-Control": "no-cache",
+  };
+
+  if (cookieHeader) {
+    headers["Cookie"] = cookieHeader;
+  }
+
   return fetch(requestUrl, {
     credentials: "include",
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Linux; Android 11; SAMSUNG SM-G973U) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/14.2 Chrome/87.0.4280.141 Mobile Safari/537.36",
-      Accept: "*/*",
-      "Accept-Language": "en-US,en;q=0.5",
-      "Content-Type": "application/x-www-form-urlencoded",
-      "X-FB-Friendly-Name": "PolarisPostActionLoadPostQueryQuery",
-      "X-BLOKS-VERSION-ID":
-        "0d99de0d13662a50e0958bcb112dd651f70dea02e1859073ab25f8f2a477de96",
-      "X-CSRFToken": "uy8OpI1kndx4oUHjlHaUfu",
-      "X-IG-App-ID": "1217981644879628",
-      "X-FB-LSD": "AVrqPT0gJDo",
-      "X-ASBD-ID": "359341",
-      "Sec-GPC": "1",
-      "Sec-Fetch-Dest": "empty",
-      "Sec-Fetch-Mode": "cors",
-      "Sec-Fetch-Site": "same-origin",
-      Pragma: "no-cache",
-      "Cache-Control": "no-cache",
-    },
+    headers: headers,
     referrer: `https://www.instagram.com/p/${data.shortcode}/`,
     body: generateRequestBody(data.shortcode),
     method: "POST",
