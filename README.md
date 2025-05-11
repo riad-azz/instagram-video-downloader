@@ -138,11 +138,11 @@ Follow these steps to set up and run the project locally:
 4. Click the "Download" button.
 5. If successful, a download link or button for the video file should appear.
 
-## 🔐 Accessing Private Content (Experimental)
+## 🔐 Accessing Private Content (Experimental & Optional)
 
 To access private Instagram videos that require authentication, this application can use Instagram session cookies provided via environment variables. This method directly uses your browser's session information to make authenticated requests.
 
-### Required Environment Variables
+### Environment Variables
 
 Set the following environment variables in your local environment (e.g., in a `.env` file if your setup supports it, or directly in your shell) before running the application:
 
