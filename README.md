@@ -138,6 +138,36 @@ Follow these steps to set up and run the project locally:
 4. Click the "Download" button.
 5. If successful, a download link or button for the video file should appear.
 
+## 🔐 Accessing Private Content (Experimental & Optional)
+
+To access private Instagram videos that require authentication, this application can use Instagram session cookies provided via environment variables. This method directly uses your browser's session information to make authenticated requests.
+
+### Environment Variables
+
+Set the following environment variables in your local environment (e.g., in a `.env` file if your setup supports it, or directly in your shell) before running the application:
+
+-   `INSTAGRAM_SESSION_ID`: The `sessionid` cookie.
+-   `INSTAGRAM_CSRF_TOKEN`: The `csrftoken` cookie.
+-   `INSTAGRAM_DS_USER_ID`: The `ds_user_id` cookie.
+-   `INSTAGRAM_IG_DID`: The `ig_did` cookie.
+
+Optionally, you might also need:
+
+-   `INSTAGRAM_RUR`: The `rur` cookie.
+-   `INSTAGRAM_MID`: The `mid` cookie.
+
+### How to Obtain Cookies
+
+You can typically obtain these cookie values from your web browser's developer tools:
+
+1.  Log in to your Instagram account in your web browser.
+2.  Open the developer tools (usually by pressing F12 or right-clicking and selecting "Inspect").
+3.  Go to the "Application" (in Chrome/Edge) or "Storage" (in Firefox) tab.
+4.  Look for "Cookies" under the storage section and find the cookies for `https://www.instagram.com`.
+5.  Copy the respective values for `sessionid`, `csrftoken`, `ds_user_id`, `ig_did`, etc.
+
+**Note:** These cookies are sensitive and grant access to your Instagram account. Handle them securely and do not share them. They may also expire or change, requiring you to update them.
+
 ## 🤝 Contributing
 
 As this is primarily an educational project, contributions might focus on
