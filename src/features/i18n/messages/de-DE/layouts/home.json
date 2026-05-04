@@ -9,11 +9,6 @@
     }
   },
   "footer": {
-    "copyright": "© {year} Anwendung. Alle Rechte vorbehalten.",
-    "links": {
-      "terms": "Nutzungsbedingungen",
-      "privacy": "Datenschutzrichtlinie",
-      "contact": "Kontakt"
-    }
+    "copyright": "© {year} SnapSave. Alle Rechte vorbehalten."
   }
 }

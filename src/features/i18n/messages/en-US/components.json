@@ -2,25 +2,26 @@
   "instagramForm": {
     "inputs": {
       "url": {
-        "label": "Video URL",
-        "placeholder": "Paste Instagram video URL here...",
+        "label": "Instagram URL",
+        "placeholder": "Paste Instagram link here…",
         "validation": {
-          "required": "Instagram post URL is required",
+          "required": "Please enter an Instagram post URL",
           "invalid": "Please enter a valid Instagram post URL"
         }
       }
     },
     "serverErrors": {
-      "notFound": "The post you are looking for was not found",
-      "notVideo": "This post does not contain a video",
-      "tooManyRequests": "Too many requests, please try again later",
-      "serverError": "Server is unavailable, please try again later"
+      "notFound": "Post not found. Make sure the link is correct and the account is public.",
+      "notVideo": "This post does not contain a downloadable video.",
+      "tooManyRequests": "Too many requests. Please wait a moment and try again.",
+      "serverError": "Something went wrong on our end. Please try again later."
     },
     "toasts": {
-      "success": "Video download is starting...",
-      "error": "Something went wrong, please try again."
+      "success": "Download starting…",
+      "error": "Something went wrong. Please try again."
     },
-    "hint": "Works with Instagram posts and reels",
-    "submit": "Download"
+    "hint": "Works with public Instagram videos, reels, and stories",
+    "submit": "Download Now",
+    "fetching": "Fetching…"
   }
 }

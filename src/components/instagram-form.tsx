@@ -26,7 +26,6 @@ import { cn, getPostShortcode, isShortcodePresent } from "@/lib/utils";
 import { useGetInstagramPostMutation } from "@/features/react-query/mutations/instagram";
 import { HTTP_CODE_ENUM } from "@/features/api/http-codes";
 
-// 5 minutes
 const CACHE_TIME = 5 * 60 * 1000;
 
 const useFormSchema = () => {
@@ -50,36 +49,21 @@ const useFormSchema = () => {
 };
 
 function triggerDownload(videoUrl: string) {
-  // Ensure we are in a browser environment
   if (typeof window === "undefined") return;
 
   const randomTime = new Date().getTime().toString().slice(-8);
-  const filename = `gram-grabberz-${randomTime}.mp4`;
+  const filename = `snapsave-${randomTime}.mp4`;
 
-  // Construct the URL to your proxy API route
-  const proxyUrl = new URL("/api/download-proxy", window.location.origin); // Use relative path + origin
+  const proxyUrl = new URL("/api/download-proxy", window.location.origin);
   proxyUrl.searchParams.append("url", videoUrl);
   proxyUrl.searchParams.append("filename", filename);
 
-  console.log("Using proxy URL:", proxyUrl.toString()); // For debugging
-
   const link = document.createElement("a");
-  // Set href to your proxy route
   link.href = proxyUrl.toString();
   link.target = "_blank";
-
-  // The 'download' attribute here is less critical because the proxy
-  // sets the Content-Disposition header, but it can still be helpful
-  // as a fallback or hint for the browser. Keep the desired filename.
   link.setAttribute("download", filename);
-
-  // Append link to the body temporarily
   document.body.appendChild(link);
-
-  // Programmatically click the link to trigger the download
   link.click();
-
-  // Clean up and remove the link
   document.body.removeChild(link);
 }
 
@@ -223,16 +207,11 @@ export function InstagramForm(props: { className?: string }) {
   }, []);
 
   return (
-    <div className={cn("w-full space-y-2", props.className)}>
-      {errorMessage ? (
-        <p className="h-4 text-sm text-red-500 sm:text-start">{errorMessage}</p>
-      ) : (
-        <div className="h-4"></div>
-      )}
+    <div className={cn("w-full space-y-3", props.className)}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex w-full flex-col gap-2 sm:flex-row sm:items-end"
+          className="flex w-full flex-col gap-3 sm:flex-row sm:items-stretch"
         >
           <FormField
             control={form.control}
@@ -252,15 +231,16 @@ export function InstagramForm(props: { className?: string }) {
                       minLength={1}
                       maxLength={255}
                       placeholder={t("inputs.url.placeholder")}
+                      className="h-12 rounded-xl border-white/10 bg-white/5 pr-10 text-base placeholder:text-gray-500 focus-visible:ring-blue-500/50 dark:bg-white/5"
                     />
                     {isShowClearButton && (
                       <Button
                         size="icon"
                         variant="ghost"
                         onClick={clearUrlField}
-                        className="absolute top-1/2 right-2 h-4 w-4 -translate-y-1/2 cursor-pointer"
+                        className="absolute top-1/2 right-2 h-6 w-6 -translate-y-1/2 cursor-pointer hover:bg-transparent"
                       >
-                        <X className="text-red-500" />
+                        <X className="h-4 w-4 text-gray-500" />
                       </Button>
                     )}
                   </div>
@@ -271,18 +251,27 @@ export function InstagramForm(props: { className?: string }) {
           <Button
             disabled={isDisabled}
             type="submit"
-            className="bg-teal-500 text-white hover:bg-teal-600 dark:bg-teal-700 dark:hover:bg-teal-600"
+            className="h-12 cursor-pointer rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 text-base font-semibold text-white transition-all hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/25 disabled:cursor-not-allowed disabled:opacity-50 sm:shrink-0"
           >
             {isPending ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {t("fetching")}
+              </>
             ) : (
-              <Download className="h-4 w-4" />
+              <>
+                <Download className="mr-2 h-4 w-4" />
+                {t("submit")}
+              </>
             )}
-            {t("submit")}
           </Button>
         </form>
       </Form>
-      <p className="text-muted-foreground text-center text-xs">{t("hint")}</p>
+      {errorMessage ? (
+        <p className="text-sm text-red-400">{errorMessage}</p>
+      ) : (
+        <p className="text-center text-xs text-gray-500">{t("hint")}</p>
+      )}
     </div>
   );
 }
