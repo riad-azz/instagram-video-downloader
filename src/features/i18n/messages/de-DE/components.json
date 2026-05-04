@@ -20,7 +20,8 @@
       "success": "Der Video-Download startet...",
       "error": "Etwas ist schiefgelaufen, bitte versuchen Sie es erneut."
     },
-    "hint": "Funktioniert mit Instagram-Posts und Reels",
-    "submit": "Herunterladen"
+    "hint": "Funktioniert mit öffentlichen Instagram-Videos, Reels und Stories",
+    "submit": "Jetzt herunterladen",
+    "fetching": "Abrufen…"
   }
 }

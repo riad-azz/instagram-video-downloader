@@ -20,7 +20,8 @@
       "success": "La descarga del video está comenzando...",
       "error": "Algo salió mal, por favor intenta de nuevo."
     },
-    "hint": "Funciona con publicaciones y Reels de Instagram",
-    "submit": "Descargar"
+    "hint": "Funciona con videos, Reels e historias de Instagram públicos",
+    "submit": "Descargar ahora",
+    "fetching": "Obteniendo…"
   }
 }

@@ -1,65 +1,60 @@
 {
-  "title": "Gram Grabberz",
-  "description": "Fast, free, and no login required. Just paste the URL and download.",
+  "title": "SnapSave — Instagram Video Downloader",
+  "description": "Download Instagram videos, reels, and stories in seconds. Free, fast, and no signup required.",
   "hero": {
-    "title": "Download Instagram Videos in Seconds",
-    "description": "Fast, free, and no login required. Just paste the URL and download.",
-    "form": {
-      "placeholder": "Paste Instagram video URL here...",
-      "button": "Download"
+    "title": {
+      "prefix": "Download Instagram Videos",
+      "highlight": "in Seconds"
     },
-    "formHint": "Works with Instagram posts, reels, and stories",
-    "learnMore": "Learn how it works"
+    "description": "Paste any public Instagram video, Reel, or Story link and save it instantly — no account needed.",
+    "hint": "Works with public Instagram videos, reels, and stories"
   },
   "features": {
-    "badge": "Why Choose Us",
-    "title": "Powerful Features",
-    "description": "Everything you need to download Instagram videos quickly and easily",
+    "badge": "Why SnapSave",
+    "title": "Everything You Need",
+    "description": "A fast, clean downloader built for Instagram videos, reels, and stories.",
     "cards": {
-      "free": {
-        "title": "100% Free",
-        "description": "No hidden fees, subscriptions, or limits. Download unlimited videos without paying a cent."
-      },
-      "noRegistration": {
-        "title": "No Registration",
-        "description": "Skip the hassle of creating accounts or logging in. Instant access with no personal data required."
-      },
       "fast": {
-        "title": "Lightning Fast",
-        "description": "Our optimized servers process your requests instantly, delivering videos in seconds, not minutes."
+        "title": "Fast Downloads",
+        "description": "Retrieve media in seconds. No waiting, no queues — your download starts immediately."
       },
-      "hdQuality": {
-        "title": "HD Quality",
-        "description": "Download videos in the highest quality available, preserving the original resolution and clarity."
+      "reels": {
+        "title": "Reels Supported",
+        "description": "Save Instagram Reels in full quality. Works with all public reel content."
+      },
+      "noSignup": {
+        "title": "No Signup Needed",
+        "description": "No account, no login, no personal data required. Just paste and download."
+      },
+      "mobile": {
+        "title": "Mobile Friendly",
+        "description": "Works perfectly on iPhone and Android. A smooth experience on any screen size."
       }
     }
   },
   "howItWorks": {
     "badge": "Simple Process",
     "title": "How It Works",
-    "description": "Download Instagram videos in three simple steps",
+    "description": "Download Instagram videos in three easy steps.",
     "steps": {
       "copy": {
-        "title": "Copy URL",
-        "descriptionDesktop": "Find the Instagram video you want and copy its URL from the address bar or share menu",
-        "descriptionMobile": "Find the Instagram video you want and copy its URL"
+        "title": "Copy the Link",
+        "description": "Open Instagram and copy the link of the video, reel, or story you want to save."
       },
       "paste": {
-        "title": "Paste URL",
-        "descriptionDesktop": "Paste the copied URL into our downloader input field at the top of this page",
-        "descriptionMobile": "Paste the URL into our downloader input field"
+        "title": "Paste It Here",
+        "description": "Paste the link into the SnapSave input field and click the download button."
       },
       "download": {
-        "title": "Download",
-        "descriptionDesktop": "Click the download button and your video will be saved directly to your device",
-        "descriptionMobile": "Click download and save the video to your device"
+        "title": "Save Your Video",
+        "description": "Your video download starts instantly. Save it directly to your device."
       }
     },
     "ctaButton": "Try It Now"
   },
   "testimonials": {
     "title": "Trusted by Thousands",
-    "description": "Join thousands of satisfied users who download Instagram videos every day",
+    "description": "Join users who rely on SnapSave every day to save Instagram content.",
     "stats": {
       "downloads": "Daily Downloads",
       "users": "Happy Users",
@@ -67,39 +62,33 @@
     }
   },
   "frequentlyAsked": {
-    "badge": "Got Questions?",
+    "badge": "Common Questions",
     "title": "Frequently Asked Questions",
-    "description": "Find answers to common questions about our Instagram video downloader",
-    "sections": {
-      "general": {
-        "title": "General Questions",
-        "q1": {
-          "trigger": "Is this service completely free?",
-          "content": "Yes, our Instagram video downloader is completely free to use with no hidden charges or subscription fees. We don't require any payment information."
-        },
-        "q2": {
-          "trigger": "Do I need to create an account?",
-          "content": "No, you don't need to create an account or log in to use our service. Simply paste the URL and download without any registration."
-        },
-        "q3": {
-          "trigger": "Is it legal to download Instagram videos?",
-          "content": "Our service is designed for personal use only. Please respect copyright laws and only download videos that you have permission to use or that fall under fair use."
-        }
+    "description": "Everything you need to know about SnapSave.",
+    "items": {
+      "q1": {
+        "trigger": "Is SnapSave free?",
+        "content": "Yes, SnapSave is completely free to use. There are no hidden fees, subscriptions, or download limits. We do not require any payment information."
       },
-      "technical": {
-        "title": "Technical Questions",
-        "q1": {
-          "trigger": "What types of Instagram content can I download?",
-          "content": "You can download regular posts, reels, and stories that contain videos. Our service works with public Instagram accounts and most private accounts you have access to."
-        },
-        "q2": {
-          "trigger": "How is the video quality?",
-          "content": "We provide the highest quality version of the video that Instagram makes available, typically in HD quality (1080p) when available from the source."
-        },
-        "q3": {
-          "trigger": "Does it work on mobile devices?",
-          "content": "Yes, our downloader works on all devices including smartphones and tablets. The process is the same - copy the URL from Instagram and paste it into our tool."
-        }
+      "q2": {
+        "trigger": "Can I download private Instagram videos?",
+        "content": "No. SnapSave only works with publicly accessible Instagram content. Private accounts and content restricted by privacy settings cannot be accessed through this tool."
+      },
+      "q3": {
+        "trigger": "Does SnapSave work on mobile?",
+        "content": "Yes. SnapSave is designed mobile-first and works on all devices including iPhone, Android, tablets, and desktop browsers. No app installation is required."
+      },
+      "q4": {
+        "trigger": "Do I need to install an app?",
+        "content": "No installation needed. SnapSave runs entirely in your browser. Just visit snapssave.com, paste your Instagram link, and download."
+      },
+      "q5": {
+        "trigger": "Is it legal to download Instagram videos?",
+        "content": "Downloading Instagram content for personal use may be permitted under fair use in some regions, but redistributing copyrighted content without permission is not. Always respect content creators and only download videos you own or have explicit permission to save."
+      },
+      "q6": {
+        "trigger": "Why is my link not working?",
+        "content": "Make sure the link is from a public Instagram account and that you're copying the full URL (starting with https://www.instagram.com/). Private posts, stories from private accounts, and some restricted content types may not be available. If the issue persists, Instagram may be temporarily rate-limiting requests."
       }
     }
   }

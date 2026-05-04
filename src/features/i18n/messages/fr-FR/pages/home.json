@@ -1,65 +1,60 @@
 {
-  "title": "Gram Grabberz",
-  "description": "Rapide, gratuit et sans inscription requise. Collez simplement l'URL et téléchargez.",
+  "title": "SnapSave — Téléchargeur de vidéos Instagram",
+  "description": "Téléchargez des vidéos, Reels et Stories Instagram en quelques secondes. Gratuit, rapide et sans inscription.",
   "hero": {
-    "title": "Téléchargez des vidéos Instagram en quelques secondes",
-    "description": "Rapide, gratuit et sans inscription requise. Collez simplement l'URL et téléchargez.",
-    "form": {
-      "placeholder": "Collez l'URL de la vidéo Instagram ici...",
-      "button": "Télécharger"
+    "title": {
+      "prefix": "Téléchargez des vidéos Instagram",
+      "highlight": "en quelques secondes"
     },
-    "formHint": "Fonctionne avec les publications, Reels et Stories Instagram",
-    "learnMore": "Apprendre comment ça marche"
+    "description": "Collez n'importe quel lien de vidéo, Reel ou Story Instagram public et sauvegardez-le instantanément — sans compte nécessaire.",
+    "hint": "Fonctionne avec les vidéos, Reels et Stories Instagram publics"
   },
   "features": {
-    "badge": "Pourquoi nous choisir",
-    "title": "Fonctionnalités puissantes",
-    "description": "Tout ce dont vous avez besoin pour télécharger des vidéos Instagram rapidement et facilement",
+    "badge": "Pourquoi SnapSave",
+    "title": "Tout ce dont vous avez besoin",
+    "description": "Un téléchargeur rapide et propre pour les vidéos, Reels et Stories Instagram.",
     "cards": {
-      "free": {
-        "title": "100% Gratuit",
-        "description": "Pas de frais cachés, d'abonnements ou de limites. Téléchargez un nombre illimité de vidéos sans payer un centime."
-      },
-      "noRegistration": {
-        "title": "Pas d'inscription",
-        "description": "Évitez les tracas de la création de comptes ou de la connexion. Accès instantané sans aucune donnée personnelle requise."
-      },
       "fast": {
-        "title": "Ultra rapide",
-        "description": "Nos serveurs optimisés traitent vos demandes instantanément, livrant les vidéos en quelques secondes, pas en minutes."
+        "title": "Téléchargements rapides",
+        "description": "Récupérez les médias en quelques secondes. Pas d'attente, pas de files — votre téléchargement commence immédiatement."
       },
-      "hdQuality": {
-        "title": "Qualité HD",
-        "description": "Téléchargez des vidéos dans la plus haute qualité disponible, en conservant la résolution et la clarté d'origine."
+      "reels": {
+        "title": "Reels pris en charge",
+        "description": "Sauvegardez les Instagram Reels en pleine qualité. Fonctionne avec tous les contenus Reels publics."
+      },
+      "noSignup": {
+        "title": "Sans inscription",
+        "description": "Aucun compte, aucune connexion, aucune donnée personnelle requise. Collez simplement et téléchargez."
+      },
+      "mobile": {
+        "title": "Compatible mobile",
+        "description": "Fonctionne parfaitement sur iPhone et Android. Une expérience fluide quelle que soit la taille de l'écran."
       }
     }
   },
   "howItWorks": {
     "badge": "Processus simple",
     "title": "Comment ça marche",
-    "description": "Téléchargez des vidéos Instagram en trois étapes simples",
+    "description": "Téléchargez des vidéos Instagram en trois étapes simples.",
     "steps": {
       "copy": {
-        "title": "Copier l'URL",
-        "descriptionDesktop": "Trouvez la vidéo Instagram que vous souhaitez et copiez son URL depuis la barre d'adresse ou le menu de partage",
-        "descriptionMobile": "Trouvez la vidéo Instagram que vous souhaitez et copiez son URL"
+        "title": "Copier le lien",
+        "description": "Ouvrez Instagram et copiez le lien de la vidéo, du Reel ou de la Story que vous souhaitez sauvegarder."
       },
       "paste": {
-        "title": "Coller l'URL",
-        "descriptionDesktop": "Collez l'URL copiée dans le champ de saisie de notre téléchargeur en haut de cette page",
-        "descriptionMobile": "Collez l'URL dans le champ de saisie de notre téléchargeur"
+        "title": "Coller ici",
+        "description": "Collez le lien dans le champ SnapSave et cliquez sur le bouton de téléchargement."
       },
       "download": {
-        "title": "Télécharger",
-        "descriptionDesktop": "Cliquez sur le bouton de téléchargement et votre vidéo sera enregistrée directement sur votre appareil",
-        "descriptionMobile": "Cliquez sur télécharger et enregistrez la vidéo sur votre appareil"
+        "title": "Sauvegarder la vidéo",
+        "description": "Votre téléchargement commence instantanément. Sauvegardez-le directement sur votre appareil."
       }
     },
     "ctaButton": "Essayez maintenant"
   },
   "testimonials": {
     "title": "La confiance de milliers d'utilisateurs",
-    "description": "Rejoignez des milliers d'utilisateurs satisfaits qui téléchargent des vidéos Instagram chaque jour",
+    "description": "Rejoignez les utilisateurs qui s'appuient sur SnapSave chaque jour pour sauvegarder du contenu Instagram.",
     "stats": {
       "downloads": "Téléchargements quotidiens",
       "users": "Utilisateurs satisfaits",
@@ -67,39 +62,33 @@
     }
   },
   "frequentlyAsked": {
-    "badge": "Vous avez des questions ?",
+    "badge": "Questions fréquentes",
     "title": "Foire Aux Questions",
-    "description": "Trouvez des réponses aux questions courantes concernant notre téléchargeur de vidéos Instagram",
-    "sections": {
-      "general": {
-        "title": "Questions Générales",
-        "q1": {
-          "trigger": "Ce service est-il entièrement gratuit ?",
-          "content": "Oui, notre téléchargeur de vidéos Instagram est entièrement gratuit et sans frais cachés ni frais d'abonnement. Nous ne demandons aucune information de paiement."
-        },
-        "q2": {
-          "trigger": "Dois-je créer un compte ?",
-          "content": "Non, vous n'avez pas besoin de créer un compte ou de vous connecter pour utiliser notre service. Collez simplement l'URL et téléchargez sans aucune inscription."
-        },
-        "q3": {
-          "trigger": "Est-il légal de télécharger des vidéos Instagram ?",
-          "content": "Notre service est conçu pour un usage personnel uniquement. Veuillez respecter les lois sur le droit d'auteur et ne télécharger que les vidéos que vous avez l'autorisation d'utiliser ou qui relèvent de l'usage loyal."
-        }
+    "description": "Tout ce que vous devez savoir sur SnapSave.",
+    "items": {
+      "q1": {
+        "trigger": "SnapSave est-il gratuit ?",
+        "content": "Oui, SnapSave est entièrement gratuit. Il n'y a pas de frais cachés, d'abonnements ou de limites de téléchargement. Nous ne demandons aucune information de paiement."
       },
-      "technical": {
-        "title": "Questions Techniques",
-        "q1": {
-          "trigger": "Quels types de contenu Instagram puis-je télécharger ?",
-          "content": "Vous pouvez télécharger les publications, Reels et Stories contenant des vidéos. Notre service fonctionne avec les comptes Instagram publics et la plupart des comptes privés auxquels vous avez accès."
-        },
-        "q2": {
-          "trigger": "Quelle est la qualité de la vidéo ?",
-          "content": "Nous fournissons la version de la plus haute qualité de la vidéo mise à disposition par Instagram, généralement en qualité HD (1080p) lorsque disponible à partir de la source."
-        },
-        "q3": {
-          "trigger": "Fonctionne-t-il sur les appareils mobiles ?",
-          "content": "Oui, notre téléchargeur fonctionne sur tous les appareils, y compris les smartphones et les tablettes. Le processus est le même : copiez l'URL depuis Instagram et collez-la dans notre outil."
-        }
+      "q2": {
+        "trigger": "Puis-je télécharger des vidéos Instagram privées ?",
+        "content": "Non. SnapSave ne fonctionne qu'avec du contenu Instagram accessible au public. Les comptes privés et le contenu restreint par les paramètres de confidentialité ne sont pas accessibles."
+      },
+      "q3": {
+        "trigger": "SnapSave fonctionne-t-il sur mobile ?",
+        "content": "Oui. SnapSave est conçu mobile-first et fonctionne sur tous les appareils incluant iPhone, Android, tablettes et navigateurs de bureau. Aucune installation d'application n'est requise."
+      },
+      "q4": {
+        "trigger": "Dois-je installer une application ?",
+        "content": "Aucune installation nécessaire. SnapSave fonctionne entièrement dans votre navigateur. Visitez simplement snapssave.com, collez votre lien Instagram et téléchargez."
+      },
+      "q5": {
+        "trigger": "Est-il légal de télécharger des vidéos Instagram ?",
+        "content": "Le téléchargement de contenu Instagram pour usage personnel peut être autorisé dans certaines régions, mais la redistribution de contenu protégé par le droit d'auteur sans permission ne l'est pas."
+      },
+      "q6": {
+        "trigger": "Pourquoi mon lien ne fonctionne-t-il pas ?",
+        "content": "Assurez-vous que le lien provient d'un compte Instagram public et que vous copiez l'URL complète. Les publications privées et certains types de contenu restreints peuvent ne pas être disponibles."
       }
     }
   }

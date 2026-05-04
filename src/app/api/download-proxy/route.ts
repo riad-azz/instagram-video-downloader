@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const fileUrl = searchParams.get("url");
-  const filename = searchParams.get("filename") || "gram-grabberz-video.mp4"; // Default filename
+  const filename = searchParams.get("filename") || "snapsave-video.mp4";
 
   if (!fileUrl) {
     return NextResponse.json(

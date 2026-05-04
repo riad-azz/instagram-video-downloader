@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans as RootFont } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/features/theme/theme-provider";
@@ -12,9 +12,10 @@ import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
 
-const geistSans = RootFont({
+const inter = Inter({
   variable: "--font-root-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = siteMetadata;
@@ -29,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
-      <body className={cn("antialiased", geistSans.className)}>
+      <body className={cn("antialiased", inter.variable, inter.className)}>
         <LocaleProvider locale={locale} messages={messages}>
           <ThemeProvider>
             <ReactQueryProvider>
