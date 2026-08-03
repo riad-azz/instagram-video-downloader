@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { IG_GraphQLResponseDto } from "@/features/api/_dto/instagram";
-
-import { getInstagramPostGraphQL } from "./utils";
+import {
+  getInstagramPostGraphQL,
+  getMediaItemFromWebInfoResponse,
+  normalizeMediaToLegacyGraphQL,
+} from "./utils";
 
 interface RouteContext {
   params: Promise<{
@@ -28,18 +30,29 @@ export async function GET(_: NextRequest, context: RouteContext) {
     const status = response.status;
 
     if (status === 200) {
-      const { data } = (await response.json()) as IG_GraphQLResponseDto;
-      if (!data.xdt_shortcode_media) {
+      const payload = await response.json();
+      const mediaItem = getMediaItemFromWebInfoResponse(payload);
+
+      if (!mediaItem) {
         return NextResponse.json(
           { error: "notFound", message: "post not found" },
           { status: 404 }
         );
       }
 
-      if (!data.xdt_shortcode_media.is_video) {
+      const data = normalizeMediaToLegacyGraphQL(mediaItem);
+
+      if (!data.xdt_shortcode_media?.is_video) {
         return NextResponse.json(
           { error: "notVideo", message: "post is not a video" },
           { status: 400 }
+        );
+      }
+
+      if (!data.xdt_shortcode_media.video_url) {
+        return NextResponse.json(
+          { error: "notFound", message: "video url not found" },
+          { status: 404 }
         );
       }
 
